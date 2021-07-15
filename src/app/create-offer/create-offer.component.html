@@ -1,0 +1,7 @@
+<h2>Stworz oferte</h2>
+<form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
+  <input type="text" name="title" ngModel placeholder="title"> <br/> 
+  <input type="text" name="description" ngModel placeholder="description"> <br/> 
+  <input type="text" name="price" ngModel placeholder="price"><br/>
+  <button>submit data</button>
+</form>

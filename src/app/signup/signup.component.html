@@ -1,0 +1,7 @@
+<h2>Create new user</h2>
+<form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
+  <input type="text" name="username" ngModel placeholder="username"> <br/> 
+  <input type="text" name="password" ngModel placeholder="password"> <br/> 
+  <input type="text" name="email" ngModel placeholder="email"> <br/>
+  <button>submit data</button>
+</form>
