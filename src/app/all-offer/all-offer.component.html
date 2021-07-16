@@ -1,1 +1,25 @@
-<p>all-offer works!</p>
+<button type="button" (click)="showAllOffer()">Pokaz wszystkich uzytkownikow</button>
+
+<div>
+  <table align="center">
+     <thead>
+         <tr>
+             <th>Id</th>
+             <th>Tytuł</th>
+             <th>Opis</th>
+             <th>Cena</th>
+             <th>Autor</th>
+         </tr>
+     </thead>
+     <tbody>
+         <tr *ngFor="let offer of allOffers">
+             <td style="width: 20px;">{{offer.id}}</td>
+             <td style="width: 100px;">{{offer.title}}</td>
+             <td style="width: 500px;">{{offer.description}}</td>
+             <td style="width: 20px;">{{offer.price}}</td>
+             <td style="width: 100px;">{{offer.ownerName}}</td>
+         </tr>
+
+     </tbody>
+ </table>
+</div>

@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { OfferService } from '../offer.service';
 
 @Component({
   selector: 'app-all-offer',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllOfferComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: OfferService) { }
 
+  allOffers: any;
   ngOnInit(): void {
   }
 
+  showAllOffer(){
+    this.service.getAllOffer().subscribe(result =>
+      {
+      this.allOffers=result;
+      console.log(this.allOffers);
+      }
+      );
+  }
 }
