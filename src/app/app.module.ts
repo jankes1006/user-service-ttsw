@@ -12,6 +12,7 @@ import { CreateOfferComponent } from './create-offer/create-offer.component';
 import { AllOfferComponent } from './all-offer/all-offer.component';
 import { LoginCreateComponent } from './login-create/login-create.component';
 import { AuthGuard } from './authGuard';
+import { DetailsOfferComponent } from './details-offer/details-offer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AuthGuard } from './authGuard';
     LoginComponent,
     CreateOfferComponent,
     AllOfferComponent,
-    LoginCreateComponent
+    LoginCreateComponent,
+    DetailsOfferComponent
   ],
   imports: [
     BrowserModule,

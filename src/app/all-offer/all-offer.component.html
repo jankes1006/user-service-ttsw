@@ -13,7 +13,7 @@
      <tbody>
          <tr *ngFor="let offer of allOffers">
              <td style="width: 20px;">{{offer.id}}</td>
-             <td style="width: 100px;">{{offer.title}}</td>
+             <td style="width: 100px;"><a routerLink="/detailOffer/{{offer.id}}">{{offer.title}}</a></td>
              <td style="width: 500px;">{{offer.description}}</td>
              <td style="width: 20px;">{{offer.price}}</td>
              <td style="width: 100px;">{{offer.ownerName}}</td>

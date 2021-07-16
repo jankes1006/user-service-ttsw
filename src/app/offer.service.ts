@@ -17,4 +17,8 @@ export class OfferService {
   getAllOffer(){
     return this.http.get("http://localhost:8080/offer/getAll");
   }
+
+  getOfferById(id: number){
+    return this.http.get("http://localhost:8080/offer/getById?id="+id);
+  }
 }

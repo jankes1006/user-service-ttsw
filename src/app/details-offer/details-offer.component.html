@@ -1,0 +1,13 @@
+<a routerLink="/showAllOffer">Wróć do wszystkich ofert</a>
+
+<h2>{{offer?.title}}</h2>
+
+<h4>Opis:</h4>
+{{offer?.description}}
+
+<h4>Cena:</h4>
+{{offer?.price}}
+
+<br/> <br/>
+
+<button type="button" (click)="orderProduct()">Zamów produkt</button>
