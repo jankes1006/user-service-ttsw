@@ -13,13 +13,13 @@ export class AllOfferComponent implements OnInit {
 
   allOffers: any;
   ngOnInit(): void {
+    this.showAllOffer();
   }
 
   showAllOffer(){
     this.service.getAllOffer().subscribe(result =>
       {
       this.allOffers=result;
-      console.log(this.allOffers);
       }
       );
   }

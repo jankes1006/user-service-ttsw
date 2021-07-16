@@ -1,6 +1,8 @@
-<h2>Login</h2>
+<h2>Zaloguj się:</h2>
 <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
-  <input type="text" name="username" ngModel placeholder="username"> <br/> 
-  <input type="text" name="password" ngModel placeholder="password"> <br/> 
-  <button>submit data</button>
+  <input type="text" name="username" ngModel placeholder="Login"> <br/> 
+  <input type="password" name="password" ngModel placeholder="Hasło"> <br/> 
+  <button>Zaloguj sie</button>
 </form>
+
+<p #errorLogin></p>

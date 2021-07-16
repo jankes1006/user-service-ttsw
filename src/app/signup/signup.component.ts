@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 
 @Component({
@@ -8,15 +9,22 @@ import { UserService } from '../user.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private userService: UserService){
+  @ViewChild('createStatus') createStatus?: ElementRef;
+  
+  constructor(private userService: UserService, private route: Router){
   }
   ngOnInit(): void {
   }
 
   onSubmit(data: any): void{
-    this.userService.createAccount(data)
-    .subscribe((result)=>{
-      console.warn(result);
-    })
+    this.createStatus!.nativeElement.innerHTML="Czekaj..."
+    if(data.password==data.repeatPassword){
+      this.userService.createAccount(data)
+      .subscribe((result)=>{
+        this.createStatus!.nativeElement.innerHTML="Stworzono nowe konto, potwierdz adres email!"
+      })
+    }else{
+      this.createStatus!.nativeElement.innerHTML="Podane hasła się różnią! Popraw!"
+    }
   }
 }

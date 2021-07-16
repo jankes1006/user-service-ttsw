@@ -1,7 +1,9 @@
-<h2>Create new user</h2>
+<h2>Stwórz nowe konto:</h2>
 <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
-  <input type="text" name="username" ngModel placeholder="username"> <br/> 
-  <input type="text" name="password" ngModel placeholder="password"> <br/> 
-  <input type="text" name="email" ngModel placeholder="email"> <br/>
-  <button>submit data</button>
+  <input type="text" name="username" ngModel placeholder="Login"> <br/> 
+  <input type="password" name="password" ngModel placeholder="Hasło"> <br/> 
+  <input type="password" name="repeatPassword" ngModel placeholder="Powtorz haslo"> <br/>
+  <input type="email" name="email" ngModel placeholder="Email"> <br/>
+  <button>Stworz nowe konto</button>
 </form>
+<p #createStatus></p>

@@ -1,7 +1,9 @@
-<h2>Stworz oferte</h2>
+<a routerLink="/home">Home</a> <br/>
+<h2>Stworz oferte:</h2>
 <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
-  <input type="text" name="title" ngModel placeholder="title"> <br/> 
-  <input type="text" name="description" ngModel placeholder="description"> <br/> 
-  <input type="text" name="price" ngModel placeholder="price"><br/>
-  <button>submit data</button>
+  <input type="text" name="title" ngModel placeholder="Tytuł"> <br/> 
+  <input type="text" name="description" ngModel placeholder="Opis"> <br/> 
+  <input type="number" name="price" ngModel placeholder="Cena"><br/>
+  <button>Stwórz oferte</button>
 </form>
+<p #createOfferStatus></p>

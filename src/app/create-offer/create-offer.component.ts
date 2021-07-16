@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { OfferService } from '../offer.service';
 
 @Component({
@@ -8,6 +8,8 @@ import { OfferService } from '../offer.service';
 })
 export class CreateOfferComponent implements OnInit {
 
+  @ViewChild('createOfferStatus') createOfferStatus?: ElementRef;
+
   constructor(private service: OfferService) { }
 
   ngOnInit(): void {
@@ -16,5 +18,6 @@ export class CreateOfferComponent implements OnInit {
   onSubmit(data: any){
     data.userId=localStorage.getItem("id");
     this.service.createOffer(data,localStorage.getItem("username")!,localStorage.getItem("password")!)
+    this.createOfferStatus!.nativeElement.innerHTML="Stworzono nową ofertę!";
   }
 }

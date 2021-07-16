@@ -1,4 +1,5 @@
-import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 
 @Component({
@@ -8,15 +9,16 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
 
+  @ViewChild('errorLogin') error?: ElementRef;
   user: any;
-  constructor(private userService: UserService){
+  
+  constructor(private userService: UserService, private router: Router){
   }
 
   ngOnInit(): void {
   }
 
   onSubmit(data: any): void{
-    console.warn(data);
     this.userService.login(data.username, data.password).subscribe(response=>{
       this.user=response;
 
@@ -26,6 +28,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('password',data.password);
         localStorage.setItem('email',this.user.email);
         localStorage.setItem('role',this.user.role);
+        this.router.navigate(['/home']);
+      }else{
+        this.error!.nativeElement.innerHTML="Nieprawidłowy login lub hasło!";
       }
     });
   }

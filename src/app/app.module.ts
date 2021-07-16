@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { CreateOfferComponent } from './create-offer/create-offer.component';
 import { AllOfferComponent } from './all-offer/all-offer.component';
+import { LoginCreateComponent } from './login-create/login-create.component';
+import { AuthGuard } from './authGuard';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { AllOfferComponent } from './all-offer/all-offer.component';
     HomeComponent,
     LoginComponent,
     CreateOfferComponent,
-    AllOfferComponent
+    AllOfferComponent,
+    LoginCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { AllOfferComponent } from './all-offer/all-offer.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
