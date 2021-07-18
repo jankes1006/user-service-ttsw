@@ -22,16 +22,16 @@ export class LoginComponent implements OnInit {
     this.userService.login(data.username, data.password).subscribe(response=>{
       this.user=response;
 
-      if(this.user.username!=null){
+      if(this.user.username){
         localStorage.setItem('id',this.user.id);
         localStorage.setItem('username',this.user.username);
         localStorage.setItem('password',data.password);
         localStorage.setItem('email',this.user.email);
         localStorage.setItem('role',this.user.role);
         this.router.navigate(['/home']);
-      }else{
-        this.error!.nativeElement.innerHTML="Nieprawidłowy login lub hasło!";
       }
+    },(error)=>{
+      this.error!.nativeElement.innerHTML="Nieprawidłowy login lub hasło!";
     });
   }
 }

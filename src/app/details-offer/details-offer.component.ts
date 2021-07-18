@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OfferService } from '../offer.service';
 
@@ -9,13 +9,17 @@ import { OfferService } from '../offer.service';
 })
 export class DetailsOfferComponent implements OnInit {
 
-  constructor(private offerService: OfferService,private route: ActivatedRoute) { }
   offer: any;
+  id?: number;
+  @ViewChild('reservedStatus') reservedStatus?: ElementRef;
+  
+  constructor(private offerService: OfferService,private route: ActivatedRoute) { }
+  
 
   ngOnInit(): void {
-    const id=Number(this.route.snapshot.paramMap.get('id'));
-    console.log(id);
-    this.getOffer(id);
+    this.id=Number(this.route.snapshot.paramMap.get('id'));
+    console.log(this.id);
+    this.getOffer(this.id);
   }
 
   getOffer(id: number){
@@ -25,7 +29,15 @@ export class DetailsOfferComponent implements OnInit {
   }
 
   orderProduct(){
-    console.warn("order new product");
+    this.offerService.reservedOffer(this.id!).subscribe(result =>{
+      if(result){
+        this.reservedStatus!.nativeElement.innerHTML="Zarezerwowano oferte!";
+      }else{
+        this.reservedStatus!.nativeElement.innerHTML="Oferta jest już nie aktualna!";
+      }
+    },()=>{
+      this.reservedStatus!.nativeElement.innerHTML="Błąd rezerwacji, spróbuj później.";
+    })
   }
 
 }

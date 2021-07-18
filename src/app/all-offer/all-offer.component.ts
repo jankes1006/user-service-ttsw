@@ -11,7 +11,8 @@ export class AllOfferComponent implements OnInit {
 
   constructor(private service: OfferService) { }
 
-  allOffers: any;
+  allOffers: any; 
+
   ngOnInit(): void {
     this.showAllOffer();
   }
@@ -19,7 +20,8 @@ export class AllOfferComponent implements OnInit {
   showAllOffer(){
     this.service.getAllOffer().subscribe(result =>
       {
-      this.allOffers=result;
+        console.log(result);
+        this.allOffers=result;
       }
       );
   }

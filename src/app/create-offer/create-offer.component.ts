@@ -16,8 +16,7 @@ export class CreateOfferComponent implements OnInit {
   }
 
   onSubmit(data: any){
-    data.userId=localStorage.getItem("id");
-    this.service.createOffer(data,localStorage.getItem("username")!,localStorage.getItem("password")!)
+    this.service.createOffer(data)
     this.createOfferStatus!.nativeElement.innerHTML="Stworzono nową ofertę!";
   }
 }
