@@ -2,7 +2,7 @@
 <h2>Stworz oferte:</h2>
 <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
   <input type="text" name="title" ngModel placeholder="Tytuł"> <br/> 
-  <input type="text" name="description" ngModel placeholder="Opis"> <br/> 
+  <textarea name="description" cols="50" rows="10" ngModel placeholder="Opis"></textarea> <br/>
   <input type="number" name="price" ngModel placeholder="Cena"><br/>
   <button>Stwórz oferte</button>
 </form>

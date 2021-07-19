@@ -1,0 +1,13 @@
+<a routerLink="/showAllOffersUser">Wszystkie oferty użytkownika</a> <br/>
+<h2>Edytuj:</h2>
+<form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
+  <input #title type="text" name="title" ngModel placeholder="Tytuł"> <br/> 
+  <textarea #description name="description" cols="50" rows="10" ngModel placeholder="Opis"></textarea> <br/>
+  <input #price type="number" name="price" ngModel placeholder="Cena"><br/>
+  <button>Edytuj oferte</button>
+</form>
+<p #editOfferStatus></p>
+
+<br/> <br/>
+Oferta jest: <p #offerStatus></p>
+<button #activityButton type="button" (click)="editActivity()">Zmień aktywność</button>

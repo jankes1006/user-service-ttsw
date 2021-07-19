@@ -1,0 +1,24 @@
+<a routerLink="/home">Home</a> <br/>
+<div>
+  <table align="center" border="10">
+     <thead>
+         <tr>
+             <th>Id</th>
+             <th>Tytuł</th>
+             <th>Opis</th>
+             <th>Cena</th>
+             <th>Aktywność</th>
+         </tr>
+     </thead>
+     <tbody>
+         <tr *ngFor="let offer of offers">
+             <td style="width: 20px;">{{offer.id}}</td>
+             <td style="width: 100px;"><a routerLink="/detailOfferEdit/{{offer.id}}">{{offer.title}}</a></td>
+             <td style="width: 500px;">{{offer.description}}</td>
+             <td style="width: 20px;">{{offer.price}}</td>
+             <td style="width: 100px;">{{offer.stateOffer}}</td>
+         </tr>
+
+     </tbody>
+ </table>
+</div>

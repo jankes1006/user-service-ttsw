@@ -1,4 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -26,5 +27,20 @@ export class OfferService {
   reservedOffer(id: number){
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
     return this.http.get("http://localhost:8080/offer/reserved?id="+id,{headers});
+  }
+
+  updateOffer(data: any){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.put("http://localhost:8080/offer/update",data,{headers});
+  }
+
+  changeActivityOffer(id: number){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.put("http://localhost:8080/offer/changeActivityUser?id="+id,{},{headers});
+  }
+
+  getAllOffersUser(){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.get("http://localhost:8080/offer/getAllUser",{headers});
   }
 }

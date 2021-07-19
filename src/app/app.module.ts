@@ -13,6 +13,8 @@ import { AllOfferComponent } from './all-offer/all-offer.component';
 import { LoginCreateComponent } from './login-create/login-create.component';
 import { AuthGuard } from './authGuard';
 import { DetailsOfferComponent } from './details-offer/details-offer.component';
+import { EditDetailsComponent } from './edit-details/edit-details.component';
+import { AllOfersUserComponent } from './all-ofers-user/all-ofers-user.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { DetailsOfferComponent } from './details-offer/details-offer.component';
     CreateOfferComponent,
     AllOfferComponent,
     LoginCreateComponent,
-    DetailsOfferComponent
+    DetailsOfferComponent,
+    EditDetailsComponent,
+    AllOfersUserComponent
   ],
   imports: [
     BrowserModule,

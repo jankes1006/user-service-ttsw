@@ -12,23 +12,30 @@ export class DetailsOfferComponent implements OnInit {
   offer: any;
   id?: number;
   @ViewChild('reservedStatus') reservedStatus?: ElementRef;
-  
+  @ViewChild('orderButton') orderButton?: ElementRef;
+
   constructor(private offerService: OfferService,private route: ActivatedRoute) { }
   
 
   ngOnInit(): void {
     this.id=Number(this.route.snapshot.paramMap.get('id'));
-    console.log(this.id);
     this.getOffer(this.id);
   }
 
   getOffer(id: number){
     this.offerService.getOfferById(id).subscribe(result =>{ 
       this.offer = result;
+      
+      if(localStorage.getItem('username')==this.offer.ownerName){
+        this.orderButton!.nativeElement.style.display="none";
+      }else{
+        this.orderButton!.nativeElement.style.display="block";
+      }
     })
   }
 
   orderProduct(){
+    this.reservedStatus!.nativeElement.innerHTML="Czekaj...";
     this.offerService.reservedOffer(this.id!).subscribe(result =>{
       if(result){
         this.reservedStatus!.nativeElement.innerHTML="Zarezerwowano oferte!";
