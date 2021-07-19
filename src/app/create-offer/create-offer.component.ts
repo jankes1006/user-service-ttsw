@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { OfferService } from '../offer.service';
+import { OfferService } from '../OfferService/offer.service';
 
 @Component({
   selector: 'app-create-offer',

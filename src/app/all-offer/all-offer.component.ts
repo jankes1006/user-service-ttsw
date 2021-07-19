@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { OfferService } from '../offer.service';
+import { OfferService } from '../OfferService/offer.service';
 
 @Component({
   selector: 'app-all-offer',

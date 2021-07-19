@@ -11,7 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { CreateOfferComponent } from './create-offer/create-offer.component';
 import { AllOfferComponent } from './all-offer/all-offer.component';
 import { LoginCreateComponent } from './login-create/login-create.component';
-import { AuthGuard } from './authGuard';
+import { AuthGuard } from './Guard/authGuard';
 import { DetailsOfferComponent } from './details-offer/details-offer.component';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
 import { AllOfersUserComponent } from './all-ofers-user/all-ofers-user.component';
