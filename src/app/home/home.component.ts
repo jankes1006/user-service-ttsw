@@ -8,10 +8,16 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  helloMessage = "Witaj " + localStorage.getItem("username");
+  linkToAllUsers?: String;
+  helloMessage = "Witaj " + localStorage.getItem("username")+"!";
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('role')=="ROLE_ADMIN"){
+      this.linkToAllUsers="Wyświetl wszystkich użytkowników"
+    }else{
+      this.linkToAllUsers="";
+    }
   }
 
   logout(){

@@ -10,7 +10,6 @@ export class UserService {
   }
 
   createAccount(data: any){
-    console.warn(data);
     return this.http.post('http://localhost:8080/user/create',data);
   }
 
@@ -18,5 +17,25 @@ export class UserService {
     //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
     //return this.http.get("http://localhost:8080/user/getByUsername?username=admin",{headers,responseType: 'text' as 'json'}).subscribe(response=>console.warn(response));
     return this.http.get('http://localhost:8080/user/login?username='+username+'&password='+password);
+  }
+
+  getAllUsers(){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.get('http://localhost:8080/user/getAll',{headers});
+  }
+
+  getUser(id: number){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.get('http://localhost:8080/user/getById?id='+id,{headers});
+  }
+
+  updateUserAdmin(data: any){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.put('http://localhost:8080/user/updateAdmin',data,{headers});
+  }
+
+  updateUser(data: any){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.put('http://localhost:8080/user/update',data,{headers});
   }
 }

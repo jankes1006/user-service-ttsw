@@ -15,6 +15,10 @@ import { AuthGuard } from './Guard/authGuard';
 import { DetailsOfferComponent } from './details-offer/details-offer.component';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
 import { AllOfersUserComponent } from './all-ofers-user/all-ofers-user.component';
+import { AllUserComponent } from './all-user/all-user.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { AdminGuard } from './Guard/adminGuard';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,10 @@ import { AllOfersUserComponent } from './all-ofers-user/all-ofers-user.component
     LoginCreateComponent,
     DetailsOfferComponent,
     EditDetailsComponent,
-    AllOfersUserComponent
+    AllOfersUserComponent,
+    AllUserComponent,
+    UserDetailsComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +42,7 @@ import { AllOfersUserComponent } from './all-ofers-user/all-ofers-user.component
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

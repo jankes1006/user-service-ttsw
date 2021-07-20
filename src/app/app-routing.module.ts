@@ -8,12 +8,19 @@ import { DetailsOfferComponent } from './details-offer/details-offer.component';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
 import { HomeComponent } from './home/home.component';
 import { LoginCreateComponent } from './login-create/login-create.component';
+import { AllUserComponent } from './all-user/all-user.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { AdminGuard } from './Guard/adminGuard';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: 'login', component: LoginCreateComponent},
   {path: 'showAllOffer', component: AllOfferComponent, canActivate: [AuthGuard]},
   {path: 'showAllOffersUser', component: AllOfersUserComponent, canActivate: [AuthGuard]},
+  {path: 'showAllUsers', component: AllUserComponent, canActivate: [AuthGuard, AdminGuard]}, 
+  {path: 'detailUserEditAdmin/:id', component: UserDetailsComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'editUser', component: UserEditComponent, canActivate: [AuthGuard]},
   {path: 'createOffer', component: CreateOfferComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'detailOffer/:id', component: DetailsOfferComponent, canActivate: [AuthGuard]},

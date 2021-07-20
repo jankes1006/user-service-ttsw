@@ -1,0 +1,20 @@
+<h1>Ustawienia</h1>
+<a routerLink="/home">Home</a> <br/> <br/>
+
+
+<h2>Zmiana hasła:</h2>
+<form #changePassword="ngForm" (ngSubmit)="onSubmitPassword(changePassword.value)">
+  <input type="password" name="passwordNew" ngModel placeholder="Podaj nowe hasło" /> <br/>
+  <input type="password" name="passwordNewRepeat" ngModel placeholder="Powtórz nowe hasło" /> <br/>
+  <input type="password" name="password" ngModel placeholder="Podaj aktualne hasło" /> <br/>
+  <button type="submit">Zmień hasło</button>
+</form>
+<p #changePasswordStatus></p>
+
+<h2>Zmiana adresu email:</h2>
+<form #changeEmail="ngForm" (ngSubmit)="onSubmitEmail(changeEmail.value)">
+  <input type="email" name="email" ngModel placeholder="Podaj nowy adres email" /> <br/>
+  <input type="password" name="password" ngModel placeholder="Podaj hasło" /> <br/>
+  <button type="submit">Zmień email</button>
+</form>
+<p #changeEmailStatus></p>
