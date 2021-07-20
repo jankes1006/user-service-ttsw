@@ -9,14 +9,18 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   linkToAllUsers?: String;
+  linkToAllOffersAdmin?: String;
+
   helloMessage = "Witaj " + localStorage.getItem("username")+"!";
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('role')=="ROLE_ADMIN"){
       this.linkToAllUsers="Wyświetl wszystkich użytkowników"
+      this.linkToAllOffersAdmin="Modyfikuj status ofert";
     }else{
       this.linkToAllUsers="";
+      this.linkToAllOffersAdmin="";
     }
   }
 

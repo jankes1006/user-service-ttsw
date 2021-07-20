@@ -12,6 +12,8 @@ import { AllUserComponent } from './all-user/all-user.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { AdminGuard } from './Guard/adminGuard';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { AllOfferAdminComponent } from './all-offer-admin/all-offer-admin.component';
+import { BannedOfferEditComponent } from './banned-offer-edit/banned-offer-edit.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -20,6 +22,8 @@ const routes: Routes = [
   {path: 'showAllOffersUser', component: AllOfersUserComponent, canActivate: [AuthGuard]},
   {path: 'showAllUsers', component: AllUserComponent, canActivate: [AuthGuard, AdminGuard]}, 
   {path: 'detailUserEditAdmin/:id', component: UserDetailsComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'showAllOffersAdmin', component: AllOfferAdminComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'bannedOfferEditAdmin/:id', component: BannedOfferEditComponent, canActivate: [AuthGuard, AdminGuard]},
   {path: 'editUser', component: UserEditComponent, canActivate: [AuthGuard]},
   {path: 'createOffer', component: CreateOfferComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},

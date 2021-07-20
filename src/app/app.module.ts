@@ -19,6 +19,8 @@ import { AllUserComponent } from './all-user/all-user.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { AdminGuard } from './Guard/adminGuard';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { AllOfferAdminComponent } from './all-offer-admin/all-offer-admin.component';
+import { BannedOfferEditComponent } from './banned-offer-edit/banned-offer-edit.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     AllOfersUserComponent,
     AllUserComponent,
     UserDetailsComponent,
-    UserEditComponent
+    UserEditComponent,
+    AllOfferAdminComponent,
+    BannedOfferEditComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,21 @@
+<a routerLink="/showAllOffersAdmin">Wróć do wszystkich ofert</a>
+
+<h2>{{offer?.title}}</h2>
+
+<h4>Opis:</h4>
+{{offer?.description}}
+
+<h4>Cena:</h4>
+{{offer?.price}}
+
+<h4>Status:</h4>
+{{offer?.stateOffer}}
+
+<br/> <br/>
+<h2>{{blockUnBlockOffer?.blockUnblockMessage}}</h2>
+<form #blockForm="ngForm" (ngSubmit)="block(blockForm.value)">
+  <textarea #reason name="reason" cols="50" rows="10" ngModel placeholder="Powód"></textarea> <br/>
+  <button type="submit">{{blockUnBlockOffer?.buttonText}}</button>
+</form>
+
+<p #workStatus></p>

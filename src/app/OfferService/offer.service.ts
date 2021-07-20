@@ -19,6 +19,11 @@ export class OfferService {
     return this.http.get("http://localhost:8080/offer/getAll",{headers});
   }
 
+  getAllOfferAdmin(){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.get("http://localhost:8080/offer/getAllAdmin",{headers});
+  }
+
   getOfferById(id: number){
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
     return this.http.get("http://localhost:8080/offer/getById?id="+id,{headers});
@@ -42,5 +47,15 @@ export class OfferService {
   getAllOffersUser(){
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
     return this.http.get("http://localhost:8080/offer/getAllUser",{headers});
+  }
+
+  setBanOnOffer(data: any){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.put("http://localhost:8080/offer/setBan",data,{headers});
+  }
+
+  takeOfBanOffer(data: any){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.put("http://localhost:8080/offer/takeOffBan",data,{headers});
   }
 }
