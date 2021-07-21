@@ -1,20 +1,57 @@
-<h1>Ustawienia</h1>
-<a routerLink="/home">Home</a> <br/> <br/>
+<app-home></app-home>
+<br/>
 
+<div class="panel panel-default col-lg-6 offset-lg-3">
+  <div class="panel-heading">
+    <h3 class="panel-title">Zmiana hasła</h3>
+  </div>
 
-<h2>Zmiana hasła:</h2>
-<form #changePassword="ngForm" (ngSubmit)="onSubmitPassword(changePassword.value)">
-  <input type="password" name="passwordNew" ngModel placeholder="Podaj nowe hasło" /> <br/>
-  <input type="password" name="passwordNewRepeat" ngModel placeholder="Powtórz nowe hasło" /> <br/>
-  <input type="password" name="password" ngModel placeholder="Podaj aktualne hasło" /> <br/>
-  <button type="submit">Zmień hasło</button>
-</form>
-<p #changePasswordStatus></p>
+  <div class="panel-body">
+      <form #changePassword="ngForm" (ngSubmit)="onSubmitPassword(changePassword.value)">
+        <div class="form-group">
+          <label for="title">Nowe hasło</label>
+          <input #title type="password" class="form-control" ngModel name="passwordNew" placeholder="Podaj nowe hasło">
+        </div>
 
-<h2>Zmiana adresu email:</h2>
-<form #changeEmail="ngForm" (ngSubmit)="onSubmitEmail(changeEmail.value)">
-  <input type="email" name="email" ngModel placeholder="Podaj nowy adres email" /> <br/>
-  <input type="password" name="password" ngModel placeholder="Podaj hasło" /> <br/>
-  <button type="submit">Zmień email</button>
-</form>
-<p #changeEmailStatus></p>
+        <div class="form-group">
+          <label for="passwordNewRepeat">Powtórz nowe hasło</label>
+          <input #title type="password" class="form-control" ngModel name="passwordNewRepeat" placeholder="Powtórz nowe hasło">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Aktualne hasło</label>
+          <input #price type="password" class="form-control" ngModel name="password" placeholder="Podaj aktualne hasło">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Zmień</button>
+      </form>
+      <p #changePasswordStatus style="text-align: center; color: red;"></p>
+  </div>
+</div>
+
+<div class="panel panel-default col-lg-6 offset-lg-3">
+  <div class="panel-heading">
+    <h3 class="panel-title">Zmiana adresu email</h3>
+  </div>
+
+  <div class="panel-body">
+      <form #changeEmail="ngForm" (ngSubmit)="onSubmitEmail(changeEmail.value)">
+        <div class="form-group">
+          <label for="email">Nowy adres email</label>
+          <input #title type="email" class="form-control" ngModel name="email" placeholder="Podaj nowy adres email">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Hasło</label>
+          <input #title type="password" class="form-control" ngModel name="password" placeholder="Podaj hasło">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Zmień</button>
+      </form>
+      <p #changeEmailStatus style="text-align: center; color: red;"></p>
+  </div>
+</div>
+
+<br/>
+<br/>
+<app-footer></app-footer>

@@ -1,9 +1,33 @@
-<a routerLink="/home">Home</a> <br/>
-<h2>Stworz oferte:</h2>
-<form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
-  <input type="text" name="title" ngModel placeholder="Tytuł"> <br/> 
-  <textarea name="description" cols="50" rows="10" ngModel placeholder="Opis"></textarea> <br/>
-  <input type="number" name="price" ngModel placeholder="Cena"><br/>
-  <button>Stwórz oferte</button>
-</form>
-<p #createOfferStatus></p>
+<app-home></app-home>
+<br/> <br/>
+
+<div class="panel panel-default col-lg-6 offset-lg-3">
+  <div class="panel-heading">
+    <h3 class="panel-title">Stwórz oferte</h3>
+  </div>
+
+  <div class="panel-body">
+      <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
+        <div class="form-group">
+          <label for="title">Tytuł</label>
+          <input type="text" class="form-control" ngModel name="title" placeholder="Motocykl suzuki ...">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Opis</label>
+          <textarea class="form-control" ngModel name="description" rows="3" placeholder="Przebieg 20000km, wymienione..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Cena</label>
+          <input type="number" class="form-control" ngModel name="price" placeholder="12300">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+      </form>
+      <p #createOfferStatus style="text-align: center; color: red;"></p>
+  </div>
+</div>
+
+<br/> <br/>
+<app-footer></app-footer>

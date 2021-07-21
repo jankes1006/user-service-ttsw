@@ -1,14 +1,22 @@
-<a routerLink="/showAllOffer">Wróć do wszystkich ofert</a>
+<app-home></app-home>
 
-<h2>{{offer?.title}}</h2>
+<div class="panel panel-info col-lg-6 offset-lg-3 mt-2 mb-5">
+  <div class="panel-heading bg-inf text-center p-2 border border-primary rounded-top rounded-bottom"><h2>{{offer?.title}}</h2></div>
+  <div class="panel-body p-2 border border-primary rounded-top rounded-bottom">
+    <h4>Opis:</h4>
+    {{offer?.description}}
+    <br/> <br/>
+    <h4>Cena:</h4>
+    {{offer?.price}}
 
-<h4>Opis:</h4>
-{{offer?.description}}
+    <p #reservedStatus class="text-danger mt-3"></p>
 
-<h4>Cena:</h4>
-{{offer?.price}}
+    <button #orderButton type="button" (click)="orderProduct()" class="btn btn-primary btn-lg btn-block mt-5">Zamów</button>
+  </div>
+</div>
 
-<br/> <br/>
 
-<button #orderButton type="button" (click)="orderProduct()">Zamów produkt</button>
-<p #reservedStatus></p>
+
+
+
+

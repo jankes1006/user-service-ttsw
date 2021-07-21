@@ -1,26 +1,27 @@
-<a routerLink="/home">Home</a> <br/>
-<div>
-  <table align="center" border="10">
-     <thead>
-         <tr>
-             <th>Id</th>
-             <th>Tytuł</th>
-             <th>Opis</th>
-             <th>Cena</th>
-             <th>Autor</th>
-             <th>Status</th>
-         </tr>
-     </thead>
-     <tbody>
-         <tr *ngFor="let offer of allOffers">
-             <td style="width: 20px;">{{offer.id}}</td>
-             <td style="width: 100px;"><a routerLink="/bannedOfferEditAdmin/{{offer.id}}">{{offer.title}}</a></td>
-             <td style="width: 500px;">{{offer.description}}</td>
-             <td style="width: 20px;">{{offer.price}}</td>
-             <td style="width: 100px;">{{offer.ownerName}}</td>
-             <td style="width: 100px;">{{offer.stateOffer}}</td>
-         </tr>
+<app-home></app-home>
+<br/>
+<div class="mr-1 ml-1">
+    <table class="table">
+        <thead class="table-dark bg-secondary">
+            <tr>
+                <th>Id</th>
+                <th>Tytuł</th>
+                <th>Opis</th>
+                <th>Cena</th>
+                <th>Autor</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let offer of allOffers">
+                <td>{{offer.id}}</td>
+                <td><a routerLink="/bannedOfferEditAdmin/{{offer.id}}">{{offer.title}}</a></td>
+                <td>{{offer.description}}</td>
+                <td>{{offer.price}}</td>
+                <td>{{offer.ownerName}}</td>
+                <td>{{offer.stateOffer}}</td>
+            </tr>
 
-     </tbody>
- </table>
+        </tbody>
+    </table>
 </div>

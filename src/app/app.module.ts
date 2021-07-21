@@ -21,6 +21,7 @@ import { AdminGuard } from './Guard/adminGuard';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { AllOfferAdminComponent } from './all-offer-admin/all-offer-admin.component';
 import { BannedOfferEditComponent } from './banned-offer-edit/banned-offer-edit.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { BannedOfferEditComponent } from './banned-offer-edit/banned-offer-edit.
     UserDetailsComponent,
     UserEditComponent,
     AllOfferAdminComponent,
-    BannedOfferEditComponent
+    BannedOfferEditComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

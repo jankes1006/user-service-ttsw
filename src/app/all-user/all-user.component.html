@@ -1,22 +1,24 @@
-<a routerLink="/home">Home</a> <br/>
-<div>
-  <table align="center" border="10">
-     <thead>
-         <tr>
-             <th>Id</th>
-             <th>Username</th>
-             <th>Email</th>
-             <th>Rola</th>
-         </tr>
-     </thead>
-     <tbody>
-         <tr *ngFor="let user of users">
-             <td style="width: 20px;">{{user.id}}</td>
-             <td style="width: 100px;"><a routerLink="/detailUserEditAdmin/{{user.id}}">{{user.username}}</a></td>
-             <td style="width: 500px;">{{user.email}}</td>
-             <td style="width: 20px;">{{user.role}}</td>
-         </tr>
+<app-home></app-home>
 
-     </tbody>
- </table>
+<br/>
+<div class="mr-1 ml-1">
+    <table class="table">
+        <thead class="table-dark bg-secondary">
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Rola</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.id}}</td>
+                <td><a routerLink="/detailUserEditAdmin/{{user.id}}">{{user.username}}</a></td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+            </tr>
+
+        </tbody>
+</table>
 </div>

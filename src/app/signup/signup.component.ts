@@ -17,6 +17,8 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(data: any): void{
+    console.warn("TO DZIALA");
+    
     this.createStatus!.nativeElement.innerHTML="Czekaj..."
     if(data.password==data.repeatPassword){
       this.userService.createAccount(data)
@@ -39,5 +41,6 @@ export class SignupComponent implements OnInit {
     }else{
       this.createStatus!.nativeElement.innerHTML="Podane hasła się różnią! Popraw!"
     }
+    
   }
 }

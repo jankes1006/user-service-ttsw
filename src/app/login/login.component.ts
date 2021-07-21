@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('password',data.password);
         localStorage.setItem('email',this.user.email);
         localStorage.setItem('role',this.user.role);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/showAllOffer']);
       }
     },(error)=>{
       this.error!.nativeElement.innerHTML="Nieprawidłowy login lub hasło!";
