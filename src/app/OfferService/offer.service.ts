@@ -11,12 +11,22 @@ export class OfferService {
   
   createOffer(data: any){ 
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
-    return this.http.post("http://localhost:8080/offer/create",data,{headers,responseType: 'text' as 'json'}).subscribe(response=>console.warn(response)); //pamietaj ze hedera trzeba wsadzic i sprawdzic
+    return this.http.post("http://localhost:8080/offer/create",data,{headers,responseType: 'text' as 'json'});
   }
 
   getAllOffer(){
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
     return this.http.get("http://localhost:8080/offer/getAll",{headers});
+  }
+
+  getAllOffersOnPage(page:number, sizePage:number){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.get("http://localhost:8080/offer/paginationALlOffer?page="+page+"&size="+sizePage,{headers});
+  }
+
+  getAllOffersOnPageWhereCategory(page:number, sizePage:number, category:string){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.get("http://localhost:8080/offer/paginationOfferWhereCategory?page="+page+"&sizePage="+sizePage+"&category="+category,{headers});
   }
 
   getAllOfferAdmin(){
@@ -57,5 +67,10 @@ export class OfferService {
   takeOfBanOffer(data: any){
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
     return this.http.put("http://localhost:8080/offer/takeOffBan",data,{headers});
+  }
+
+  getSizeActive(category: string){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.get("http://localhost:8080/offer/getSizeActive?category="+category,{headers});
   }
 }

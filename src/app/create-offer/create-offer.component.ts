@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CategoryService} from '../category-service/category-service.service';
 import { OfferService } from '../OfferService/offer.service';
 
 @Component({
@@ -9,14 +10,30 @@ import { OfferService } from '../OfferService/offer.service';
 export class CreateOfferComponent implements OnInit {
 
   @ViewChild('createOfferStatus') createOfferStatus?: ElementRef;
+  @ViewChild('submitButton') submitButton?: ElementRef;
 
-  constructor(private service: OfferService) { }
+  categories: any;
+
+  constructor(private service: OfferService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.getAllCategories()
+  }
+
+  getAllCategories(){
+    this.categoryService.getAllCategory().subscribe(result=>{
+      this.categories = result;
+    });
   }
 
   onSubmit(data: any){
-    this.service.createOffer(data)
-    this.createOfferStatus!.nativeElement.innerHTML="Stworzono nową ofertę!";
+    this.submitButton!.nativeElement.disabled=true;
+    this.service.createOffer(data).subscribe(result=>{
+      this.createOfferStatus!.nativeElement.innerHTML="Stworzono nową ofertę!";
+      this.submitButton!.nativeElement.disabled=false;
+    },()=>{
+      this.createOfferStatus!.nativeElement.innerHTML="Wystąpił błąd. Spróbuj ponownie później";
+      this.submitButton!.nativeElement.disabled=false;
+    })
   }
 }

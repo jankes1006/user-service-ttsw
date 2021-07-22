@@ -18,7 +18,7 @@ import { BannedOfferEditComponent } from './banned-offer-edit/banned-offer-edit.
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: 'login', component: LoginCreateComponent},
-  {path: 'showAllOffer', component: AllOfferComponent, canActivate: [AuthGuard]},
+  {path: 'showAllOffer/:page/:sizePage/:category', component: AllOfferComponent, canActivate: [AuthGuard]},
   {path: 'showAllOffersUser', component: AllOfersUserComponent, canActivate: [AuthGuard]},
   {path: 'showAllUsers', component: AllUserComponent, canActivate: [AuthGuard, AdminGuard]}, 
   {path: 'detailUserEditAdmin/:id', component: UserDetailsComponent, canActivate: [AuthGuard, AdminGuard]},

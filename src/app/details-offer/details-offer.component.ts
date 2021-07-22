@@ -35,6 +35,7 @@ export class DetailsOfferComponent implements OnInit {
   }
 
   orderProduct(){
+    this.orderButton!.nativeElement.disabled=true;
     this.reservedStatus!.nativeElement.innerHTML="Czekaj...";
     this.offerService.reservedOffer(this.id!).subscribe(result =>{
       if(result){
@@ -44,6 +45,7 @@ export class DetailsOfferComponent implements OnInit {
       }
     },()=>{
       this.reservedStatus!.nativeElement.innerHTML="Błąd rezerwacji, spróbuj później.";
+      this.orderButton!.nativeElement.disabled=false;
     })
   }
 

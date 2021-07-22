@@ -23,7 +23,14 @@
           <input type="number" class="form-control" ngModel name="price" placeholder="12300">
         </div>
 
-        <button type="submit" class="btn btn-primary">Dodaj</button>
+        <div class="form-group">
+          <label for="category">Kategoria</label>
+          <select ngModel name="category" class="form-select" style="width: 100%;">
+            <option  *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+          </select>
+        </div>
+
+        <button #submitButton type="submit" class="btn btn-primary">Dodaj</button>
       </form>
       <p #createOfferStatus style="text-align: center; color: red;"></p>
   </div>

@@ -23,7 +23,7 @@
           <input #price type="number" class="form-control" ngModel name="price" placeholder="12300">
         </div>
 
-        <button type="submit" class="btn btn-primary">Edytuj</button>
+        <button #editButton type="submit" class="btn btn-primary">Edytuj</button>
       </form>
       <p #editOfferStatus style="text-align: center; color: red;"></p>
   </div>
@@ -41,3 +41,5 @@
       <button #activityButton type="button" (click)="editActivity()" class="btn btn-primary">Zmień aktywność</button>
     </div>
   </div>
+
+  <br/> <br/>

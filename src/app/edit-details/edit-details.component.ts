@@ -17,6 +17,7 @@ export class EditDetailsComponent implements OnInit {
   @ViewChild('title') title?: ElementRef;
   @ViewChild('description') description?: ElementRef;
   @ViewChild('price') price?: ElementRef;
+  @ViewChild('editButton') editButton?: ElementRef;
   
   constructor(private offerService: OfferService, private route: ActivatedRoute, private router: Router) { 
 
@@ -60,6 +61,7 @@ export class EditDetailsComponent implements OnInit {
   }
 
   onSubmit(data: any){
+    this.editButton!.nativeElement.disabled=true;
     this.editOfferStatus!.nativeElement.innerHTML="Czekaj...";
 
     if(data.title=="") data.title=this.offer.title;
@@ -70,8 +72,10 @@ export class EditDetailsComponent implements OnInit {
     data.id = this.offer.id;
 
     this.offerService.updateOffer(data).subscribe(result=>{
+      this.editButton!.nativeElement.disabled=false;
       this.editOfferStatus!.nativeElement.innerHTML="Edycja zakończona sukcesem!";
     },()=>{
+      this.editButton!.nativeElement.disabled=false;
       this.editOfferStatus!.nativeElement.innerHTML="Edycja zakończona niepowodzeniem!";
     })
     
