@@ -14,53 +14,74 @@ export class AllOfferComponent implements OnInit {
 
   page?: number;
   sizePage?: number;
-  sizeActiveOffer?: number;
+  category?: string;
+  searchTitle?: string;
+  searchUser?: string;
+  isAdmin?: string;
+
+  allPage?:any;
 
   numberOfPagination?: number;
-  category?: string;
 
   allOffers: any; 
   categories: any;
 
   @ViewChild('sizePageHTML') sizePageHTML?: ElementRef;
   @ViewChild('categoryHTML') categoryHTML?: ElementRef;
-
+  @ViewChild('searchHTML') searchHTML?: ElementRef;
+  @ViewChild('userHTML') userHTML?: ElementRef;
+  
   ngOnInit(): void {
     this.page=Number(this.route.snapshot.paramMap.get('page'));
     this.sizePage=Number(this.route.snapshot.paramMap.get('sizePage'));
     this.category=String(this.route.snapshot.paramMap.get('category'));
+    this.searchTitle=String(this.route.snapshot.paramMap.get('searchTitle'));
+    this.searchUser=String(this.route.snapshot.paramMap.get('user'));
+    this.isAdmin=String(this.route.snapshot.paramMap.get('admin'));
+
     this.getAllCategories();
     this.showOffers();
-    this.getSizeActiveOffer();
   }
 
   showOffers(){
-    this.service.getAllOffersOnPageWhereCategory(this.page!,this.sizePage!,this.category!).subscribe(result =>
-      {
-        this.allOffers=result;
-        this.preapreSite();
-      }
-      );
-  }
+    let searchTemp = (this.searchTitle=="*")?"":this.searchTitle;
+    let categoryTemp = (this.category=="all")?"":this.category;
+    let userTemp = (this.searchUser=="*")?"":this.searchUser;
 
-  getSizeActiveOffer(){
-    this.service.getSizeActive(this.category!).subscribe(result=>{
-      this.sizeActiveOffer=Number(result);
-      this.numberOfPagination=Math.ceil(this.sizeActiveOffer/this.sizePage!);
-    })
+    if(this.isAdmin!='admin'){
+      this.service.getAllOffersOnPageWhereCategory(this.page!,this.sizePage!,categoryTemp!, searchTemp!,userTemp!).subscribe(result =>
+        {
+          this.allPage=result;
+          this.allOffers=this.allPage.content;
+          this.numberOfPagination=this.allPage.totalPages;
+          this.preapreSite();
+        }
+        );
+    }else{ //admin
+      this.service.getAllOffersOnPageWhereCategoryAdmin(this.page!,this.sizePage!,categoryTemp!, searchTemp!,userTemp!).subscribe(result =>
+        {
+          this.allPage=result;
+          this.allOffers=this.allPage.content;
+          this.numberOfPagination=this.allPage.totalPages;
+          this.preapreSite();
+        }
+        );
+    }
   }
 
   createRange(number: number){
-    var items: number[] = [];
-    for(var i = 1; i <= number; i++){
+    let items: number[] = [];
+    for(let i = 1; i <= number; i++){
        items.push(i);
     }
     return items;
   }
 
   setFilter(data: any){
-    var sendPageSize;
-    var sendCategory;
+    let sendPageSize;
+    let sendCategory;
+    let sendSearchTile;
+    let sendUser;
 
     if(data.pageSize==""){
       sendPageSize=this.sizePage;
@@ -74,7 +95,24 @@ export class AllOfferComponent implements OnInit {
       sendCategory=data.category;
     }
 
-    location.href="/showAllOffer/0/"+sendPageSize+"/"+sendCategory;
+    if(data.search==""){
+      sendSearchTile=this.searchTitle;
+    }else{
+      sendSearchTile=data.search;
+    }
+
+    if(data.user==""){
+      sendUser=this.searchUser;
+    }else{
+      sendUser=data.user;
+    }
+
+    if(this.isAdmin!="admin"){
+      location.href="/showAllOffer/0/"+sendPageSize+"/"+sendCategory+"/"+sendSearchTile+"/"+sendUser;
+    }else{
+      location.href="/showAllOffer/0/"+sendPageSize+"/"+sendCategory+"/"+sendSearchTile+"/"+sendUser+"/admin";
+    }
+    
   }
 
   getAllCategories(){
@@ -85,8 +123,13 @@ export class AllOfferComponent implements OnInit {
   }
 
   preapreSite(){
-    console.log(this.sizePageHTML);
     this.sizePageHTML!.nativeElement.value=this.sizePage;
     this.categoryHTML!.nativeElement.value=this.category;
+    this.searchHTML!.nativeElement.value=this.searchTitle;
+    this.userHTML!.nativeElement.value=this.searchUser;
+  }
+
+  resetFilter(){
+    location.href="/showAllOffer/0/8/all/*/*";
   }
 }

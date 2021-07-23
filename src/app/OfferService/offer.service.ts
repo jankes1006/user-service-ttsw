@@ -24,9 +24,14 @@ export class OfferService {
     return this.http.get("http://localhost:8080/offer/paginationALlOffer?page="+page+"&size="+sizePage,{headers});
   }
 
-  getAllOffersOnPageWhereCategory(page:number, sizePage:number, category:string){
+  getAllOffersOnPageWhereCategory(page:number, sizePage:number, category:string, search:string, user:string){
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/offer/paginationOfferWhereCategory?page="+page+"&sizePage="+sizePage+"&category="+category,{headers});
+    return this.http.get("http://localhost:8080/offer/searchTitle?title="+search+"&category="+category+"&page="+page+"&size="+sizePage+"&username="+user,{headers});
+  }
+
+  getAllOffersOnPageWhereCategoryAdmin(page:number, sizePage:number, category:string, search:string, user:string){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.get("http://localhost:8080/offer/searchTitleAdmin?title="+search+"&category="+category+"&page="+page+"&size="+sizePage+"&username="+user,{headers});
   }
 
   getAllOfferAdmin(){
@@ -67,10 +72,5 @@ export class OfferService {
   takeOfBanOffer(data: any){
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
     return this.http.put("http://localhost:8080/offer/takeOffBan",data,{headers});
-  }
-
-  getSizeActive(category: string){
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/offer/getSizeActive?category="+category,{headers});
   }
 }

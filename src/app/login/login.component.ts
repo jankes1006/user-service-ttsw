@@ -21,14 +21,14 @@ export class LoginComponent implements OnInit {
   onSubmit(data: any): void{
     this.userService.login(data.username, data.password).subscribe(response=>{
       this.user=response;
-
+      console.warn("hej")
       if(this.user.username){
         localStorage.setItem('id',this.user.id);
         localStorage.setItem('username',this.user.username);
         localStorage.setItem('password',data.password);
         localStorage.setItem('email',this.user.email);
         localStorage.setItem('role',this.user.role);
-        this.router.navigate(['/showAllOffer/0/10/all']);
+        this.router.navigate(['/showAllOffer/0/8/all/*/*']);
       }
     },(error)=>{
       this.error!.nativeElement.innerHTML="Nieprawidłowy login lub hasło!";

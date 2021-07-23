@@ -1,4 +1,37 @@
 <app-home></app-home>
+<div class="panel panel-default mr-1 ml-1 mt-1 mb-1 text-center">
+    <div class="panel-head bg-inf border text-center border-primary rounded-top rounded-bottom "><h5>Filtry</h5></div>
+
+    <div class="panel-body border border-primary rounded-top rounded-bottom">
+        <div class="form-inline">
+            <form #userPost="ngForm" class="form-inline" (ngSubmit)="setFilter(userPost.value)">
+                <div class="form-group">
+                    <label for="pageSize" class="mr-1 ml-1">Ilość ogłoszeń na stronie:</label>
+                    <input #sizePageHTML class="form-control mr-1 ml-1" type = "number" ngModel  name="sizePage" value={{sizePage}}/>
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="mr-1 ml-1">Użytkownik:</label>
+                    <input #usernameHTML class="form-control mr-1 ml-1" type = "text" ngModel  name="username" value={{username}}/>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="mr-1 ml-1">Email:</label>
+                    <input #emailHTML class="form-control mr-1 ml-1" type = "text" ngModel  name="email" value={{email}}/>
+                </div>
+                
+                <div class="form-group">
+                    <label for="role" class="mr-1 ml-1">Rola:</label>
+                    <input #roleHTML class="form-control mr-1 ml-1" type = "text" ngModel  name="role" value={{role}}/>
+                </div>
+
+                <button type="submit" class="btn btn-primary ml-1">Zastosuj</button>
+                <button type="button" class="btn btn-primary ml-1" (click)="resetFilter()" >Wyczyść filtry</button>
+            </form>
+
+        </div>
+    </div>
+</div>
 
 <br/>
 <div class="mr-1 ml-1">
@@ -22,3 +55,11 @@
         </tbody>
 </table>
 </div>
+
+<nav>
+    <ul class="pagination" >
+        <div  *ngFor="let item of createRange(numberOfPagination!)" >
+            <li class="page-item"><a class="page-link" href='/showAllUsers/{{item-1}}/{{sizePage}}/{{username}}/{{email}}/{{role}}'>{{item}}</a></li>
+        </div>
+    </ul>
+</nav>

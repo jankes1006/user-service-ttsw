@@ -1,5 +1,42 @@
 <app-home></app-home>
-<br/>
+<div class="panel panel-default mr-1 ml-1 mt-1 mb-1 text-center">
+    <div class="panel-head bg-inf border text-center border-primary rounded-top rounded-bottom "><h5>Filtry</h5></div>
+
+    <div class="panel-body border border-primary rounded-top rounded-bottom">
+        <div class="form-inline">
+            <form #userPost="ngForm" class="form-inline" (ngSubmit)="setFilter(userPost.value)">
+                <div class="form-group">
+                    <label for="pageSize" class="mr-1 ml-1">Ilość ogłoszeń na stronie:</label>
+                    <input #sizePageHTML class="form-control mr-1 ml-1" type = "number" ngModel  name="pageSize" value={{sizePage}}/>
+                </div>
+
+                <div class="form-group">
+                    <label for="category" class="mr-1 ml-1">Kategoria:</label>
+                    <div class="form-control">
+                        <select #categoryHTML ngModel name="category" class="form-select  mr-1 ml-1" style="width: 100%;">
+                        <option  *ngFor="let category of categories">{{category.name}}</option>
+                        <option selected>all</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="search" class="mr-1 ml-1">Szukaj:</label>
+                    <input #searchHTML class="form-control mr-1 ml-1" type = "text" ngModel  name="search"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="search" class="mr-1 ml-1">Nazwa użytkownika:</label>
+                    <input #userHTML class="form-control mr-1 ml-1" type = "text" ngModel  name="user"/>
+                </div>
+
+                <button type="submit" class="btn btn-primary ml-1">Zastosuj</button>
+                <button type="button" class="btn btn-primary ml-1" (click)="resetFilter()">Wyczyść filtry</button>
+            </form>
+
+        </div>
+    </div>
+</div>
 <div class="mr-1 ml-1">
 <table class="table">
     <thead class="table-dark bg-secondary">
@@ -10,16 +47,27 @@
             <th>Cena</th>
             <th>Kategoria</th>
             <th>Autor</th>
+            <th *ngIf="isAdmin=='admin'">Aktywność</th>
+        
         </tr>        
     </thead>
     <tbody>
         <tr *ngFor="let offer of allOffers">
             <td >{{offer.id}}</td>
-            <td><a routerLink="/detailOffer/{{offer.id}}">{{offer.title}}</a></td>
+            <td *ngIf="isAdmin!='admin'; else offerTitleAdmin"><a routerLink="/detailOffer/{{offer.id}}">{{offer.title}}</a></td>
+            <ng-template #offerTitleAdmin>
+                <td><a routerLink="/bannedOfferEditAdmin/{{offer.id}}">{{offer.title}}</a></td>
+            </ng-template>
             <td>{{offer.description}}</td>
             <td>{{offer.price}}</td>
             <td>{{offer.category | uppercase}}</td>
-            <td>{{offer.ownerName}}</td>
+            <td *ngIf="isAdmin!='admin'; else usernameAdmin"><a href='/showAllOffer/0/{{sizePage}}/{{category}}/{{searchTitle}}/{{offer.ownerName}}'>{{offer.ownerName}}</a></td>
+            <ng-template #usernameAdmin>
+                <td><a href='/showAllOffer/0/{{sizePage}}/{{category}}/{{searchTitle}}/{{offer.ownerName}}/admin'>{{offer.ownerName}}</a></td>
+            </ng-template>
+
+            <td *ngIf="isAdmin=='admin'">{{offer.stateOffer}}</td>
+
         </tr>
     </tbody>
 </table>
@@ -27,37 +75,13 @@
 <nav>
     <ul class="pagination" >
         <div  *ngFor="let item of createRange(numberOfPagination!)" >
-            <li class="page-item"><a class="page-link" href='/showAllOffer/{{item - 1}}/{{sizePage}}/{{category}}'>{{item}}</a></li>
+            <li class="page-item" *ngIf="isAdmin!='admin'; else paginationAdmin"><a class="page-link" href='/showAllOffer/{{item - 1}}/{{sizePage}}/{{category}}/{{searchTitle}}/{{searchUser}}'>{{item}}</a></li>
+            <ng-template #paginationAdmin>
+                <li class="page-item"><a class="page-link" href='/showAllOffer/{{item - 1}}/{{sizePage}}/{{category}}/{{searchTitle}}/{{searchUser}}/admin'>{{item}}</a></li>
+            </ng-template>
         </div>
     </ul>
 </nav>
 
-
-
-
-<div class="panel panel-default col-lg-6 offset-lg-3 mt-2 mb-5">
-    <div class="panel-head">Filtry</div>
-
-    <div class="panel-body">
-        <form #userPost="ngForm" (ngSubmit)="setFilter(userPost.value)">
-            <div class="form-group">
-                <label for="pageSize">Ilość ogłoszeń na stronie:</label>
-                <input #sizePageHTML class="form-control" type = "number" ngModel  name="pageSize" value={{sizePage}}/>
-            </div>
-
-            <div class="form-group">
-                <label for="category">Kategoria:</label>
-                <div class="form-control">
-                    <select #categoryHTML ngModel name="category" class="form-select" style="width: 100%;">
-                      <option  *ngFor="let category of categories">{{category.name}}</option>
-                      <option selected>all</option>
-                    </select>
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Zastosuj</button>
-        </form>
-    </div>
-</div>
-
+<br/><br/>
 </div>
