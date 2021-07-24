@@ -43,4 +43,12 @@ export class UserService {
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
     return this.http.get('http://localhost:8080/user/getPageable?page='+page+'&size='+size+'&username='+username+'&email='+email+'&role='+role,{headers});
   }
+
+  onlyTry(){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwicm9sZSI6IlJPTEVfQURNSU4iLCJpYXQiOjE1MTYyMzkwMjJ9.UEmtQhtLDtmFqoqcK3uiqf6RO3oy096jMkJRvY1-bJc'
+    })
+    return this.http.get('http://localhost:8080/test2',{headers});
+  }
 }
