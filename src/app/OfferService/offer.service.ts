@@ -11,7 +11,24 @@ export class OfferService {
   
   createOffer(data: any){ 
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
-    return this.http.post("http://localhost:8080/offer/create",data,{headers,responseType: 'text' as 'json'});
+    return this.http.post("http://localhost:8080/offer",data,{headers});
+  }
+
+  saveImg(img: any){
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile',img!, img!.name)
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.post("http://localhost:8080/image",uploadImageData,{headers});
+  }
+
+  setImg(data: any){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.put("http://localhost:8080/offer/setImage",data,{headers});
+  }
+
+  getImg(data: any){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    return this.http.get("http://localhost:8080/image?id="+data,{headers});
   }
 
   getAllOffer(){
@@ -41,7 +58,7 @@ export class OfferService {
 
   getOfferById(id: number){
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/offer/getById?id="+id,{headers});
+    return this.http.get("http://localhost:8080/offer?id="+id,{headers});
   }
 
   reservedOffer(id: number){
@@ -51,7 +68,7 @@ export class OfferService {
 
   updateOffer(data: any){
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
-    return this.http.put("http://localhost:8080/offer/update",data,{headers});
+    return this.http.put("http://localhost:8080/offer",data,{headers});
   }
 
   changeActivityOffer(id: number){

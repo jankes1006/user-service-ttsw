@@ -14,6 +14,11 @@ export class DetailsOfferComponent implements OnInit {
   @ViewChild('reservedStatus') reservedStatus?: ElementRef;
   @ViewChild('orderButton') orderButton?: ElementRef;
 
+  //image
+  retrievedImage: any;
+  base64Data: any;
+  retrieveResonse: any;
+
   constructor(private offerService: OfferService,private route: ActivatedRoute) { }
   
 
@@ -26,6 +31,10 @@ export class DetailsOfferComponent implements OnInit {
     this.offerService.getOfferById(id).subscribe(result =>{ 
       this.offer = result;
       
+      if(this.offer.image){
+        this.getImage(this.offer.image);
+      }
+
       if(localStorage.getItem('username')==this.offer.ownerName){
         this.orderButton!.nativeElement.style.display="none";
       }else{
@@ -49,4 +58,15 @@ export class DetailsOfferComponent implements OnInit {
     })
   }
 
+  getImage(id: number) {
+    //Make a call to Sprinf Boot to get the Image Bytes.
+    this.offerService.getImg(id)
+      .subscribe(
+        res => {
+          this.retrieveResonse = res;
+          this.base64Data = this.retrieveResonse.picByte;
+          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+        }
+      );
+  }
 }

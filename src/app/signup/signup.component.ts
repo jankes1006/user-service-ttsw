@@ -14,9 +14,6 @@ export class SignupComponent implements OnInit {
   constructor(private userService: UserService, private route: Router){
   }
   ngOnInit(): void {
-    this.userService.onlyTry().subscribe(result=>{
-     console.warn(result);
-    })
   }
 
   onSubmit(data: any): void{

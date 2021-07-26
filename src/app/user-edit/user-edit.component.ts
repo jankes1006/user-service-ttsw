@@ -10,6 +10,14 @@ export class UserEditComponent implements OnInit {
 
   @ViewChild("changePasswordStatus") passwordStatus?: ElementRef;
   @ViewChild("changeEmailStatus") emailStatus?: ElementRef;
+
+  @ViewChild("passwordNew") passwordNew?: ElementRef;
+  @ViewChild("passwordNewRepeat") passwordNewRepeat?: ElementRef;
+  @ViewChild("password") password?: ElementRef;
+
+  @ViewChild("email") email?: ElementRef;
+  @ViewChild("passwordEmail") passwordEmail?: ElementRef;
+
   constructor(private userService: UserService) { }
 
   data = {"modifyFields":"", "newValue":"", "password":""};
@@ -31,6 +39,9 @@ export class UserEditComponent implements OnInit {
       this.userService.updateUser(this.data).subscribe(result=>{
         localStorage.setItem('password',data.passwordNew);
         this.passwordStatus!.nativeElement.innerHTML="Udana zmiana hasła!";
+        this.password!.nativeElement.value="";
+        this.passwordNew!.nativeElement.value="";
+        this.passwordNewRepeat!.nativeElement.value="";
       },error=>{
         this.passwordStatus!.nativeElement.innerHTML="Nie udana zmiana hasła!";
       })
@@ -50,6 +61,8 @@ export class UserEditComponent implements OnInit {
       this.userService.updateUser(this.data).subscribe(result=>{
         localStorage.setItem('email',data.email);
         this.emailStatus!.nativeElement.innerHTML="Udana zmiana adresu email!";
+        this.email!.nativeElement.value="";
+        this.passwordEmail!.nativeElement.value="";
       },error=>{
         this.emailStatus!.nativeElement.innerHTML="Nie udana zmiana adresu email!";
       })

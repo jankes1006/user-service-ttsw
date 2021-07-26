@@ -9,18 +9,18 @@
   <div class="panel-body">
       <form #changePassword="ngForm" (ngSubmit)="onSubmitPassword(changePassword.value)">
         <div class="form-group">
-          <label for="title">Nowe hasło</label>
-          <input #title type="password" class="form-control" ngModel name="passwordNew" placeholder="Podaj nowe hasło">
+          <label for="passwordNew">Nowe hasło</label>
+          <input #passwordNew type="password" class="form-control" ngModel name="passwordNew" placeholder="Podaj nowe hasło">
         </div>
 
         <div class="form-group">
           <label for="passwordNewRepeat">Powtórz nowe hasło</label>
-          <input #title type="password" class="form-control" ngModel name="passwordNewRepeat" placeholder="Powtórz nowe hasło">
+          <input #passwordNewRepeat type="password" class="form-control" ngModel name="passwordNewRepeat" placeholder="Powtórz nowe hasło">
         </div>
 
         <div class="form-group">
           <label for="password">Aktualne hasło</label>
-          <input #price type="password" class="form-control" ngModel name="password" placeholder="Podaj aktualne hasło">
+          <input #password type="password" class="form-control" ngModel name="password" placeholder="Podaj aktualne hasło">
         </div>
 
         <button type="submit" class="btn btn-primary">Zmień</button>
@@ -38,12 +38,12 @@
       <form #changeEmail="ngForm" (ngSubmit)="onSubmitEmail(changeEmail.value)">
         <div class="form-group">
           <label for="email">Nowy adres email</label>
-          <input #title type="email" class="form-control" ngModel name="email" placeholder="Podaj nowy adres email">
+          <input #email type="email" class="form-control" ngModel name="email" placeholder="Podaj nowy adres email">
         </div>
 
         <div class="form-group">
           <label for="password">Hasło</label>
-          <input #title type="password" class="form-control" ngModel name="password" placeholder="Podaj hasło">
+          <input #passwordEmail type="password" class="form-control" ngModel name="password" placeholder="Podaj hasło">
         </div>
 
         <button type="submit" class="btn btn-primary">Zmień</button>

@@ -8,6 +8,15 @@
     <br/> <br/>
     <h4>Cena:</h4>
     {{offer?.price}}
+    <br/> <br/>
+    <h4>Data utworzenia oferty:</h4>
+    {{offer?.createDate}}
+    <br/> <br/>
+      
+    <div *ngIf=retrievedImage>
+      <h4>Zdjęcie:</h4>
+      <img [src]="retrievedImage">
+    </div>
 
     <p #reservedStatus class="text-danger mt-3"></p>
 
