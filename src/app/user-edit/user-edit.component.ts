@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../UserService/user.service';
 
 @Component({
@@ -18,7 +19,41 @@ export class UserEditComponent implements OnInit {
   @ViewChild("email") email?: ElementRef;
   @ViewChild("passwordEmail") passwordEmail?: ElementRef;
 
-  constructor(private userService: UserService) { }
+  emailForm: FormGroup
+  passwordForm: FormGroup
+
+  constructor(private userService: UserService, private formBuilder: FormBuilder) { 
+    this.emailForm = this.formBuilder.group({
+      email: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.email]),
+      password: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)])
+    })
+
+    this.passwordForm = this.formBuilder.group({
+      passwordNew: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+      passwordNewRepeat: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+      password: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+    },{
+      validators: this.MustMatch('passwordNew', 'passwordNewRepeat')
+    })
+  }
+
+  MustMatch(controlName: string, matchingControlName: string){
+    return(formGroup: FormGroup) =>{
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+
+      if(matchingControl.errors && !matchingControl.errors.MustMatch){
+        return 
+      }
+
+      if(control.value !== matchingControl.value){
+        matchingControl.setErrors({MustMatch:true})
+      }else{
+        matchingControl.setErrors(null)
+      }
+    }
+  }
+
 
   data = {"modifyFields":"", "newValue":"", "password":""};
   ngOnInit(): void {

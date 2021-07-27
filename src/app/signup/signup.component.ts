@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from "../UserService/user.service";
 
@@ -11,16 +12,48 @@ export class SignupComponent implements OnInit {
 
   @ViewChild('createStatus') createStatus?: ElementRef;
   
-  constructor(private userService: UserService, private route: Router){
+  createNewAccount: FormGroup;
+
+  constructor(private userService: UserService, private route: Router, private formBuilder: FormBuilder){
+    this.createNewAccount = this.formBuilder.group({
+      username: new FormControl('',[Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+      email: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.email]),
+      password: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+      passwordRepeat: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+    },{
+      validators: this.MustMatch('password', 'passwordRepeat')
+    })
   }
+
+  MustMatch(controlName: string, matchingControlName: string){
+    return(formGroup: FormGroup) =>{
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+
+      if(matchingControl.errors && !matchingControl.errors.MustMatch){
+        return 
+      }
+
+      if(control.value !== matchingControl.value){
+        matchingControl.setErrors({MustMatch:true})
+      }else{
+        matchingControl.setErrors(null)
+      }
+    }
+  }
+
+  get username(){return this.createNewAccount.get('username')}
+  get email(){return this.createNewAccount.get('email')}
+  get password(){return this.createNewAccount.get('password')}
+  get passwordRepeat(){return this.createNewAccount.get('passwordRepeat')}
+
   ngOnInit(): void {
   }
 
   onSubmit(data: any): void{
-    console.warn("TO DZIALA");
     
     this.createStatus!.nativeElement.innerHTML="Czekaj..."
-    if(data.password==data.repeatPassword){
+    
       this.userService.createAccount(data)
       .subscribe((result)=>{
         if(result=="USERNAME_EXIST"){
@@ -38,9 +71,6 @@ export class SignupComponent implements OnInit {
       },()=>{
         this.createStatus!.nativeElement.innerHTML="Nie udana proba stworzenia konta."
       })
-    }else{
-      this.createStatus!.nativeElement.innerHTML="Podane hasła się różnią! Popraw!"
-    }
     
   }
 }

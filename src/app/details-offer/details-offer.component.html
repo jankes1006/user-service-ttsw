@@ -10,7 +10,7 @@
     {{offer?.price}}
     <br/> <br/>
     <h4>Data utworzenia oferty:</h4>
-    {{offer?.createDate}}
+    {{offer?.createDate | date:'medium'}}
     <br/> <br/>
       
     <div *ngIf=retrievedImage>

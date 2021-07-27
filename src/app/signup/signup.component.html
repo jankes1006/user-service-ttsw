@@ -11,29 +11,34 @@
 			    		<h3 class="panel-title">Rejestracja</h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)" >
+			    		<form [formGroup]="createNewAccount" #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)" >
 			    			<div class="form-group">
-			    				<input type="input" name="username" ngModel  class="form-control input-sm" placeholder="Nazwa użytkownika">
+			    				<input type="input" name="username" ngModel  class="form-control input-sm" placeholder="Nazwa użytkownika" formControlName="username">
+									<span *ngIf="username!.invalid">Nazwa użytkownika musi być od 3 do 20 znaków!</span>
 			    			</div>
 
 			    			<div class="form-group">
-			    				<input type="email" name="email" ngModel class="form-control input-sm" placeholder="Adres email">
+			    				<input type="email" name="email" ngModel class="form-control input-sm" placeholder="Adres email" formControlName="email">
+									<span *ngIf="email!.invalid">Podaj adres email!</span>
 			    			</div>
 
 			    			<div class="row">
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			    						<input type="password" name="password" ngModel  class="form-control input-sm" placeholder="Hasło">
+			    						<input type="password" name="password" ngModel  class="form-control input-sm" placeholder="Hasło" formControlName="password">
+											<span *ngIf="password!.invalid">Hasło musi zawierać od 6 do 20 znaków!</span>
 			    					</div>
 			    				</div>
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			    						<input type="password" name="repeatPassword" ngModel  class="form-control input-sm" placeholder="Powtórz hasło">
+			    						<input type="password" name="repeatPassword" ngModel  class="form-control input-sm" placeholder="Powtórz hasło" formControlName="passwordRepeat">
+											<span *ngIf="passwordRepeat!.invalid">Hasła nie są identyczne!</span>
 			    					</div>
 			    				</div>
+									
 			    			</div>
 			    			
-			    			<input type="submit" value="Zarejestruj się" class="btn btn-info btn-block">
+			    			<input type="submit" value="Zarejestruj się" class="btn btn-info btn-block" [disabled]="!createNewAccount.valid">
 			    		</form>
 							<br/>
 							<p #createStatus style="text-align: center; color: red;"></p>

@@ -1,37 +1,32 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
 <header>
-
   <nav class="navbar navbar-dark bg-primary navbar-expand-md">
       <a class="navbar-brand" href="#">
         TTSW_TASK
       </a>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji" (click)="toggleCollapsed()">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="mainmenu">
+      <div class="collapse navbar-collapse" id="mainmenu" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
         <ul class="navbar-nav">
 
-          <li class="nav-item">
-            <a class="nav-link" type="button" (click)="logout()">Wyloguj się</a>
+          <li class="nav-item dropdown">
+            <a class={{dropMenuOne}} data-toggle="dropdown" role="button" aria-expanded="false" id="submenu" aria-haspopup="true" (click)="toggleDropMenu()"> Panel użytkownika</a>
+
+            <div class={{dropMenuTwo}} aria-labelledby="submenu">
+              <a class="dropdown-item" routerLink="/createOffer">Stwórz nową ofertę</a>
+              <a class="dropdown-item" routerLink="/showAllOffersUser">Edytuj oferty</a>
+              <a class="dropdown-item" routerLink={{allUserOffers}}>Wyświetl wszystkie swoje oferty</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" routerLink="/editUser">Edytuj hasło / adres email</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="logout()">Wyloguj</a>
+            </div>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" routerLink="/showAllOffer/0/8/all/*/*">Wszystkie aktualne oferty</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/createOffer">Tworzenie oferty</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/showAllOffersUser">Własne oferty</a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/editUser">Ustawienia</a>
           </li>
 
           <li class="nav-item">

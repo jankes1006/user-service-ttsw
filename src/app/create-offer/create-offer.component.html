@@ -7,20 +7,23 @@
   </div>
 
   <div class="panel-body">
-      <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
+      <form [formGroup]="createForm" #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
         <div class="form-group">
           <label for="title">Tytuł</label>
-          <input type="text" class="form-control" ngModel name="title" placeholder="Motocykl suzuki ...">
+          <input type="text" class="form-control" name="title" placeholder="Motocykl suzuki ..." formControlName="title">
+          <span *ngIf="title!.invalid">Tytuł musi mieć od 3 do 50 znaków</span>
         </div>
 
         <div class="form-group">
           <label for="description">Opis</label>
-          <textarea class="form-control" ngModel name="description" rows="3" placeholder="Przebieg 20000km, wymienione..."></textarea>
+          <textarea class="form-control" name="description" rows="3" placeholder="Przebieg 20000km, wymienione..." formControlName="description"></textarea>
+          <span *ngIf="description!.invalid">Opis musi składać się od 15 do 400 znaków!</span>
         </div>
 
         <div class="form-group">
           <label for="price">Cena</label>
-          <input type="number" class="form-control" ngModel name="price" placeholder="12300">
+          <input type="number" class="form-control" name="price" placeholder="12300" formControlName="price">
+          <span *ngIf="price!.invalid">Cena musi być większa od 0!</span>
         </div>
 
         <div class="form-group">
@@ -29,12 +32,14 @@
 
         <div class="form-group">
           <label for="category">Kategoria</label>
-          <select ngModel name="category" class="form-select" style="width: 100%;">
+          <select  name="category" class="form-select" style="width: 100%;" formControlName="category">
             <option  *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
           </select>
+          <span *ngIf="category!.invalid">Wybierz!</span>
         </div>
+        
 
-        <button #submitButton type="submit" class="btn btn-primary">Dodaj</button>
+        <button #submitButton type="submit" class="btn btn-primary" [disabled]="!createForm.valid">Dodaj</button>
       </form>
       <p #createOfferStatus style="text-align: center; color: red;"></p>
   </div>

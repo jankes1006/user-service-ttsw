@@ -1,6 +1,9 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryService} from '../category-service/category-service.service';
+import { OfferAndImage } from '../OfferAndImage';
 import { OfferService } from '../OfferService/offer.service';
 
 class ImageAndOffer{
@@ -30,7 +33,21 @@ export class CreateOfferComponent implements OnInit {
   tempOffer?: any;
   tempImage?: any;
 
-  constructor(private service: OfferService, private categoryService: CategoryService, private router: Router) { }
+  createForm: FormGroup;
+
+  constructor(private service: OfferService, private categoryService: CategoryService, private router: Router, private formBuilder: FormBuilder) { 
+    this.createForm = this.formBuilder.group({
+      title: new FormControl('',[Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
+      description: new FormControl('',[Validators.required, Validators.minLength(15), Validators.maxLength(400)]),
+      price: new FormControl('',[Validators.required]),
+      category: new FormControl('',[Validators.required])
+    })
+  }
+
+  get title(){return this.createForm.get('title')}
+  get description(){return this.createForm.get('description')}
+  get price(){return this.createForm.get('price')}
+  get category(){return this.createForm.get('category')}
 
   ngOnInit(): void {
     this.getAllCategories()
@@ -51,6 +68,7 @@ export class CreateOfferComponent implements OnInit {
   onSubmit(offer: any){  
     this.submitButton!.nativeElement.disabled=true;
 
+    console.warn(offer);
     this.service.createOffer(offer).subscribe(result=>{
       this.submitButton!.nativeElement.disabled=false;
       this.tempOffer  = result;

@@ -10,13 +10,13 @@ export class UserService {
   }
 
   createAccount(data: any){
-    return this.http.post('http://localhost:8080/user',data);
+    return this.http.post('http://localhost:8080/user/create',data);
   }
 
   login(username: string, password: string){
     //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
     //return this.http.get("http://localhost:8080/user/getByUsername?username=admin",{headers,responseType: 'text' as 'json'}).subscribe(response=>console.warn(response));
-    return this.http.get('http://localhost:8080/user?username='+username+'&password='+password);
+    return this.http.get('http://localhost:8080/user/login?username='+username+'&password='+password);
   }
 
   getAllUsers(){
@@ -25,12 +25,14 @@ export class UserService {
   }
 
   getUser(id: number){
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
+    //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
     return this.http.get('http://localhost:8080/user/getById?id='+id,{headers});
   }
 
   updateUserAdmin(data: any){
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
+   // const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
     return this.http.put('http://localhost:8080/user/updateAdmin',data,{headers});
   }
 
@@ -40,7 +42,8 @@ export class UserService {
   }
 
   getPageUser(page: number, size: number, username: string, email: string, role: string){
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
+   // const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
     return this.http.get('http://localhost:8080/user/getPageable?page='+page+'&size='+size+'&username='+username+'&email='+email+'&role='+role,{headers});
   }
 }

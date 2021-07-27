@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OfferService } from '../OfferService/offer.service';
 
@@ -14,14 +15,24 @@ export class EditDetailsComponent implements OnInit {
   @ViewChild('activityButton') activityButton?: ElementRef;
   @ViewChild('offerStatus') offerStatus?: ElementRef;
   @ViewChild('editOfferStatus') editOfferStatus?: ElementRef;
-  @ViewChild('title') title?: ElementRef;
-  @ViewChild('description') description?: ElementRef;
-  @ViewChild('price') price?: ElementRef;
   @ViewChild('editButton') editButton?: ElementRef;
   
-  constructor(private offerService: OfferService, private route: ActivatedRoute, private router: Router) { 
+  editOffer: FormGroup
 
+  constructor(private offerService: OfferService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { 
+    
+    this.editOffer = this.formBuilder.group({
+      title: new FormControl('',[Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
+      description: new FormControl('',[Validators.required, Validators.minLength(15), Validators.maxLength(400)]),
+      price: new FormControl('',[Validators.required]),
+    })
+    
   }
+
+  get title(){return this.editOffer.get('title')}
+  get description(){return this.editOffer.get('description')}
+  get price(){return this.editOffer.get('price')}
+
 
   ngOnInit(): void {
     this.id=Number(this.route.snapshot.paramMap.get('id'));
@@ -29,10 +40,10 @@ export class EditDetailsComponent implements OnInit {
   }
 
   setItemsOnSite(){
-    this.title!.nativeElement.value=this.offer.title;
-      this.description!.nativeElement.value=this.offer.description;
-      this.price!.nativeElement.value=this.offer.price;
-      
+    this.editOffer.get('title')?.setValue(this.offer.title);
+    this.editOffer.get('description')?.setValue(this.offer.description);
+    this.editOffer.get('price')?.setValue(this.offer.price);
+
       console.warn(this.offer.stateOffer);
       switch(this.offer.stateOffer){
         case "ACTIVE":
@@ -51,8 +62,10 @@ export class EditDetailsComponent implements OnInit {
     }
 
   getOffer(id: number){
+    
     this.offerService.getOfferById(id).subscribe(result =>{ 
       this.offer = result;
+      console.warn(this.offer)
       if(this.offer.ownerName!=localStorage.getItem('username')){
         this.router.navigateByUrl("/showAllOffer");
       }
@@ -64,16 +77,17 @@ export class EditDetailsComponent implements OnInit {
     this.editButton!.nativeElement.disabled=true;
     this.editOfferStatus!.nativeElement.innerHTML="Czekaj...";
 
-    if(data.title=="") data.title=this.offer.title;
-    if(data.description=="") data.description=this.offer.description;
-    if(data.price=="") data.price=this.offer.price;
-
+    data.stateOffer = this.offer.stateOffer;
+    data.category = this.offer.category;
+    data.createDate = this.offer.createDate;
+    data.image = this.offer.image
     data.ownerName = this.offer.ownerName;
     data.id = this.offer.id;
 
     this.offerService.updateOffer(data).subscribe(result=>{
       this.editButton!.nativeElement.disabled=false;
       this.editOfferStatus!.nativeElement.innerHTML="Edycja zakończona sukcesem!";
+      this.router.navigate(['/detailOffer/'+data.id]);
     },()=>{
       this.editButton!.nativeElement.disabled=false;
       this.editOfferStatus!.nativeElement.innerHTML="Edycja zakończona niepowodzeniem!";

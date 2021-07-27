@@ -1,7 +1,6 @@
 import { Component, OnInit,ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OfferService } from '../OfferService/offer.service';
-
 @Component({
   selector: 'app-details-offer',
   templateUrl: './details-offer.component.html',
