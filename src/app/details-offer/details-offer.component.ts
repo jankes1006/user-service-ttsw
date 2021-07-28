@@ -18,12 +18,15 @@ export class DetailsOfferComponent implements OnInit {
   base64Data: any;
   retrieveResonse: any;
 
+  visited?: number;
+
   constructor(private offerService: OfferService,private route: ActivatedRoute) { }
   
 
   ngOnInit(): void {
     this.id=Number(this.route.snapshot.paramMap.get('id'));
     this.getOffer(this.id);
+    this.getVisited(this.id);
   }
 
   getOffer(id: number){
@@ -87,5 +90,11 @@ export class DetailsOfferComponent implements OnInit {
           this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
         }
       );
+  }
+
+  getVisited(id: number){
+    this.offerService.numberOfVisitedOfferId(id).subscribe(result =>{
+      this.visited = Number(result);
+    })
   }
 }

@@ -130,4 +130,9 @@ export class OfferService {
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
     return this.http.get("http://localhost:8080/log/numberOfNotificationOfferId?id="+id,{headers});
   }
+
+  numberOfVisitedOfferId(id: number){
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
+    return this.http.get("http://localhost:8080/log/numberOfVisitedOffer?id="+id,{headers});
+  }
 }
