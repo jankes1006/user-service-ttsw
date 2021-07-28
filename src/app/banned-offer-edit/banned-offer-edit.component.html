@@ -12,6 +12,10 @@
     <h4 class="mt-3">Status:</h4>
     {{offer?.stateOffer}}
 
+    <h4 class="mt-3">Liczba zgłoszeń</h4>
+    {{numberOfNotification!}}
+    
+
     <h3 class="mt-4">{{blockUnBlockOffer?.blockUnblockMessage}}</h3>
     <form #blockForm="ngForm" (ngSubmit)="block(blockForm.value)">
       <textarea #reason class="form-control" ngModel name="reason" rows="3" placeholder="Powód"></textarea>

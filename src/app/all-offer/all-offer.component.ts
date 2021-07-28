@@ -43,6 +43,8 @@ export class AllOfferComponent implements OnInit {
     this.showOffers();
   }
 
+  numberOfNotification: any;
+
   showOffers(){
     let searchTemp = (this.searchTitle=="*")?"":this.searchTitle;
     let categoryTemp = (this.category=="all")?"":this.category;
@@ -58,7 +60,7 @@ export class AllOfferComponent implements OnInit {
         }
         );
     }else{ //admin
-      this.service.getAllOffersOnPageWhereCategoryAdmin(this.page!,this.sizePage!,categoryTemp!, searchTemp!,userTemp!).subscribe(result =>
+        this.service.getAllOffersOnPageWhereCategoryAdmin(this.page!,this.sizePage!,categoryTemp!, searchTemp!,userTemp!).subscribe(result =>
         {
           this.allPage=result;
           this.allOffers=this.allPage.content;
@@ -66,6 +68,11 @@ export class AllOfferComponent implements OnInit {
           this.preapreSite();
         }
         );
+
+        this.service.getNumbersNotification().subscribe(result=>{
+          console.warn(result);
+          this.numberOfNotification = result;
+        })
     }
   }
 

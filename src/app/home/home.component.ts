@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   linkToAllUsers?: String;
   linkToAllOffersAdmin?: String;
 
-  loginUser = "Zalogowany użytkownik" + localStorage.getItem("username");
+  loginUser = localStorage.getItem("username");
   constructor(private router: Router) { }
 
   dropMenuOne = "nav-link dropdown-toggle";

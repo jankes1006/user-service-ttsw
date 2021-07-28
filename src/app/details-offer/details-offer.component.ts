@@ -12,7 +12,7 @@ export class DetailsOfferComponent implements OnInit {
   id?: number;
   @ViewChild('reservedStatus') reservedStatus?: ElementRef;
   @ViewChild('orderButton') orderButton?: ElementRef;
-
+  @ViewChild('notificationButton') notificationButton?: ElementRef;
   //image
   retrievedImage: any;
   base64Data: any;
@@ -36,14 +36,25 @@ export class DetailsOfferComponent implements OnInit {
 
       if(localStorage.getItem('username')==this.offer.ownerName){
         this.orderButton!.nativeElement.style.display="none";
+        this.notificationButton!.nativeElement.style.display="none";
       }else{
-        this.orderButton!.nativeElement.style.display="block";
+        this.offerService.isUserNotificationOffer(this.offer.id).subscribe(result=>{
+          if(result==true){
+            this.reservedStatus!.nativeElement.innerHTML="Zgłosiłeś tą ofertę administratorom.";
+            this.orderButton!.nativeElement.style.display="none";
+            this.notificationButton!.nativeElement.style.display="none";
+          }else{
+            this.orderButton!.nativeElement.style.display="block";
+            this.notificationButton!.nativeElement.style.display="block";
+          }
+        })
       }
     })
   }
 
   orderProduct(){
     this.orderButton!.nativeElement.disabled=true;
+    this.notificationButton!.nativeElement.disabled=true;
     this.reservedStatus!.nativeElement.innerHTML="Czekaj...";
     this.offerService.reservedOffer(this.id!).subscribe(result =>{
       if(result){
@@ -54,11 +65,20 @@ export class DetailsOfferComponent implements OnInit {
     },()=>{
       this.reservedStatus!.nativeElement.innerHTML="Błąd rezerwacji, spróbuj później.";
       this.orderButton!.nativeElement.disabled=false;
+      this.notificationButton!.nativeElement.disabled=false;
+    })
+  }
+
+  notification(){
+    this.orderButton!.nativeElement.disabled=true;
+    this.notificationButton!.nativeElement.disabled=true;
+    this.reservedStatus!.nativeElement.innerHTML="Czekaj...";
+    this.offerService.notificationOffer(this.offer.id).subscribe(result=>{
+      this.reservedStatus!.nativeElement.innerHTML="Zgłoszono oferte administratorom.";
     })
   }
 
   getImage(id: number) {
-    //Make a call to Sprinf Boot to get the Image Bytes.
     this.offerService.getImg(id)
       .subscribe(
         res => {

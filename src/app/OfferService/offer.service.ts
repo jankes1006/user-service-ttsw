@@ -110,4 +110,24 @@ export class OfferService {
     //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
     return this.http.put("http://localhost:8080/offer/takeOffBan",data,{headers});
   }
+
+  notificationOffer(data: number){
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
+    return this.http.get("http://localhost:8080/log/notificationOffer?id="+data,{headers});
+  }
+
+  isUserNotificationOffer(data: number){
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
+    return this.http.get("http://localhost:8080/log/isUserNotificationOffer?id="+data,{headers});
+  }
+  
+  getNumbersNotification(){
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
+    return this.http.get("http://localhost:8080/log/getNumbersNoticifation",{headers});
+  }
+  
+  numberOfNotificationOfferId(id: number){
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
+    return this.http.get("http://localhost:8080/log/numberOfNotificationOfferId?id="+id,{headers});
+  }
 }

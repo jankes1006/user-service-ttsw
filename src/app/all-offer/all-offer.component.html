@@ -48,7 +48,7 @@
             <th>Kategoria</th>
             <th>Autor</th>
             <th *ngIf="isAdmin=='admin'">Aktywność</th>
-        
+            <th *ngIf="isAdmin=='admin'">Liczba zgłoszeń</th>
         </tr>        
     </thead>
     <tbody>
@@ -68,6 +68,14 @@
 
             <td *ngIf="isAdmin=='admin'">{{offer.stateOffer}}</td>
 
+            
+                <td *ngIf="isAdmin=='admin' && numberOfNotification && numberOfNotification[offer.id]; else noNotification">{{numberOfNotification[offer.id]}}</td>
+                <ng-template #noNotification>
+                    <td *ngIf="isAdmin=='admin'">0</td>
+                </ng-template>
+        
+            
+            
         </tr>
     </tbody>
 </table>

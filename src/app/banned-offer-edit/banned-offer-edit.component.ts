@@ -12,6 +12,7 @@ export class BannedOfferEditComponent implements OnInit {
   offer: any;
   id?: number;
   blockUnBlockOffer = {"blockUnblockMessage":"","buttonText":""};
+  numberOfNotification?: number;
 
   @ViewChild('reason') reason?: ElementRef;
   @ViewChild('workStatus') workStatus?: ElementRef;
@@ -21,12 +22,19 @@ export class BannedOfferEditComponent implements OnInit {
   ngOnInit(): void {
     this.id=Number(this.route.snapshot.paramMap.get('id'));
     this.getOffer(this.id);
+    this.getNotification(this.id);
   }
 
   getOffer(id: number){
     this.offerService.getOfferById(id).subscribe(result =>{ 
       this.offer = result;
       this.setElementOnSite(this.offer.stateOffer);
+    })
+  }
+
+  getNotification(id: number){
+    this.offerService.numberOfNotificationOfferId(id).subscribe(result =>{
+      this.numberOfNotification = Number(result);
     })
   }
 
