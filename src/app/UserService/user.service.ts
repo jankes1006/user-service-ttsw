@@ -46,4 +46,16 @@ export class UserService {
    // const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
     return this.http.get('http://localhost:8080/user/getPageable?page='+page+'&size='+size+'&username='+username+'&email='+email+'&role='+role,{headers});
   }
+
+  resetPassword(data:any){
+    return this.http.get("http://localhost:8080/user/resetPassword?username="+data.username+"&email="+data.email);
+  }
+
+  getUserByToken(token:string){
+    return this.http.get("http://localhost:8080/user/getByToken?token="+token);
+  }
+
+  setNewPassword(tokenAndPassword: any){
+    return this.http.put("http://localhost:8080/user/setNewPassword",tokenAndPassword)
+  }
 }

@@ -22,6 +22,8 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 import { AllOfferAdminComponent } from './all-offer-admin/all-offer-admin.component';
 import { BannedOfferEditComponent } from './banned-offer-edit/banned-offer-edit.component';
 import { FooterComponent } from './footer/footer.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { SetPasswordComponent } from './set-password/set-password.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { FooterComponent } from './footer/footer.component';
     UserEditComponent,
     AllOfferAdminComponent,
     BannedOfferEditComponent,
-    FooterComponent
+    FooterComponent,
+    ForgotPasswordComponent,
+    SetPasswordComponent
   ],
   imports: [
     BrowserModule,

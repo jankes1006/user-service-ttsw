@@ -13,10 +13,13 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { AdminGuard } from './Guard/adminGuard';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { BannedOfferEditComponent } from './banned-offer-edit/banned-offer-edit.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { SetPasswordComponent } from './set-password/set-password.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: 'login', component: LoginCreateComponent},
+  {path: 'forgotPassword', component: ForgotPasswordComponent},
   {path: 'showAllOffer/:page/:sizePage/:category/:searchTitle/:user', component: AllOfferComponent, canActivate: [AuthGuard]},
   {path: 'showAllOffer/:page/:sizePage/:category/:searchTitle/:user/:admin', component: AllOfferComponent, canActivate: [AuthGuard, AdminGuard]},
   {path: 'showAllOffersUser', component: AllOfersUserComponent, canActivate: [AuthGuard]},
@@ -27,7 +30,8 @@ const routes: Routes = [
   {path: 'createOffer', component: CreateOfferComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'detailOffer/:id', component: DetailsOfferComponent, canActivate: [AuthGuard]},
-  {path: 'detailOfferEdit/:id', component: EditDetailsComponent, canActivate: [AuthGuard]}
+  {path: 'detailOfferEdit/:id', component: EditDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'setPassword/:token', component: SetPasswordComponent}
 ];
 
 @NgModule({
