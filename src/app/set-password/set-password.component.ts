@@ -2,6 +2,7 @@ import { Token } from '@angular/compiler/src/ml_parser/lexer';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { UserService } from '../UserService/user.service';
 
 class TokenPassword{
@@ -24,13 +25,14 @@ export class SetPasswordComponent implements OnInit {
   user: any;
   passwordForm: FormGroup;
   token?: string;
+  statusChange: any;
 
   @ViewChild('changePasswordStatus') changePasswordStatus?: ElementRef;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private userService: UserService, private router: Router){
     this.passwordForm = this.formBuilder.group({
-      passwordNew: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
-      passwordNewRepeat: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)])
+      passwordNew: new FormControl('',[Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]),
+      passwordNewRepeat: new FormControl('',[Validators.required])
     },{
       validators: this.MustMatch('passwordNew', 'passwordNewRepeat')
     })
@@ -74,9 +76,9 @@ export class SetPasswordComponent implements OnInit {
 
   setPassword(data: any){
     this.userService.setNewPassword(data).subscribe(result=>{
-      this.changePasswordStatus!.nativeElement.innerHTML="Udało się zmienić hasło! Wróć do logowania"
+      this.statusChange = AppComponent.trans.instant('SET_PASSWORD_WARNING.SUCCESS')
     },error=>{
-      this.changePasswordStatus!.nativeElement.innerHTML="Nie udało się zmienić hasła! Wróć do logowania"
+      this.statusChange = AppComponent.trans.instant('SET_PASSWORD_WARNING.FAILURE')
     })
   }
 

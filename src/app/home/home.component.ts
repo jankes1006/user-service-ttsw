@@ -1,6 +1,11 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
+
+export function TRANSLATE(str: string) {
+  return str;
+}
 
 @Component({
   selector: 'app-home',
@@ -9,20 +14,22 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  linkToAllUsers?: String;
-  linkToAllOffersAdmin?: String;
+  linkToAllUsers?: any;
+  linkToAllOffersAdmin?: any;
 
   loginUser = localStorage.getItem("username");
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+
+   }
 
   dropMenuOne = "nav-link dropdown-toggle";
   dropMenuTwo = "dropdown-menu"
 
-  allUserOffers = "/showAllOffer/0/8/all/*/"+localStorage.getItem('username')
+  allUserOffers = "/showAllOffer/0/8/all/*/"+localStorage.getItem('username')+"/id,asc"
   ngOnInit(): void {
     if(localStorage.getItem('role')=="ROLE_ADMIN"){
-      this.linkToAllUsers="Wyświetl wszystkich użytkowników"
-      this.linkToAllOffersAdmin="Modyfikuj status ofert";
+      this.linkToAllUsers=AppComponent.trans.instant('NAV.ALL_USERS')
+      this.linkToAllOffersAdmin=AppComponent.trans.instant('NAV.MODIFY_OFFERS')
     }else{
       this.linkToAllUsers="";
       this.linkToAllOffersAdmin="";

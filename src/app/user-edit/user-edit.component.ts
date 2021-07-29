@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AppComponent } from '../app.component';
 import { UserService } from '../UserService/user.service';
 
 @Component({
@@ -25,13 +26,13 @@ export class UserEditComponent implements OnInit {
   constructor(private userService: UserService, private formBuilder: FormBuilder) { 
     this.emailForm = this.formBuilder.group({
       email: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.email]),
-      password: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)])
+      password: new FormControl('',[Validators.required])
     })
 
     this.passwordForm = this.formBuilder.group({
-      passwordNew: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
-      passwordNewRepeat: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
-      password: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+      passwordNew: new FormControl('',[Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]),
+      passwordNewRepeat: new FormControl('',[Validators.required]),
+      password: new FormControl('',[Validators.required]),
     },{
       validators: this.MustMatch('passwordNew', 'passwordNewRepeat')
     })
@@ -55,17 +56,15 @@ export class UserEditComponent implements OnInit {
   }
 
 
+  passwordStatusWarning:any;
+  emailStatusWarning:any;
+
   data = {"modifyFields":"", "newValue":"", "password":""};
   ngOnInit(): void {
   }
 
   onSubmitPassword(data: any){
-    this.passwordStatus!.nativeElement.innerHTML="Trwa zmiana hasła. Proszę czekać...";
-
-    if(data.passwordNew != data.passwordNewRepeat){
-      this.passwordStatus!.nativeElement.innerHTML="Nowe hasło, oraz jego powtórzenie są różne. Popraw!";
-      return;
-    }
+    this.passwordStatusWarning = AppComponent.trans.instant('EDIT_USER_WARNING.START_EDIT_PASSWORD')
 
     this.userService.login(localStorage.getItem('username')!,data.password).subscribe(result=>{
       this.data.modifyFields="PASSWORD";
@@ -73,37 +72,37 @@ export class UserEditComponent implements OnInit {
       this.data.password=data.password;
       this.userService.updateUser(this.data).subscribe(result=>{
         localStorage.setItem('password',data.passwordNew);
-        this.passwordStatus!.nativeElement.innerHTML="Udana zmiana hasła!";
+        this.passwordStatusWarning = AppComponent.trans.instant('EDIT_USER_WARNING.SUCCESS_EDIT_PASSWORD')
         this.password!.nativeElement.value="";
         this.passwordNew!.nativeElement.value="";
         this.passwordNewRepeat!.nativeElement.value="";
       },error=>{
-        this.passwordStatus!.nativeElement.innerHTML="Nie udana zmiana hasła!";
+        this.passwordStatusWarning = AppComponent.trans.instant('EDIT_USER_WARNING.FAILURE_EDIT_PASSWORD')
       })
       
     },error=>{
-      this.passwordStatus!.nativeElement.innerHTML="Aktualne hasło jest nie prawidłowe. Popraw!";
+      this.passwordStatusWarning = AppComponent.trans.instant('EDIT_USER_WARNING.BAD_ACTUAL_PASSWORD')
     })
   }
 
   onSubmitEmail(data: any){
-    this.emailStatus!.nativeElement.innerHTML="Trwa zmiana adresu email. Proszę czekać...";
-
+    this.emailStatusWarning = AppComponent.trans.instant('EDIT_USER_WARNING.BAD_START_EDIT_EMAIL')
     this.userService.login(localStorage.getItem('username')!,data.password).subscribe(result=>{
       this.data.modifyFields="EMAIL";
       this.data.newValue=data.email;
       this.data.password=data.password;
       this.userService.updateUser(this.data).subscribe(result=>{
         localStorage.setItem('email',data.email);
-        this.emailStatus!.nativeElement.innerHTML="Udana zmiana adresu email!";
+        this.emailStatusWarning = AppComponent.trans.instant('EDIT_USER_WARNING.SUCCESS_EDIT_EMAIL')
         this.email!.nativeElement.value="";
         this.passwordEmail!.nativeElement.value="";
       },error=>{
-        this.emailStatus!.nativeElement.innerHTML="Nie udana zmiana adresu email!";
+        this.emailStatusWarning = AppComponent.trans.instant('EDIT_USER_WARNING.FAILUER_EDIT_EMAIL')
       })
       
     },error=>{
-      this.emailStatus!.nativeElement.innerHTML="Hasło jest nie prawidłowe. Popraw!";
+      
+      this.emailStatusWarning = AppComponent.trans.instant('EDIT_USER_WARNING.BAD_PASSWORD')
     })
     
   }

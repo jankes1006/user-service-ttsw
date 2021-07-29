@@ -8,40 +8,41 @@
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
         		<div class="panel-heading">
-			    		<h3 class="panel-title">Rejestracja</h3>
+			    		<h3 class="panel-title">{{'REGISTRATION.TITLE' | translate}}</h3>
 			 			</div>
+
 			 			<div class="panel-body">
 			    		<form [formGroup]="createNewAccount" #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)" >
 			    			<div class="form-group">
-			    				<input type="input" name="username" ngModel  class="form-control input-sm" placeholder="Nazwa użytkownika" formControlName="username">
-									<span *ngIf="username!.invalid">Nazwa użytkownika musi być od 3 do 20 znaków!</span>
+			    				<input type="input" name="username"  class="form-control input-sm" placeholder="{{'REGISTRATION.USERNAME'| translate}}" formControlName="username">
+									<span *ngIf="username!.invalid">{{'REGISTRATION_WARNING.USERNAME' | translate}}</span>
 			    			</div>
 
 			    			<div class="form-group">
-			    				<input type="email" name="email" ngModel class="form-control input-sm" placeholder="Adres email" formControlName="email">
-									<span *ngIf="email!.invalid">Podaj adres email!</span>
+			    				<input type="email" name="email"  class="form-control input-sm" placeholder="{{'REGISTRATION.EMAIL'| translate}}" formControlName="email">
+									<span *ngIf="email!.invalid">{{'REGISTRATION_WARNING.EMAIL' | translate}}</span>
 			    			</div>
 
 			    			<div class="row">
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			    						<input type="password" name="password" ngModel  class="form-control input-sm" placeholder="Hasło" formControlName="password">
-											<span *ngIf="password!.invalid">Hasło musi zawierać od 6 do 20 znaków!</span>
+			    						<input type="password" name="password" class="form-control input-sm" placeholder="{{'REGISTRATION.PASSWORD'| translate}}" formControlName="password">
+											<span *ngIf="password!.invalid">{{'REGISTRATION_WARNING.PASSWORD' | translate}}</span>
 			    					</div>
 			    				</div>
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			    						<input type="password" name="repeatPassword" ngModel  class="form-control input-sm" placeholder="Powtórz hasło" formControlName="passwordRepeat">
-											<span *ngIf="passwordRepeat!.invalid">Hasła nie są identyczne!</span>
+			    						<input type="password" name="repeatPassword"  class="form-control input-sm" placeholder="{{'REGISTRATION.CONFIRM_PASSWORD'| translate}}" formControlName="passwordRepeat">
+											<span *ngIf="passwordRepeat!.invalid">{{'REGISTRATION_WARNING.CONFIRM_PASSWORD' | translate}}</span>
 			    					</div>
 			    				</div>
 									
 			    			</div>
 			    			
-			    			<input type="submit" value="Zarejestruj się" class="btn btn-info btn-block" [disabled]="!createNewAccount.valid">
+			    			<input type="submit" value="{{'REGISTRATION.SIGN_UP' | translate}}" class="btn btn-info btn-block" [disabled]="!createNewAccount.valid">
 			    		</form>
 							<br/>
-							<p #createStatus style="text-align: center; color: red;"></p>
+							<p #createStatus style="text-align: center; color: red;">{{statusRegister | translate}}</p>
 			    	</div>
 	    		</div>
     		</div>

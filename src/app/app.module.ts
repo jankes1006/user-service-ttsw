@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { CreateOfferComponent } from './create-offer/create-offer.component';
@@ -24,6 +24,13 @@ import { BannedOfferEditComponent } from './banned-offer-edit/banned-offer-edit.
 import { FooterComponent } from './footer/footer.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
+
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient){
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -44,14 +51,21 @@ import { SetPasswordComponent } from './set-password/set-password.component';
     BannedOfferEditComponent,
     FooterComponent,
     ForgotPasswordComponent,
-    SetPasswordComponent
+    SetPasswordComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [AuthGuard, AdminGuard],
   bootstrap: [AppComponent]

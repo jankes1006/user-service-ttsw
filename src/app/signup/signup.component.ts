@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { UserService } from "../UserService/user.service";
 
 @Component({
@@ -13,12 +14,13 @@ export class SignupComponent implements OnInit {
   @ViewChild('createStatus') createStatus?: ElementRef;
   
   createNewAccount: FormGroup;
+  statusRegister: any;
 
   constructor(private userService: UserService, private route: Router, private formBuilder: FormBuilder){
     this.createNewAccount = this.formBuilder.group({
       username: new FormControl('',[Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
       email: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.email]),
-      password: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+      password: new FormControl('',[Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]),
       passwordRepeat: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
     },{
       validators: this.MustMatch('password', 'passwordRepeat')
@@ -52,24 +54,27 @@ export class SignupComponent implements OnInit {
 
   onSubmit(data: any): void{
     
-    this.createStatus!.nativeElement.innerHTML="Czekaj..."
+    console.log(data);
+    this.statusRegister = AppComponent.trans.instant('REGISTRATION_WARNING.WAIT')
     
       this.userService.createAccount(data)
       .subscribe((result)=>{
+        
         if(result=="USERNAME_EXIST"){
-          this.createStatus!.nativeElement.innerHTML="Podana nazwa użytkownika jest zajęta. Zmień ją!"
+          this.statusRegister = AppComponent.trans.instant('REGISTRATION_WARNING.USERNAME_EXIST')
         }
 
         if(result=="MAIL_EXIST"){
-          this.createStatus!.nativeElement.innerHTML="Podany adres email jest zajęty. Zmień go!"
+          console.error(result);
+          this.statusRegister = AppComponent.trans.instant('REGISTRATION_WARNING.MAIL_EXIST')
         }
 
         if(result=="CREATE"){
-          this.createStatus!.nativeElement.innerHTML="Stworzono nowe konto. Potwierdz adres email!"
+          this.statusRegister = AppComponent.trans.instant('REGISTRATION_WARNING.CREATE')
         }
         
       },()=>{
-        this.createStatus!.nativeElement.innerHTML="Nie udana proba stworzenia konta."
+        this.statusRegister = AppComponent.trans.instant('REGISTRATION_WARNING.ERROR')
       })
     
   }

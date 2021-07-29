@@ -1,5 +1,6 @@
 import { Component, OnInit,ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { OfferService } from '../OfferService/offer.service';
 @Component({
   selector: 'app-details-offer',
@@ -10,6 +11,8 @@ export class DetailsOfferComponent implements OnInit {
 
   offer: any;
   id?: number;
+  status:any;
+
   @ViewChild('reservedStatus') reservedStatus?: ElementRef;
   @ViewChild('orderButton') orderButton?: ElementRef;
   @ViewChild('notificationButton') notificationButton?: ElementRef;
@@ -43,7 +46,7 @@ export class DetailsOfferComponent implements OnInit {
       }else{
         this.offerService.isUserNotificationOffer(this.offer.id).subscribe(result=>{
           if(result==true){
-            this.reservedStatus!.nativeElement.innerHTML="Zgłosiłeś tą ofertę administratorom.";
+            this.status = AppComponent.trans.instant('OFFER_DETAILS_WARNING.NOTIFICATION_OFFER')
             this.orderButton!.nativeElement.style.display="none";
             this.notificationButton!.nativeElement.style.display="none";
           }else{
@@ -58,15 +61,15 @@ export class DetailsOfferComponent implements OnInit {
   orderProduct(){
     this.orderButton!.nativeElement.disabled=true;
     this.notificationButton!.nativeElement.disabled=true;
-    this.reservedStatus!.nativeElement.innerHTML="Czekaj...";
+    this.status = AppComponent.trans.instant('OFFER_DETAILS_WARNING.WAIT_ORDER');
     this.offerService.reservedOffer(this.id!).subscribe(result =>{
       if(result){
-        this.reservedStatus!.nativeElement.innerHTML="Zarezerwowano oferte!";
+        this.status = AppComponent.trans.instant('OFFER_DETAILS_WARNING.RESERVED_OFFER');
       }else{
-        this.reservedStatus!.nativeElement.innerHTML="Oferta jest już nie aktualna!";
+        this.status = AppComponent.trans.instant('OFFER_DETAILS_WARNING.OUT_OF_DATE_OFFER');
       }
     },()=>{
-      this.reservedStatus!.nativeElement.innerHTML="Błąd rezerwacji, spróbuj później.";
+      this.status = AppComponent.trans.instant('OFFER_DETAILS_WARNING.ERROR');
       this.orderButton!.nativeElement.disabled=false;
       this.notificationButton!.nativeElement.disabled=false;
     })
@@ -75,9 +78,9 @@ export class DetailsOfferComponent implements OnInit {
   notification(){
     this.orderButton!.nativeElement.disabled=true;
     this.notificationButton!.nativeElement.disabled=true;
-    this.reservedStatus!.nativeElement.innerHTML="Czekaj...";
+    this.status = AppComponent.trans.instant('OFFER_DETAILS_WARNING.WAIT_ORDER');
     this.offerService.notificationOffer(this.offer.id).subscribe(result=>{
-      this.reservedStatus!.nativeElement.innerHTML="Zgłoszono oferte administratorom.";
+      this.status = AppComponent.trans.instant('OFFER_DETAILS_WARNING.NOTIFICATION')
     })
   }
 

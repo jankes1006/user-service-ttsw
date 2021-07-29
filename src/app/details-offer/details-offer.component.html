@@ -3,27 +3,27 @@
 <div class="panel panel-info col-lg-6 offset-lg-3 mt-2 mb-5">
   <div class="panel-heading bg-inf text-center p-2 border border-primary rounded-top rounded-bottom"><h2>{{offer?.title}}</h2></div>
   <div class="panel-body p-2 border border-primary rounded-top rounded-bottom">
-    <h4 class="mt-3">Opis:</h4>
+    <h4 class="mt-3">{{'OFFER_DETAILS.DESCRIPTION' | translate}}</h4>
     {{offer?.description}}
     
-    <h4 class="mt-3">Cena:</h4>
+    <h4 class="mt-3">{{'OFFER_DETAILS.PRICE' | translate}}</h4>
     {{offer?.price}}
  
-    <h4 class="mt-3">Data utworzenia oferty:</h4>
+    <h4 class="mt-3">{{'OFFER_DETAILS.DATE_CREATE_OFFER' | translate}}</h4>
     {{offer?.createDate | date:'medium'}}
 
-    <h4 class="mt-3">Wyświetlenia:</h4>
+    <h4 class="mt-3">{{'OFFER_DETAILS.VIEWS' | translate}}</h4>
     {{visited!}}
 
     <div *ngIf=retrievedImage>
-      <h4>Zdjęcie:</h4>
+      <h4>{{'OFFER_DETAILS.IMAGE' | translate}}</h4>
       <img [src]="retrievedImage">
     </div>
 
-    <p #reservedStatus class="text-danger mt-3"></p>
+    <p #reservedStatus class="text-danger mt-3">{{status | translate}}</p>
 
-    <button #orderButton type="button" (click)="orderProduct()" class="btn btn-primary btn-lg btn-block mt-5">Zamów</button>
-    <button #notificationButton type="button" (click)="notification()"  class="btn btn-danger btn-lg btn-block mt-1">Zgłoś ogłosznie</button>
+    <button #orderButton type="button" (click)="orderProduct()" class="btn btn-primary btn-lg btn-block mt-5">{{'OFFER_DETAILS.ORDER' | translate}}</button>
+    <button #notificationButton type="button" (click)="notification()"  class="btn btn-danger btn-lg btn-block mt-1">{{'OFFER_DETAILS.NOTIFICATION' | translate}}</button>
   </div>
 </div>
 

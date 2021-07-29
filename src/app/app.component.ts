@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -8,6 +9,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  title = 'user-service-ttsw';
+  static trans: TranslateService;
+
+  constructor(public translate: TranslateService){
+    translate.addLangs(['pl','en']);
+    translate.setDefaultLang('pl');
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/pl|en/) ? browserLang: 'pl');
+    AppComponent.trans=translate;
+  }
+
+  get trans(){
+    return AppComponent.trans;
+  }
   
 }

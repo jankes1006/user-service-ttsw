@@ -3,52 +3,52 @@
 
 <div class="panel panel-default col-lg-6 offset-lg-3">
   <div class="panel-heading">
-    <h3 class="panel-title">Zmiana hasła</h3>
+    <h3 class="panel-title">{{'EDIT_USER.CHANGE_PASSWORD_TITLE' | translate}}</h3>
   </div>
 
   <div class="panel-body">
       <form [formGroup]="passwordForm" #changePassword="ngForm" (ngSubmit)="onSubmitPassword(changePassword.value)">
         <div class="form-group">
-          <label for="passwordNew">Nowe hasło</label>
-          <input #passwordNew type="password" class="form-control"  name="passwordNew" placeholder="Podaj nowe hasło" formControlName="passwordNew">
+          <label for="passwordNew">{{'EDIT_USER.NEW_PASSWORD_TITLE' | translate}}</label>
+          <input #passwordNew type="password" class="form-control"  name="passwordNew" placeholder="{{'EDIT_USER.NEW_PASSWORD' | translate}}" formControlName="passwordNew">
         </div>
 
         <div class="form-group">
-          <label for="passwordNewRepeat">Powtórz nowe hasło</label>
-          <input #passwordNewRepeat type="password" class="form-control" name="passwordNewRepeat" placeholder="Powtórz nowe hasło" formControlName="passwordNewRepeat">
+          <label for="passwordNewRepeat">{{'EDIT_USER.CONFIRM_NEW_PASSWORD_TITLE' | translate}}</label>
+          <input #passwordNewRepeat type="password" class="form-control" name="passwordNewRepeat" placeholder="{{'EDIT_USER.CONFIRM_NEW_PASSWORD' | translate}}" formControlName="passwordNewRepeat">
         </div>
 
         <div class="form-group">
-          <label for="password">Aktualne hasło</label>
-          <input #password type="password" class="form-control"  name="password" placeholder="Podaj aktualne hasło" formControlName="password">
+          <label for="password">{{'EDIT_USER.ACTUAL_PASSWORD_TITLE' | translate}}</label>
+          <input #password type="password" class="form-control"  name="password" placeholder="{{'EDIT_USER.ACTUAL_PASSWORD' | translate}}" formControlName="password">
         </div>
 
-        <button type="submit" class="btn btn-primary">Zmień</button>
+        <button type="submit" class="btn btn-primary">{{'EDIT_USER.CHANGE' | translate}}</button>
       </form>
-      <p #changePasswordStatus style="text-align: center; color: red;"></p>
+      <p #changePasswordStatus style="text-align: center; color: red;">{{passwordStatusWarning | translate}}</p>
   </div>
 </div>
 
 <div class="panel panel-default col-lg-6 offset-lg-3">
   <div class="panel-heading">
-    <h3 class="panel-title">Zmiana adresu email</h3>
+    <h3 class="panel-title">{{'EDIT_USER.CHANGE_EMAIL_TITLE' | translate}}</h3>
   </div>
 
   <div class="panel-body">
       <form [formGroup]="emailForm" #changeEmail="ngForm" (ngSubmit)="onSubmitEmail(changeEmail.value)">
         <div class="form-group">
-          <label for="email">Nowy adres email</label>
-          <input #email type="email" class="form-control" name="email" placeholder="Podaj nowy adres email" formControlName="email">
+          <label for="email">{{'EDIT_USER.NEW_EMAIL_TITLE' | translate}}</label>
+          <input #email type="email" class="form-control" name="email" placeholder="{{'EDIT_USER.NEW_EMAIL' | translate}}" formControlName="email">
         </div>
 
         <div class="form-group">
-          <label for="password">Hasło</label>
-          <input #passwordEmail type="password" class="form-control"  name="password" placeholder="Podaj hasło" formControlName="password">
+          <label for="password">{{'EDIT_USER.PASSWORD_TITLE' | translate}}</label>
+          <input #passwordEmail type="password" class="form-control"  name="password" placeholder="{{'EDIT_USER.PASSWORD' | translate}}" formControlName="password">
         </div>
 
-        <button type="submit" class="btn btn-primary">Zmień</button>
+        <button type="submit" class="btn btn-primary">{{'EDIT_USER.CHANGE' | translate}}</button>
       </form>
-      <p #changeEmailStatus style="text-align: center; color: red;"></p>
+      <p #changeEmailStatus style="text-align: center; color: red;">{{emailStatusWarning | translate}}</p>
   </div>
 </div>
 

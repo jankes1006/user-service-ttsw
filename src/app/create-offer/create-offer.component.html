@@ -3,27 +3,27 @@
 
 <div class="panel panel-default col-lg-6 offset-lg-3">
   <div class="panel-heading">
-    <h3 class="panel-title">Stwórz oferte</h3>
+    <h3 class="panel-title">{{'CREATE_OFFER.TITLE' | translate}}</h3>
   </div>
 
   <div class="panel-body">
       <form [formGroup]="createForm" #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
         <div class="form-group">
-          <label for="title">Tytuł</label>
-          <input type="text" class="form-control" name="title" placeholder="Motocykl suzuki ..." formControlName="title">
-          <span *ngIf="title!.invalid">Tytuł musi mieć od 3 do 50 znaków</span>
+          <label for="title">{{'CREATE_OFFER.TITLE_OFFER' | translate}}</label>
+          <input type="text" class="form-control" name="title" placeholder="{{'CREATE_OFFER.TITLE_OFFER_EXAMPLE' | translate}}" formControlName="title">
+          <span *ngIf="title!.invalid">{{'CREATE_OFFER_WARNING.TITLE' | translate}}</span>
         </div>
 
         <div class="form-group">
-          <label for="description">Opis</label>
-          <textarea class="form-control" name="description" rows="3" placeholder="Przebieg 20000km, wymienione..." formControlName="description"></textarea>
-          <span *ngIf="description!.invalid">Opis musi składać się od 15 do 400 znaków!</span>
+          <label for="description">{{'CREATE_OFFER.DESCRIPTION_OFFER' | translate}}</label>
+          <textarea class="form-control" name="description" rows="3" placeholder="{{'CREATE_OFFER.DESCRIPTION_OFFER_EXAMPLE' | translate}}" formControlName="description"></textarea>
+          <span *ngIf="description!.invalid">{{'CREATE_OFFER_WARNING.DESCRIPTION' | translate}}</span>
         </div>
 
         <div class="form-group">
-          <label for="price">Cena</label>
-          <input type="number" class="form-control" name="price" placeholder="12300" formControlName="price">
-          <span *ngIf="price!.invalid">Cena musi być większa od 0!</span>
+          <label for="price">{{'CREATE_OFFER.PRICE_OFFER' | translate}}</label>
+          <input type="number" class="form-control" name="price" placeholder="{{'CREATE_OFFER.PRICE_OFFER_EXAMPLE' | translate}}" formControlName="price">
+          <span *ngIf="price!.invalid">{{'CREATE_OFFER_WARNING.PRICE' | translate}}</span>
         </div>
 
         <div class="form-group">
@@ -31,17 +31,17 @@
         </div>
 
         <div class="form-group">
-          <label for="category">Kategoria</label>
+          <label for="category">{{'CREATE_OFFER.CATEGORY_OFFER' | translate}}</label>
           <select  name="category" class="form-select" style="width: 100%;" formControlName="category">
             <option  *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
           </select>
-          <span *ngIf="category!.invalid">Wybierz!</span>
+          <span *ngIf="category!.invalid">{{'CREATE_OFFER_WARNING.CATEGORY' | translate}}</span>
         </div>
         
 
-        <button #submitButton type="submit" class="btn btn-primary" [disabled]="!createForm.valid">Dodaj</button>
+        <button #submitButton type="submit" class="btn btn-primary" [disabled]="!createForm.valid">{{'CREATE_OFFER.SUBMIT_OFFER' | translate}}</button>
       </form>
-      <p #createOfferStatus style="text-align: center; color: red;"></p>
+      <p #createOfferStatus style="text-align: center; color: red;">{{status|translate}}</p>
   </div>
 </div>
 

@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AppComponent } from '../app.component';
 import { UserService } from '../UserService/user.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { UserService } from '../UserService/user.service';
 })
 export class ForgotPasswordComponent implements OnInit {
 
+  resetStatus: any;
   forgotForm: FormGroup;
   @ViewChild('newPassword') newPassword?: ElementRef;
 
@@ -29,15 +31,15 @@ export class ForgotPasswordComponent implements OnInit {
     this.userService.resetPassword(data).subscribe(result=>{
       switch(result){
         case "RESET":
-          this.newPassword!.nativeElement.innerHTML="Aby kontynuować zmianę hasła, przejdź na skrzynkę pocztową.";
+          this.resetStatus=AppComponent.trans.instant('RESET_PASSWORD_WARNING.RESET')
           break;
         
         case "NO_RESET":
-          this.newPassword!.nativeElement.innerHTML="Podano nie prawidłowe dane.";
+          this.resetStatus=AppComponent.trans.instant('RESET_PASSWORD_WARNING.NO_RESET')
           break;
 
         case "UNCONFIRMED_USER":
-          this.newPassword!.nativeElement.innerHTML="Użytkownik nie był jeszcze potwierdzony! Zrób to zanim zaczniesz korzystać z serwisu!";
+          this.resetStatus=AppComponent.trans.instant('RESET_PASSWORD_WARNING.UNCONFIRMED_USER')
           break;
       }
     })

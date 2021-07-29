@@ -1,32 +1,44 @@
 <app-home></app-home>
 <div class="panel panel-default mr-1 ml-1 mt-1 mb-1 text-center">
-    <div class="panel-head bg-inf border text-center border-primary rounded-top rounded-bottom "><h5>Filtry</h5></div>
+    <div class="panel-head bg-inf border text-center border-primary rounded-top rounded-bottom "><h5>{{'ALL_USERS.FILTERS_TITLE' | translate}}</h5></div>
 
     <div class="panel-body border border-primary rounded-top rounded-bottom">
         <div class="form-inline">
             <form #userPost="ngForm" class="form-inline" (ngSubmit)="setFilter(userPost.value)">
                 <div class="form-group">
-                    <label for="pageSize" class="mr-1 ml-1">Ilość ogłoszeń na stronie:</label>
+                    <label for="pageSize" class="mr-1 ml-1">{{'ALL_USERS.NUMBER_OF_OFFERS_ON_PAGE' | translate}}</label>
                     <input #sizePageHTML class="form-control mr-1 ml-1" type = "number" ngModel  name="sizePage" value={{sizePage}}/>
                 </div>
 
                 <div class="form-group">
-                    <label for="username" class="mr-1 ml-1">Użytkownik:</label>
+                    <label for="username" class="mr-1 ml-1">{{'ALL_USERS.USERNAME_FILTERS' | translate}}</label>
                     <input #usernameHTML class="form-control mr-1 ml-1" type = "text" ngModel  name="username" value={{username}}/>
                 </div>
 
                 <div class="form-group">
-                    <label for="email" class="mr-1 ml-1">Email:</label>
+                    <label for="email" class="mr-1 ml-1">{{'ALL_USERS.EMAIL' | translate}}</label>
                     <input #emailHTML class="form-control mr-1 ml-1" type = "text" ngModel  name="email" value={{email}}/>
                 </div>
                 
                 <div class="form-group">
-                    <label for="role" class="mr-1 ml-1">Rola:</label>
+                    <label for="role" class="mr-1 ml-1">{{'ALL_USERS.ROLE' | translate}}</label>
                     <input #roleHTML class="form-control mr-1 ml-1" type = "text" ngModel  name="role" value={{role}}/>
                 </div>
 
-                <button type="submit" class="btn btn-primary ml-1">Zastosuj</button>
-                <button type="button" class="btn btn-primary ml-1" (click)="resetFilter()" >Wyczyść filtry</button>
+                <div class="form-group">
+                    <label for="sort" class="mr-1 ml-1">{{'ALL_USERS.SORT' | translate}}</label>
+                    <div class="form-control">
+                        <select #sortHTML ngModel name="sort" class="form-select  mr-1 ml-1" style="width: 100%;">
+                            <option value="username,asc">{{'ALL_USERS.SORT_BY_USERNAME_ASC' | translate}}</option>
+                            <option value="username,desc">{{'ALL_USERS.SORT_BY_USERNAME_DESC' | translate}}</option>
+                            <option value="id,asc">{{'ALL_USERS.SORT_BY_CREATE_ID_ASC' | translate}}</option>
+                            <option value="id,desc">{{'ALL_USERS.SORT_BY_CREATE_ID_DESC' | translate}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary ml-1">{{'ALL_USERS.APPLY' | translate}}</button>
+                <button type="button" class="btn btn-primary ml-1" (click)="resetFilter()" >{{'ALL_USERS.CLEAR_FILTERS' | translate}}</button>
             </form>
 
         </div>
@@ -38,10 +50,10 @@
     <table class="table">
         <thead class="table-dark bg-secondary">
             <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Rola</th>
+                <th>{{'ALL_USERS.ID' | translate}}</th>
+                <th>{{'ALL_USERS.USERNAME' | translate}}</th>
+                <th>{{'ALL_USERS.EMAIL' | translate}}</th>
+                <th>{{'ALL_USERS.ROLE' | translate}}</th>
             </tr>
         </thead>
         <tbody>
@@ -59,7 +71,7 @@
 <nav>
     <ul class="pagination" >
         <div  *ngFor="let item of createRange(numberOfPagination!)" >
-            <li class="page-item"><a class="page-link" href='/showAllUsers/{{item-1}}/{{sizePage}}/{{username}}/{{email}}/{{role}}'>{{item}}</a></li>
+            <li class="page-item"><a class="page-link" href='/showAllUsers/{{item-1}}/{{sizePage}}/{{username}}/{{email}}/{{role}}/{{sort}}'>{{item}}</a></li>
         </div>
     </ul>
 </nav>

@@ -1,0 +1,245 @@
+{
+  "REGISTRATION":{
+    "TITLE": "Rejestracja",
+    "USERNAME": "Nazwa użytkownika",
+    "EMAIL": "Adres email",
+    "PASSWORD": "Hasło",
+    "CONFIRM_PASSWORD": "Powtórz hasło",
+    "SIGN_UP": "Zarejstruj się"
+  },
+
+  "REGISTRATION_WARNING":{
+    "USERNAME": "Nazwa użytkownika musi składać się z minimum 3 liter a maksymalnie z 20.",
+    "EMAIL": "Podaj adres email.",
+    "PASSWORD": "Hasło musi być długie na conajmniej 8 znaków. Wielkie i małe litery, cyfry i znaki specjalne",
+    "CONFIRM_PASSWORD": "Podane hasła są różne! Popraw je!",
+    "WAIT":"Czekaj...",
+    "USERNAME_EXIST":"Podana nazwa użytkownika jest zajęta. Zmień ją!",
+    "MAIL_EXIST":"Podany adres email jest zajęty. Zmień go!",
+    "CREATE":"Stworzono nowe konto. Potwierdz adres email!",
+    "ERROR":"Nie udana proba stworzenia konta."
+  },
+
+  "LOGIN":{
+    "TITLE": "Logowanie",
+    "USERNAME": "Nazwa użytkownika",
+    "PASSWORD": "Hasło",
+    "LOGIN": "Zaloguj się",
+    "RECOVERY_PASSWORD": "Odzyskiwanie hasła."
+  },
+
+  "LOGIN_WARNING":{
+    "BAD_PASS": "Nieprawidłowy login lub hasło!",
+    "UNCONFIRMED_ACCOUNT": "Konto nie zostało potwierdzone! Potwierdź je!",
+    "BANNED_ACOUNT": "Podane konto zostało zablokowane przez administratorów.."
+  },
+
+  "NAV":{
+    "CREATE_OFFER":"Stwórz nową ofertę",
+    "EDIT_OFFERS":"Edytuj Oferty",
+    "SHOW_YOUR_OFFERS":"Twoje oferty",
+    "EDIT_USER":"Edytuj użytkownika",
+    "LOGOUT":"Wyloguj się",
+    "ACTUAL_OFFERS":"Aktualne oferty",
+    "ALL_USERS":"Wszyscy użytkownicy",
+    "MODIFY_OFFERS":"Modyfikuj oferty"
+  },
+
+  "CREATE_OFFER":{
+    "TITLE":"Stwórz oferte",
+    "TITLE_OFFER":"Tytuł",
+    "TITLE_OFFER_EXAMPLE":"Motocykl suzuki ...",
+    "DESCRIPTION_OFFER":"Opis",
+    "DESCRIPTION_OFFER_EXAMPLE":"Przebieg 20000km, wymienione...",
+    "PRICE_OFFER":"Cena",
+    "PRICE_OFFER_EXAMPLE":"12330",
+    "CATEGORY_OFFER":"Kategoria",
+    "SUBMIT_OFFER":"Dodaj"
+  },
+
+  "CREATE_OFFER_WARNING":{
+    "TITLE":"Tytuł musi mieć od 3 do 50 znaków.",
+    "DESCRIPTION":"Opis musi składać się od 15 do 400 znaków!",
+    "PRICE":"Cena musi być większa od 0!",
+    "CATEGORY":"Wybierz!",
+    "ADDED_PHOTO_WITHOUT_CONNECT_OFFER":"Dodano zdjęcia, jednak bez przypisania!",
+    "ADDED_NEW_OFFER_WITHOUT_IMAGE":"Stworzono nową ofertę bez zdjęcia!",
+    "ERROR":"Wystąpił błąd. Spróbuj ponownie później.",
+    "ADDED_OFFER_WTIH_IMAGE":"Stworzono ofertę wraz ze zdjęciem!"
+  },
+
+  "ALL_OFFER_USER":{
+    "ID":"ID",
+    "TITLE":"TYTUŁ",
+    "DESCRIPTION":"OPIS",
+    "PRICE":"CENA",
+    "ACTIVITY":"AKTYWNOŚĆ"
+  },
+
+  "EDIT_OFFER":{
+    "TITLE":"Edytuj oferte",
+    "TITLE_OFFER":"Tytuł",
+    "TITLE_OFFER_EXAMPLE":"Motocykl suzuki ...",
+    "DESCRIPTION_OFFER":"Opis",
+    "DESCRIPTION_OFFER_EXAMPLE":"Przebieg 20000km, wymienione...",
+    "PRICE_OFFER":"Cena",
+    "PRICE_OFFER_EXAMPLE":"12330",
+    "CATEGORY_OFFER":"Kategoria",
+    "SUBMIT_OFFER":"Edytuj",
+    "ACTIVITY_TITLE":"Aktywność oferty",
+    "ACTIVITY_CHANGE":"Zmień aktywność oferty"
+  },
+
+  "EDIT_OFFER_WARNING":{
+    "TITLE":"Tytuł musi mieć od 3 do 50 znaków.",
+    "DESCRIPTION":"Opis musi składać się od 15 do 400 znaków!",
+    "PRICE":"Cena musi być większa od 0!",
+    "CATEGORY":"Wybierz!",
+    "OFFER_ACTIVE":"Aktywna",
+    "OFFER_NO_ACTIVE":"Nieaktywna",
+    "OFFER_BAN":"Zawieszona przez administratora",
+    "WAIT":"Czekaj...",
+    "EDIT_SUCCESS":"Edycja zakończona sukcesem",
+    "EDIT_FAILURE":"Edycja zakończona niepowodzeniem"
+  },
+
+  "ALL_OFFER":{
+    "ID":"ID",
+    "TITLE":"TYTUŁ",
+    "DESCRIPTION":"OPIS",
+    "PRICE":"CENA",
+    "CATEGORY":"KATEGORIA",
+    "SORT":"SORTUJ WG",
+    "AUTHOR":"AUTOR",
+    "ACTIVITY":"AKTYWNOŚĆ",
+    "NUMBER_OF_NOTIFICATION":"LICZBA ZGŁOSZEŃ",
+    "FILTRS":"FILTRY",
+    "NUMBER_OF_OFFERS_ON_PAGE":"ILOŚĆ OGŁOSZEŃ NA STRONIE",
+    "USERNAME":"NAZWA UŻYTKOWNIKA",
+    "APPLY":"ZASTOSUJ",
+    "CLEAR_FILTRS":"WYCZYŚĆ FILTRY",
+    "SORT_BY_PRICE_DESC":"Cena malejąco",
+    "SORT_BY_PRICE_ASC":"Cena rosnąco",
+    "SORT_BY_CREATE_DATE_ASC":"Od najstarszych",
+    "SORT_BY_CREATE_DATE_DESC":"Od najmłodszych"
+  },
+
+  "EDIT_USER":{
+    "CHANGE_PASSWORD_TITLE":"Zmiana hasła",
+    "NEW_PASSWORD_TITLE":"Nowe hasło:",
+    "NEW_PASSWORD":"Podaj nowe hasło",
+    "CONFIRM_NEW_PASSWORD_TITLE":"Powtórz nowe hasło:",
+    "CONFIRM_NEW_PASSWORD":"Powtórz nowe hasło",
+    "ACTUAL_PASSWORD_TITLE":"Aktualne hasło:",
+    "ACTUAL_PASSWORD":"Podaj aktualne hasło",
+    "CHANGE":"ZMIEŃ",
+
+    "CHANGE_EMAIL_TITLE":"Zmiana adresu email",
+    "NEW_EMAIL_TITLE":"Nowy adres email:",
+    "NEW_EMAIL":"Podaj nowy adres email",
+    "PASSWORD_TITLE":"Hasło:",
+    "PASSWORD":"Podaj hasło"
+  },
+
+  "EDIT_USER_WARNING":{
+    "START_EDIT_PASSWORD":"Trwa zmiana hasła. Proszę czekać...",
+    "SUCCESS_EDIT_PASSWORD":"Udana zmiana hasła!",
+    "FAILURE_EDIT_PASSWORD":"Nieudana zmiana hasła!",
+    "BAD_ACTUAL_PASSWORD":"Aktualne hasło jest nieprawidłowe. Popraw!",
+    "START_EDIT_EMAIL":"Trwa zmiana adresu email. Proszę czekać...",
+    "SUCCESS_EDIT_EMAIL":"Udana zmiana adresu email!",
+    "FAILUER_EDIT_EMAIL":"Nieudana zmiana adresu email!",
+    "BAD_PASSWORD":"Hasło jest nie prawidłowe. Popraw!"
+  },
+
+  "ALL_USERS":{
+    "ID":"ID",
+    "USERNAME":"NAZWA UŻYTKOWNIKA",
+    "EMAIL":"EMAIL",
+    "ROLE":"ROLA",
+    "FILTERS_TITLE":"FILTRY",
+    "NUMBER_OF_OFFERS_ON_PAGE":"ILOŚĆ OGŁOSZEŃ NA STRONIE:",
+    "USERNAME_FILTERS":"UŻYTKOWNIK",
+    "APPLY":"ZASTOSUJ",
+    "CLEAR_FILTERS":"WYCZYŚĆ FILTRY",
+    "SORT_BY_USERNAME_ASC":"Nazwa użytkownika rosnąco",
+    "SORT_BY_USERNAME_DESC":"Nazwa użytkownika malejąco",
+    "SORT_BY_CREATE_ID_ASC":"ID rosnąco",
+    "SORT_BY_CREATE_ID_DESC":"ID malejąco",
+    "SORT":"SORTOWANIE"
+  },
+
+  "OFFER_DETAILS":{
+    "DESCRIPTION":"Opis:",
+    "PRICE":"Cena:",
+    "DATE_CREATE_OFFER":"Data utworzenia oferty:",
+    "IMAGE":"Zdjęcie:",
+    "VIEWS":"Wyświetlenia",
+    "ORDER":"Zamów",
+    "NOTIFICATION":"Zgłoś administratorom"
+  },
+
+  "OFFER_DETAILS_WARNING":{
+    "NOTIFICATION_OFFER":"Zgłosiłeś tą ofertę administratorom.",
+    "WAIT_ORDER":"Czekaj...",
+    "RESERVED_OFFER":"Zarezerwowano oferte.",
+    "OUT_OF_DATE_OFFER":"Oferta jest już nieaktualna. Przepraszamy.",
+    "ERROR_ORDER":"Błąd rezerwacji, spróbuj później.",
+    "NOTIFICATION":"Zgłoszono ofertę administratorom."
+  },
+
+  "OFFER_LOCK":{
+    "TITLE":"blokada administrator",
+    "DESCRIPTION":"Opis:",
+    "PRICE":"Cena",
+    "STATE":"Status:",
+    "NUMBER_OF_NOTIFICATION":"Liczba zgłoszeń",
+    "LOCK_ACTIVATION":"ATYWACJA BLOKADY",
+    "DEACTIVATION_OF_THE_LOCK":"DEZAKTYWACJA BLOKADY",
+    "REASON":"Powód"
+  },
+
+  "EDIT_ROLE_ADMIN":{
+    "TITLE":"Modyfikacja użytkownika - admin",
+    "USER_ID":"ID:",
+    "USERNAME":"Nazwa użytkownika:",
+    "USER_EMAIL":"Email użytkownika:",
+    "USER_ROLE":"Rola użytkownika:",
+    "EDITING_ROLE_TITLE":"Edycja roli:",
+    "NEW_ROLE":"Nowa rola:",
+    "CHANGE_ROLE_USER":"Zmień rolę użytkownika"
+  },
+
+  "RESET_PASSWORD":{
+    "TITLE":"Resetuj hasło",
+    "USERNAME":"Podaj nazwę użytkownika",
+    "USERNAME_EXAMPLE":"Nazwa użytkownika",
+    "EMAIL":"Podaj adres email",
+    "EMAIL_EXAMPLE":"Email",
+    "RESET_PASSWORD":"Resetuj hasło",
+    "BACK_TO_LOGIN_FORM":"Wróć do logowania"
+  },
+
+  "RESET_PASSWORD_WARNING":{
+    "NAME":"Nazwa użytkownika ma od 3 do 20 znaków",
+    "EMAIL":"Podaj adres email!",
+    "RESET":"Aby kontynuować zmianę hasła, przejdź na skrzynkę pocztową.",
+    "NO_RESET":"Podano nie prawidłowe dane.",
+    "UNCONFIRMED_USER":"Użytkownik nie był jeszcze potwierdzony! Zrób to zanim zaczniesz korzystać z serwisu!"
+  },
+
+  "SET_PASSWORD":{
+    "BACK_TO_LOGIN_FORM":"Wróć do logowania",
+    "SET_PASSWORD_TO_USER":"Zmiana hasła dla użytkownika",
+    "PASSWORD_NEW_TITLE":"Nowe hasło",
+    "PASSWORD_NEW_EXAMPLE":"Podaj nowe hasło",
+    "PASSWORD_CONFIRM_TITLE":"Powtórz nowe hasło",
+    "PASSWORD_CONFIRM_EXAMPLE":"Powtórz nowe hasło",
+    "SUBMIT":"ZMIEŃ"
+  },
+
+  "SET_PASSWORD_WARNING":{
+    "SUCCESS":"Udało się zmienić hasło! Wróć do logowania.",
+    "FAILURE":"Nie udało się zmienić hasła!"
+  }
+}

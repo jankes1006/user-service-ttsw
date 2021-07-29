@@ -53,15 +53,15 @@ export class OfferService {
     return this.http.get("http://localhost:8080/offer/paginationALlOffer?page="+page+"&size="+sizePage,{headers});
   }
 
-  getAllOffersOnPageWhereCategory(page:number, sizePage:number, category:string, search:string, user:string){
+  getAllOffersOnPageWhereCategory(page:number, sizePage:number, category:string, search:string, user:string, sort:string){
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
-    return this.http.get("http://localhost:8080/offer/searchTitle?title="+search+"&category="+category+"&page="+page+"&size="+sizePage+"&username="+user,{headers});
+    return this.http.get("http://localhost:8080/offer/searchTitle?title="+search+"&category="+category+"&page="+page+"&size="+sizePage+"&sort="+sort+"&username="+user,{headers});
   }
 
-  getAllOffersOnPageWhereCategoryAdmin(page:number, sizePage:number, category:string, search:string, user:string){
+  getAllOffersOnPageWhereCategoryAdmin(page:number, sizePage:number, category:string, search:string, user:string, sort:string){
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
     //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/offer/searchTitleAdmin?title="+search+"&category="+category+"&page="+page+"&size="+sizePage+"&username="+user,{headers});
+    return this.http.get("http://localhost:8080/offer/searchTitleAdmin?title="+search+"&category="+category+"&page="+page+"&size="+sizePage+"&sort="+sort+"&username="+user,{headers});
   }
 
   getAllOfferAdmin(){

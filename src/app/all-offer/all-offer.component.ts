@@ -17,6 +17,7 @@ export class AllOfferComponent implements OnInit {
   category?: string;
   searchTitle?: string;
   searchUser?: string;
+  sort?: string;
   isAdmin?: string;
 
   allPage?:any;
@@ -29,6 +30,7 @@ export class AllOfferComponent implements OnInit {
   @ViewChild('sizePageHTML') sizePageHTML?: ElementRef;
   @ViewChild('categoryHTML') categoryHTML?: ElementRef;
   @ViewChild('searchHTML') searchHTML?: ElementRef;
+  @ViewChild('sortHTML') sortHTML?: ElementRef;
   @ViewChild('userHTML') userHTML?: ElementRef;
   
   ngOnInit(): void {
@@ -37,6 +39,7 @@ export class AllOfferComponent implements OnInit {
     this.category=String(this.route.snapshot.paramMap.get('category'));
     this.searchTitle=String(this.route.snapshot.paramMap.get('searchTitle'));
     this.searchUser=String(this.route.snapshot.paramMap.get('user'));
+    this.sort=String(this.route.snapshot.paramMap.get('sort'));
     this.isAdmin=String(this.route.snapshot.paramMap.get('admin'));
 
     this.getAllCategories();
@@ -51,7 +54,7 @@ export class AllOfferComponent implements OnInit {
     let userTemp = (this.searchUser=="*")?"":this.searchUser;
 
     if(this.isAdmin!='admin'){
-      this.service.getAllOffersOnPageWhereCategory(this.page!,this.sizePage!,categoryTemp!, searchTemp!,userTemp!).subscribe(result =>
+      this.service.getAllOffersOnPageWhereCategory(this.page!,this.sizePage!,categoryTemp!, searchTemp!,userTemp!,this.sort!).subscribe(result =>
         {
           this.allPage=result;
           this.allOffers=this.allPage.content;
@@ -60,7 +63,7 @@ export class AllOfferComponent implements OnInit {
         }
         );
     }else{ //admin
-        this.service.getAllOffersOnPageWhereCategoryAdmin(this.page!,this.sizePage!,categoryTemp!, searchTemp!,userTemp!).subscribe(result =>
+        this.service.getAllOffersOnPageWhereCategoryAdmin(this.page!,this.sizePage!,categoryTemp!, searchTemp!,userTemp!,this.sort!).subscribe(result =>
         {
           this.allPage=result;
           this.allOffers=this.allPage.content;
@@ -89,6 +92,7 @@ export class AllOfferComponent implements OnInit {
     let sendCategory;
     let sendSearchTile;
     let sendUser;
+    let sendSort;
 
     if(data.pageSize==""){
       sendPageSize=this.sizePage;
@@ -114,16 +118,21 @@ export class AllOfferComponent implements OnInit {
       sendUser=data.user;
     }
 
-    if(this.isAdmin!="admin"){
-      location.href="/showAllOffer/0/"+sendPageSize+"/"+sendCategory+"/"+sendSearchTile+"/"+sendUser;
+    if(data.sort==""){
+      sendSort=this.sort;
     }else{
-      location.href="/showAllOffer/0/"+sendPageSize+"/"+sendCategory+"/"+sendSearchTile+"/"+sendUser+"/admin";
+      sendSort=data.sort;
+    }
+    
+    if(this.isAdmin!="admin"){
+      location.href="/showAllOffer/0/"+sendPageSize+"/"+sendCategory+"/"+sendSearchTile+"/"+sendUser+"/"+sendSort;
+    }else{
+      location.href="/showAllOffer/0/"+sendPageSize+"/"+sendCategory+"/"+sendSearchTile+"/"+sendUser+"/"+sendSort+"/admin";
     }
     
   }
 
   getAllCategories(){
-
     this.categoryService.getAllCategory().subscribe(result=>{
       this.categories = result;
     })
@@ -133,6 +142,7 @@ export class AllOfferComponent implements OnInit {
     this.sizePageHTML!.nativeElement.value=this.sizePage;
     this.categoryHTML!.nativeElement.value=this.category;
     this.searchHTML!.nativeElement.value=this.searchTitle;
+    this.sortHTML!.nativeElement.value=this.sort;
     this.userHTML!.nativeElement.value=this.searchUser;
   }
 

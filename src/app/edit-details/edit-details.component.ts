@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { OfferService } from '../OfferService/offer.service';
 
 @Component({
@@ -11,7 +12,8 @@ import { OfferService } from '../OfferService/offer.service';
 export class EditDetailsComponent implements OnInit {
   offer: any;
   id?: number;
-
+  statusEdit: any;
+  statusActivity: any;
   @ViewChild('activityButton') activityButton?: ElementRef;
   @ViewChild('offerStatus') offerStatus?: ElementRef;
   @ViewChild('editOfferStatus') editOfferStatus?: ElementRef;
@@ -44,19 +46,22 @@ export class EditDetailsComponent implements OnInit {
     this.editOffer.get('description')?.setValue(this.offer.description);
     this.editOffer.get('price')?.setValue(this.offer.price);
 
-      console.warn(this.offer.stateOffer);
       switch(this.offer.stateOffer){
         case "ACTIVE":
-          this.offerStatus!.nativeElement.innerHTML="Aktywna";
+          this.statusActivity = AppComponent.trans.instant('EDIT_OFFER_WARNING.OFFER_ACTIVE')
+          //this.offerStatus!.nativeElement.innerHTML="Aktywna";
           this.activityButton!.nativeElement.style.display="block";
           break;
         case "NO_ACTIVE":
-          this.offerStatus!.nativeElement.innerHTML="Nie aktywna";
+          this.statusActivity = AppComponent.trans.instant('EDIT_OFFER_WARNING.OFFER_NO_ACTIVE')
+          //this.offerStatus!.nativeElement.innerHTML="Nie aktywna";
           this.activityButton!.nativeElement.style.display="block";
           break;
-        case "BAN":
-          this.offerStatus!.nativeElement.innerHTML="Zawieszona przez administratora.";
+        case "BANNED":
+          this.statusActivity = AppComponent.trans.instant('EDIT_OFFER_WARNING.OFFER_BAN')
+          //this.offerStatus!.nativeElement.innerHTML="Zawieszona przez administratora.";
           this.activityButton!.nativeElement.style.display="none";
+          this.editButton!.nativeElement.style.display="none";
           break;
       }
     }
@@ -65,7 +70,7 @@ export class EditDetailsComponent implements OnInit {
     
     this.offerService.getOfferById(id).subscribe(result =>{ 
       this.offer = result;
-      console.warn(this.offer)
+
       if(this.offer.ownerName!=localStorage.getItem('username')){
         this.router.navigateByUrl("/showAllOffer");
       }
@@ -101,13 +106,19 @@ export class EditDetailsComponent implements OnInit {
       
       switch(this.offer.stateOffer){
         case "ACTIVE":
-          this.offerStatus!.nativeElement.innerHTML="Aktywna";
+          //this.offerStatus!.nativeElement.innerHTML="Aktywna";
+          this.statusActivity = AppComponent.trans.instant('EDIT_OFFER_WARNING.OFFER_ACTIVE')
           this.activityButton!.nativeElement.style.display="block";
           break;
         case "NO_ACTIVE":
-          this.offerStatus!.nativeElement.innerHTML="Nie aktywna";
+          //this.offerStatus!.nativeElement.innerHTML="Nie aktywna";
+          this.statusActivity = AppComponent.trans.instant('EDIT_OFFER_WARNING.OFFER_NO_ACTIVE')
           this.activityButton!.nativeElement.style.display="block";
           break;
+        case " BANNED":
+          this.statusActivity = AppComponent.trans.instant('EDIT_OFFER_WARNING.BAN')
+          //this.offerStatus!.nativeElement.innerHTML="Nie aktywna";
+          this.activityButton!.nativeElement.style.display="none";
       }
     })
   }

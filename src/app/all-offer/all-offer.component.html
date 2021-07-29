@@ -1,17 +1,18 @@
 <app-home></app-home>
+
 <div class="panel panel-default mr-1 ml-1 mt-1 mb-1 text-center">
-    <div class="panel-head bg-inf border text-center border-primary rounded-top rounded-bottom "><h5>Filtry</h5></div>
+    <div class="panel-head bg-inf border text-center border-primary rounded-top rounded-bottom "><h5>{{'ALL_OFFER.FILTRS' | translate}}</h5></div>
 
     <div class="panel-body border border-primary rounded-top rounded-bottom">
         <div class="form-inline">
             <form #userPost="ngForm" class="form-inline" (ngSubmit)="setFilter(userPost.value)">
                 <div class="form-group">
-                    <label for="pageSize" class="mr-1 ml-1">Ilość ogłoszeń na stronie:</label>
+                    <label for="pageSize" class="mr-1 ml-1">{{'ALL_OFFER.NUMBER_OF_OFFERS_ON_PAGE' | translate}}</label>
                     <input #sizePageHTML class="form-control mr-1 ml-1" type = "number" ngModel  name="pageSize" value={{sizePage}}/>
                 </div>
 
                 <div class="form-group">
-                    <label for="category" class="mr-1 ml-1">Kategoria:</label>
+                    <label for="category" class="mr-1 ml-1">{{'ALL_OFFER.CATEGORY' | translate}}</label>
                     <div class="form-control">
                         <select #categoryHTML ngModel name="category" class="form-select  mr-1 ml-1" style="width: 100%;">
                         <option  *ngFor="let category of categories">{{category.name}}</option>
@@ -19,19 +20,31 @@
                         </select>
                     </div>
                 </div>
+                
+                <div class="form-group">
+                    <label for="sort" class="mr-1 ml-1">{{'ALL_OFFER.SORT' | translate}}</label>
+                    <div class="form-control">
+                        <select #sortHTML ngModel name="sort" class="form-select  mr-1 ml-1" style="width: 100%;">
+                            <option value="price,asc">{{'ALL_OFFER.SORT_BY_PRICE_ASC' | translate}}</option>
+                            <option value="price,desc">{{'ALL_OFFER.SORT_BY_PRICE_DESC' | translate}}</option>
+                            <option value="id,asc">{{'ALL_OFFER.SORT_BY_CREATE_DATE_ASC' | translate}}</option>
+                            <option value="id,desc">{{'ALL_OFFER.SORT_BY_CREATE_DATE_DESC' | translate}}</option>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="form-group">
-                    <label for="search" class="mr-1 ml-1">Szukaj:</label>
+                    <label for="search" class="mr-1 ml-1">{{'ALL_OFFER.TITLE' | translate}}</label>
                     <input #searchHTML class="form-control mr-1 ml-1" type = "text" ngModel  name="search"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="search" class="mr-1 ml-1">Nazwa użytkownika:</label>
+                    <label for="search" class="mr-1 ml-1">{{'ALL_OFFER.USERNAME' | translate}}</label>
                     <input #userHTML class="form-control mr-1 ml-1" type = "text" ngModel  name="user"/>
                 </div>
 
-                <button type="submit" class="btn btn-primary ml-1">Zastosuj</button>
-                <button type="button" class="btn btn-primary ml-1" (click)="resetFilter()">Wyczyść filtry</button>
+                <button type="submit" class="btn btn-primary ml-1">{{'ALL_OFFER.APPLY' | translate}}</button>
+                <button type="button" class="btn btn-primary ml-1" (click)="resetFilter()">{{'ALL_OFFER.CLEAR_FILTRS' | translate}}</button>
             </form>
 
         </div>
@@ -41,14 +54,14 @@
 <table class="table">
     <thead class="table-dark bg-secondary">
         <tr>
-            <th>Id</th>
-            <th>Tytuł</th>
-            <th>Opis</th>
-            <th>Cena</th>
-            <th>Kategoria</th>
-            <th>Autor</th>
-            <th *ngIf="isAdmin=='admin'">Aktywność</th>
-            <th *ngIf="isAdmin=='admin'">Liczba zgłoszeń</th>
+            <th>{{'ALL_OFFER.ID' | translate}}</th>
+            <th>{{'ALL_OFFER.TITLE' | translate}}</th>
+            <th>{{'ALL_OFFER.DESCRIPTION' | translate}}</th>
+            <th>{{'ALL_OFFER.PRICE' | translate}}</th>
+            <th>{{'ALL_OFFER.CATEGORY' | translate}}</th>
+            <th>{{'ALL_OFFER.AUTHOR' | translate}}</th>
+            <th *ngIf="isAdmin=='admin'">{{'ALL_OFFER.ACTIVITY' | translate}}</th>
+            <th *ngIf="isAdmin=='admin'">{{'ALL_OFFER.NUMBER_OF_NOTIFICATION' | translate}}</th>
         </tr>        
     </thead>
     <tbody>
@@ -67,15 +80,10 @@
             </ng-template>
 
             <td *ngIf="isAdmin=='admin'">{{offer.stateOffer}}</td>
-
-            
-                <td *ngIf="isAdmin=='admin' && numberOfNotification && numberOfNotification[offer.id]; else noNotification">{{numberOfNotification[offer.id]}}</td>
-                <ng-template #noNotification>
-                    <td *ngIf="isAdmin=='admin'">0</td>
-                </ng-template>
-        
-            
-            
+            <td *ngIf="isAdmin=='admin' && numberOfNotification && numberOfNotification[offer.id]; else noNotification">{{numberOfNotification[offer.id]}}</td>
+            <ng-template #noNotification>
+                <td *ngIf="isAdmin=='admin'">0</td>
+            </ng-template>
         </tr>
     </tbody>
 </table>
@@ -83,9 +91,9 @@
 <nav>
     <ul class="pagination" >
         <div  *ngFor="let item of createRange(numberOfPagination!)" >
-            <li class="page-item" *ngIf="isAdmin!='admin'; else paginationAdmin"><a class="page-link" href='/showAllOffer/{{item - 1}}/{{sizePage}}/{{category}}/{{searchTitle}}/{{searchUser}}'>{{item}}</a></li>
+            <li class="page-item" *ngIf="isAdmin!='admin'; else paginationAdmin"><a class="page-link" href='/showAllOffer/{{item - 1}}/{{sizePage}}/{{category}}/{{searchTitle}}/{{searchUser}}/{{sort}}'>{{item}}</a></li>
             <ng-template #paginationAdmin>
-                <li class="page-item"><a class="page-link" href='/showAllOffer/{{item - 1}}/{{sizePage}}/{{category}}/{{searchTitle}}/{{searchUser}}/admin'>{{item}}</a></li>
+                <li class="page-item"><a class="page-link" href='/showAllOffer/{{item - 1}}/{{sizePage}}/{{category}}/{{searchTitle}}/{{searchUser}}/{{sort}}/admin'>{{item}}</a></li>
             </ng-template>
         </div>
     </ul>

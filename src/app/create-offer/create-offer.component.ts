@@ -2,6 +2,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { CategoryService} from '../category-service/category-service.service';
 import { OfferAndImage } from '../OfferAndImage';
 import { OfferService } from '../OfferService/offer.service';
@@ -33,6 +34,7 @@ export class CreateOfferComponent implements OnInit {
   tempOffer?: any;
   tempImage?: any;
 
+  status: any;
   createForm: FormGroup;
 
   constructor(private service: OfferService, private categoryService: CategoryService, private router: Router, private formBuilder: FormBuilder) { 
@@ -77,19 +79,19 @@ export class CreateOfferComponent implements OnInit {
       if(this.selectedFile){
         this.service.saveImg(this.selectedFile).subscribe(result=>{
           this.tempImage = result;
-          this.createOfferStatus!.nativeElement.innerHTML="Dodano zdjęcia, jednak bez przypisania!";
+          this.status=AppComponent.trans.instant('CREATE_OFFER_WARNING.ADDED_PHOTO_WITHOUT_CONNECT_OFFER')
           this.service.setImg(new ImageAndOffer(this.tempOffer.id,this.tempImage.id)).subscribe(result=>{
-            this.createOfferStatus!.nativeElement.innerHTML="Stworzono ofertę wraz ze zdjęciem!";
+            this.status=AppComponent.trans.instant('CREATE_OFFER_WARNING.ADDED_OFFER_WTIH_IMAGE')
             this.router.navigate([nav]);
           })
         })
       }else{
-        this.createOfferStatus!.nativeElement.innerHTML="Stworzono nową ofertę bez zdjęcia!";
+        this.status=AppComponent.trans.instant('CREATE_OFFER_WARNING.ADDED_NEW_OFFER_WITHOUT_IMAGE')
         this.router.navigate([nav]);
       }
 
     },()=>{
-      this.createOfferStatus!.nativeElement.innerHTML="Wystąpił błąd. Spróbuj ponownie później";
+      this.status=AppComponent.trans.instant('CREATE_OFFER_WARNING.ERROR')
       this.submitButton!.nativeElement.disabled=false;
     })
   }

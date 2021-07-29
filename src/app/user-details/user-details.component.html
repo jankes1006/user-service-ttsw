@@ -1,39 +1,39 @@
 <app-home></app-home>
 
 <div class="panel panel-info col-lg-6 offset-lg-3 mt-3 mb-5">
-  <div class="panel-heading bg-inf text-center p-2 border border-primary rounded-top rounded-bottom"><h2>Modyfikacja użytkownika</h2></div>
+  <div class="panel-heading bg-inf text-center p-2 border border-primary rounded-top rounded-bottom"><h2>{{'EDIT_ROLE_ADMIN.TITLE' | translate}}</h2></div>
   <div class="panel-body p-2 border border-primary rounded-top rounded-bottom">
 
     <h5>
-      ID:
+      {{'EDIT_ROLE_ADMIN.USER_ID' | translate}}
       <small class="text-muted">{{user?.id}}</small>
     </h5>
 
     <h5>
-      Nazwa użytkownka:
+      {{'EDIT_ROLE_ADMIN.USERNAME' | translate}}
       <small class="text-muted">{{user?.username}}</small>
     </h5>
 
     <h5>
-      Email użytkownika:
+      {{'EDIT_ROLE_ADMIN.USER_EMAIL' | translate}}
       <small class="text-muted">{{user?.email}}</small>
     </h5>
 
     <h5>
-      Rola użytkownika:
+      {{'EDIT_ROLE_ADMIN.USER_ROLE' | translate}}
       <small class="text-muted">{{user?.role}}</small>
     </h5>
 
-    <h3 class="mt-5">Edycja roli:</h3>
+    <h3 class="mt-5">{{'EDIT_ROLE_ADMIN.EDITING_ROLE_TITLE' | translate}}</h3>
     <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
-      <h5>Nowa Rola</h5>
+      <h5>{{'EDIT_ROLE_ADMIN.NEW_ROLE' | translate}}</h5>
       <select ngModel name="role" style="width: 100%;">
         <option selected>ROLE_USER</option>
         <option>ROLE_ADMIN</option>
         <option>ROLE_BAN</option>
       </select>
       
-      <button type="sumbit" class="btn btn-primary btn-lg btn-block mt-2">Zmień rolę użytkownika</button>
+      <button type="sumbit" class="btn btn-primary btn-lg btn-block mt-2">{{'EDIT_ROLE_ADMIN.CHANGE_ROLE_USER' | translate}}</button>
     </form>
   </div>
 </div>

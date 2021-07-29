@@ -1,0 +1,246 @@
+{
+  "REGISTRATION":{
+    "TITLE": "Sign up",
+    "USERNAME": "Username",
+    "EMAIL": "Address Email",
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "SIGN_UP": "Sign up"
+  },
+
+  "REGISTRATION_WARNING":{
+    "USERNAME": "Username must consist of a minimum of 3 letters and a maximum of 20.",
+    "EMAIL": "Give your email.",
+    "PASSWORD": "Password must contain at least 8 points. Uppercase and lowercase letters, numbers and special characters",
+    "CONFIRM_PASSWORD": "The passwords are different! Please correct it!",
+    "WAIT":"Wait...",
+    "USERNAME_EXIST":"The specified username is taken. Change her!",
+    "MAIL_EXIST":"The specified email is taken. Change it!",
+    "CREATE":"Create a new account. Confirmed account on email!",
+    "ERROR":"Account creation failed."
+  },
+
+  "LOGIN":{
+    "TITLE": "Login",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "LOGIN": "Login",
+    "RECOVERY_PASSWORD":"Password recovery"
+  },
+
+  "LOGIN_WARNING":{
+    "BAD_PASS": "Incorrect login or password",
+    "UNCONFIRMED_ACCOUNT": "Account is unconfirmed. You must confirm account",
+    "BANNED_ACOUNT": "Administrator banned this account."
+  },
+
+  "NAV":{
+    "CREATE_OFFER":"Create new offer",
+    "EDIT_OFFERS":"Edit offers",
+    "SHOW_YOUR_OFFERS":"Your offers",
+    "EDIT_USER":"Edit user",
+    "LOGOUT":"Logout",
+    "ACTUAL_OFFERS":"Actual offers",
+    "ALL_USERS":"ALL USERS",
+    "MODIFY_OFFERS":"MODIFY OFFERS"
+  },
+
+  "CREATE_OFFER":{
+    "TITLE":"Create offer",
+    "TITLE_OFFER":"Title",
+    "TITLE_OFFER_EXAMPLE":"Motorbike suzuki ...",
+    "DESCRIPTION_OFFER":"Description",
+    "DESCRIPTION_OFFER_EXAMPLE":"Mileage 20000km, replaced...",
+    "PRICE_OFFER":"Price",
+    "PRICE_OFFER_EXAMPLE":"12330",
+    "CATEGORY_OFFER":"Category",
+    "SUBMIT_OFFER":"Add Offer"
+  },
+
+  "CREATE_OFFER_WARNING":{
+    "TITLE":"The title must be 3 to 50 characters long.",
+    "DESCRIPTION":"The description must be 15 to 400 characters long!",
+    "PRICE":"The price must be greater than 0!",
+    "CATEGORY":"Choose!",
+    "ADDED_PHOTO_WITHOUT_CONNECT_OFFER":"Pictures added, but not assigned to the offer!",
+    "ADDED_NEW_OFFER_WITHOUT_IMAGE":"Create new offer without picture!",
+    "ERROR":"An error occured. Try again later.",
+    "ADDED_OFFER_WTIH_IMAGE":"Create offer with photo"
+  },
+
+  "ALL_OFFER_USER":{
+    "ID":"ID",
+    "TITLE":"TITLE",
+    "DESCRIPTION":"DESCRIPTION",
+    "PRICE":"PRICE",
+    "ACTIVITY":"ACTIVITY"
+  },
+
+  "EDIT_OFFER":{
+    "TITLE":"Edit offer",
+    "TITLE_OFFER":"Title",
+    "TITLE_OFFER_EXAMPLE":"Motorbike suzuki ...",
+    "DESCRIPTION_OFFER":"Description",
+    "DESCRIPTION_OFFER_EXAMPLE":"Mileage 20000km, replaced...",
+    "PRICE_OFFER":"Price",
+    "PRICE_OFFER_EXAMPLE":"12330",
+    "CATEGORY_OFFER":"Category",
+    "SUBMIT_OFFER":"Edit Offer",
+    "ACTIVITY_TITLE":"Activity offer",
+    "ACTIVITY_CHANGE":"Change activity offer"
+  },
+
+  "EDIT_OFFER_WARNING":{
+    "TITLE":"The title must be 3 to 50 characters long.",
+    "DESCRIPTION":"The description must be 15 to 400 characters long!",
+    "PRICE":"The price must be greater than 0!",
+    "CATEGORY":"Choose!",
+    "OFFER_ACTIVE":"Active",
+    "OFFER_NO_ACTIVE":"No active",
+    "OFFER_BAN":"Suspended by they administrator",
+    "WAIT":"Wait...",
+    "EDIT_SUCCESS":"Successful edition",
+    "EDIT_FAILURE":"Failure edition"
+  },
+
+  "ALL_OFFER":{
+    "ID":"ID",
+    "TITLE":"TITLE",
+    "DESCRIPTION":"DESCRIPTION",
+    "PRICE":"PRICE",
+    "CATEGORY":"CATEGORY",
+    "SORT":"SORT BY",
+    "AUTHOR":"AUTHOR",
+    "ACTIVITY":"ACTIVITY",
+    "NUMBER_OF_NOTIFICATION":"NUMBER OF NOTIFICATION",
+    "FILTRS":"FILTERS",
+    "NUMBER_OF_OFFERS_ON_PAGE":"NUMBERS OF OFFERS ON PAGE",
+    "USERNAME":"USERNAME",
+    "APPLY":"APPLY",
+    "CLEAR_FILTRS":"CLEAR FILTRS",
+    "SORT_BY_PRICE_DESC":"Price descending",
+    "SORT_BY_PRICE_ASC":"Price ascending",
+    "SORT_BY_CREATE_DATE_ASC":"From the oldest",
+    "SORT_BY_CREATE_DATE_DESC":"From the youngest"
+  },
+
+  "EDIT_USER":{
+    "CHANGE_PASSWORD_TITLE":"Change password",
+    "NEW_PASSWORD_TITLE":"Password:",
+    "NEW_PASSWORD":"Password",
+    "CONFIRM_NEW_PASSWORD_TITLE":"Confirm password:",
+    "CONFIRM_NEW_PASSWORD":"Consfirm password",
+    "ACTUAL_PASSWORD_TITLE":"Actual password:",
+    "ACTUAL_PASSWORD":"Actual password",
+    "CHANGE":"CHANGE",
+
+    "CHANGE_EMAIL_TITLE":"Change email address",
+    "NEW_EMAIL_TITLE":"New email address:",
+    "NEW_EMAIL":"New email address",
+    "PASSWORD_TITLE":"Password:",
+    "PASSWORD":"Password"
+  },
+
+  "EDIT_USER_WARNING":{
+    "START_EDIT_PASSWORD":"Password is being changed. Please wait...",
+    "SUCCESS_EDIT_PASSWORD":"Sucessful change password!",
+    "FAILURE_EDIT_PASSWORD":"Failure change password!",
+    "BAD_ACTUAL_PASSWORD":"Actual password is incorect!",
+    "START_EDIT_EMAIL":"Email is being changed. Please wait...",
+    "SUCCESS_EDIT_EMAIL":"Sucessfull change email address!",
+    "FAILUER_EDIT_EMAIL":"Failure change email address!",
+    "BAD_PASSWORD":"Password is incorrect"
+  },
+
+  "ALL_USERS":{
+    "ID":"ID",
+    "USERNAME":"USERNAME",
+    "EMAIL":"EMAIL",
+    "ROLE":"ROLA",
+    "FILTERS_TITLE":"FILTERS",
+    "NUMBER_OF_OFFERS_ON_PAGE":"NUMBER OF OFFERS ON PAGE:",
+    "USERNAME_FILTERS":"USERNAME",
+    "APPLY":"APPLY",
+    "CLEAR_FILTERS":"CLEAR FILTERS",
+    "SORT_BY_USERNAME_ASC":"Username ascending",
+    "SORT_BY_USERNAME_DESC":"Username descending",
+    "SORT_BY_CREATE_ID_ASC":"ID ascending",
+    "SORT_BY_CREATE_ID_DESC":"ID descending",
+    "SORT":"SORT"
+  },
+
+  
+  "OFFER_DETAILS":{
+    "DESCRIPTION":"Description:",
+    "PRICE":"Price:",
+    "DATE_CREATE_OFFER":"Date create offer:",
+    "IMAGE":"Image:",
+    "VIEWS":"Views:",
+    "ORDER":"Order",
+    "NOTIFICATION":"Notification offer"
+  },
+
+  "OFFER_DETAILS_WARNING":{
+    "NOTIFICATION_OFFER":"You reported this offer to administrators.",
+    "WAIT_ORDER":"Wait...",
+    "RESERVED_OFFER":"Reserved offer.",
+    "OUT_OF_DATE_OFFER":"Offer is out of date. Sorry.",
+    "ERROR_ORDER":"Reserved error, try later.",
+    "NOTIFICATION":"The offer was submitted to the administrators."
+  },
+
+  "OFFER_LOCK":{
+    "TITLE":"admin lock",
+    "DESCRIPTION":"Description:",
+    "PRICE":"Price:",
+    "STATE":"State:",
+    "NUMBER_OF_NOTIFICATION":"Number of notification:",
+    "LOCK_ACTIVATION":"LOCK ACTIVATION",
+    "DEACTIVATION_OF_THE_LOCK":"DEACTIVATION_OF_THE_LOCK",
+    "REASON":"Reason"
+  },
+
+  "EDIT_ROLE_ADMIN":{
+    "TITLE":"Modify user - admin",
+    "USER_ID":"ID:",
+    "USERNAME":"Username:",
+    "USER_EMAIL":"Email:",
+    "USER_ROLE":"Role:",
+    "EDITING_ROLE_TITLE":"Editing role:",
+    "NEW_ROLE":"New role:",
+    "CHANGE_ROLE_USER":"Change user role"
+  },
+
+  "RESET_PASSWORD":{
+    "TITLE":"Reset password",
+    "USERNAME":"Username",
+    "USERNAME_EXAMPLE":"Username",
+    "EMAIL":"Address Email",
+    "EMAIL_EXAMPLE":"Email",
+    "RESET_PASSWORD":"Reset Password",
+    "BACK_TO_LOGIN_FORM":"Back to login form."
+  },
+
+  "RESET_PASSWORD_WARNING":{
+    "NAME":"Username is 3 to 20 characters long",
+    "EMAIL":"Adress email is required",
+    "RESET":"To continue the password change, go to your mailbox.",
+    "NO_RESET":"Login or email are incorrect.",
+    "UNCONFIRMED_USER":"User isn't confirmed! You must do it, before you start use service!"
+  },
+
+  "SET_PASSWORD":{
+    "BACK_TO_LOGIN_FORM":"Back to login form",
+    "SET_PASSWORD_TO_USER":"Change password to user: ",
+    "PASSWORD_NEW_TITLE":"New password",
+    "PASSWORD_NEW_EXAMPLE":"New password",
+    "PASSWORD_CONFIRM_TITLE":"Confirm password",
+    "PASSWORD_CONFIRM_EXAMPLE":"Confirm password",
+    "SUBMIT":"Change"
+  },
+
+  "SET_PASSWORD_WARNING":{
+    "SUCCESS":"You have successfully changed your password! Back to login form to continue.",
+    "FAILURE":"Could not change password!"
+  }
+}

@@ -3,7 +3,7 @@
       <a class="navbar-brand" href="#">
         TTSW_TASK
       </a>
-
+      
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji" (click)="toggleCollapsed()">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -15,26 +15,26 @@
             <a class={{dropMenuOne}} data-toggle="dropdown" role="button" aria-expanded="false" id="submenu" aria-haspopup="true" (click)="toggleDropMenu()"> {{loginUser}}</a>
 
             <div class={{dropMenuTwo}} aria-labelledby="submenu">
-              <a class="dropdown-item" routerLink="/createOffer">Stwórz nową ofertę</a>
-              <a class="dropdown-item" routerLink="/showAllOffersUser">Edytuj oferty</a>
-              <a class="dropdown-item" routerLink={{allUserOffers}}>Wyświetl wszystkie swoje oferty</a>
+              <a class="dropdown-item" routerLink="/createOffer">{{'NAV.CREATE_OFFER' | translate}}</a>
+              <a class="dropdown-item" routerLink="/showAllOffersUser">{{'NAV.EDIT_OFFERS' | translate}}</a>
+              <a class="dropdown-item" routerLink={{allUserOffers}}>{{'NAV.SHOW_YOUR_OFFERS' | translate}}</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" routerLink="/editUser">Edytuj hasło / adres email</a>
+              <a class="dropdown-item" routerLink="/editUser">{{'NAV.EDIT_USER' | translate}}</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" (click)="logout()">Wyloguj</a>
+              <a class="dropdown-item" (click)="logout()">{{'NAV.LOGOUT' | translate}}</a>
             </div>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/showAllOffer/0/8/all/*/*">Wszystkie aktualne oferty</a>
+            <a class="nav-link" routerLink="/showAllOffer/0/7/all/*/*/id,asc">{{'NAV.ACTUAL_OFFERS' | translate}}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/showAllUsers/0/8/*/*/*">{{linkToAllUsers}}</a>
+            <a class="nav-link" routerLink="/showAllUsers/0/8/*/*/*/id,asc">{{linkToAllUsers | translate}}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/showAllOffer/0/8/all/*/*/admin" >{{linkToAllOffersAdmin}}</a>
+            <a class="nav-link" routerLink="/showAllOffer/0/7/all/*/*/id,asc/admin" >{{linkToAllOffersAdmin | translate}}</a>
           </li>
 
         </ul>
