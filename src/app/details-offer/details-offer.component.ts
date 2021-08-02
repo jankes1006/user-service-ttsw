@@ -16,6 +16,7 @@ export class DetailsOfferComponent implements OnInit {
   @ViewChild('reservedStatus') reservedStatus?: ElementRef;
   @ViewChild('orderButton') orderButton?: ElementRef;
   @ViewChild('notificationButton') notificationButton?: ElementRef;
+  @ViewChild('statistic') statistic?: ElementRef;
   //image
   retrievedImage: any;
   base64Data: any;
@@ -49,9 +50,11 @@ export class DetailsOfferComponent implements OnInit {
             this.status = AppComponent.trans.instant('OFFER_DETAILS_WARNING.NOTIFICATION_OFFER')
             this.orderButton!.nativeElement.style.display="none";
             this.notificationButton!.nativeElement.style.display="none";
+            
           }else{
             this.orderButton!.nativeElement.style.display="block";
             this.notificationButton!.nativeElement.style.display="block";
+            this.statistic!.nativeElement.style.display="none";
           }
         })
       }

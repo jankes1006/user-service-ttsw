@@ -201,7 +201,7 @@
   },
 
   "EDIT_ROLE_ADMIN":{
-    "TITLE":"Modify user - admin",
+    "TITLE":"User:",
     "USER_ID":"ID:",
     "USERNAME":"Username:",
     "USER_EMAIL":"Email:",

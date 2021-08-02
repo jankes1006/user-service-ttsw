@@ -1,0 +1,66 @@
+<app-home></app-home>
+
+<div class="panel panel-default mr-1 ml-1 mt-1 mb-1 text-center">
+  <div class="panel-head bg-inf border text-center border-primary rounded-top rounded-bottom "><h5>{{'COMMENT_LIST.FILTRS' | translate}}</h5></div>
+
+  <div class="panel-body border border-primary rounded-top rounded-bottom">
+      <div class="form-inline">
+          <form #userPost="ngForm" class="form-inline" (ngSubmit)="setFilter(userPost.value)">
+              <div class="form-group">
+                  <label for="size" class="mr-1 ml-1">{{'COMMENT_LIST.NUMBER_OFFERS_ON_SITE' | translate}}</label>
+                  <input #sizeHTML class="form-control mr-1 ml-1" type = "number" ngModel  name="size"/>
+              </div>
+              
+              <div class="form-group">
+                  <label for="sort" class="mr-1 ml-1">{{'COMMENT_LIST.SORT' | translate}}</label>
+                  <div class="form-control">
+                      <select #sortHTML ngModel name="sort" class="form-select  mr-1 ml-1" style="width: 100%;">
+                          <option value="offer.title,asc">{{'COMMENT_LIST.SORT_NAME_ASC' | translate}}</option>
+                          <option value="offer.title,desc">{{'COMMENT_LIST.SORT_NAME_DESC' | translate}}</option>
+                          <option value="id,asc">{{'COMMENT_LIST.SORT_TIME_ASC' | translate}}</option>
+                          <option value="id,desc">{{'COMMENT_LIST.SORT_TIME_DESC' | translate}}</option>
+                      </select>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label for="title" class="mr-1 ml-1">{{'COMMENT_LIST.OFFER_TITLE' | translate}}</label>
+                  <input #titleHTML class="form-control mr-1 ml-1" type = "text" ngModel  name="title"/>
+              </div>
+
+              <button type="submit" class="btn btn-primary ml-1">{{'COMMENT_LIST.APPLY' | translate}}</button>
+              <button type="button" class="btn btn-primary ml-1" >{{'COMMENT_LIST.DELETE_FILTERS' | translate}}</button>
+          </form>
+
+      </div>
+  </div>
+</div>
+
+<div class="mr-1 ml-1">
+  <table class="table">
+      <thead class="table-dark bg-secondary">
+          <tr>
+              <th>{{'COMMENT_LIST.NAME_OFFER' | translate}}</th>
+              <th>{{'COMMENT_LIST.NAME_SALLERY' | translate}}</th>
+              <th>{{'COMMENT_LIST.DATE_BUY' | translate}}</th>
+          </tr>        
+      </thead>
+      <tbody>
+          <tr *ngFor="let offer of offersToComment">
+             <td><a routerLink="/commentOffer/{{offer.id}}">{{offer.titleOffer}}</a></td>
+             <td>{{offer.usernameSeller}}</td>
+             <td>{{offer.dateTime | date:'medium'}}</td>
+          </tr>
+      </tbody>
+  </table>
+  
+  <nav>
+      <ul class="pagination">
+          <div  *ngFor="let item of createRange(totalPages!)" >
+              <li class="page-item"><a class="page-link" href='/allOffersToComment/{{item-1}}/{{size}}/{{title}}/{{sort}}'>{{item}}</a></li>
+          </div>
+      </ul>
+  </nav>
+  
+  <br/><br/>
+  </div>

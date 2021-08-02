@@ -15,6 +15,9 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 import { BannedOfferEditComponent } from './banned-offer-edit/banned-offer-edit.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
+import { LinearChartComponent } from './linear-chart/linear-chart.component';
+import { CommentAndMarkListComponent } from './comment-and-mark-list/comment-and-mark-list.component';
+import { CommentAndMarkComponent } from './comment-and-mark/comment-and-mark.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -24,13 +27,16 @@ const routes: Routes = [
   {path: 'showAllOffer/:page/:sizePage/:category/:searchTitle/:user/:sort/:admin', component: AllOfferComponent, canActivate: [AuthGuard, AdminGuard]},
   {path: 'showAllOffersUser', component: AllOfersUserComponent, canActivate: [AuthGuard]},
   {path: 'showAllUsers/:page/:sizePage/:username/:email/:role/:sort', component: AllUserComponent, canActivate: [AuthGuard, AdminGuard]}, 
-  {path: 'detailUserEditAdmin/:id', component: UserDetailsComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'detailUser/:id/:role', component: UserDetailsComponent, canActivate: [AuthGuard]},
   {path: 'bannedOfferEditAdmin/:id', component: BannedOfferEditComponent, canActivate: [AuthGuard, AdminGuard]},
   {path: 'editUser', component: UserEditComponent, canActivate: [AuthGuard]},
   {path: 'createOffer', component: CreateOfferComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'detailOffer/:id', component: DetailsOfferComponent, canActivate: [AuthGuard]},
   {path: 'detailOfferEdit/:id', component: EditDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'allOffersToComment/:page/:size/:title/:sort', component: CommentAndMarkListComponent, canActivate: [AuthGuard]},
+  {path: 'commentOffer/:id', component: CommentAndMarkComponent, canActivate: [AuthGuard]},
+  {path: 'statistic/:id/:typeStatistic/:title', component: LinearChartComponent, canActivate: [AuthGuard]},
   {path: 'setPassword/:token', component: SetPasswordComponent}
 ];
 

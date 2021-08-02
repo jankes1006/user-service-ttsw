@@ -24,6 +24,11 @@
 
     <button #orderButton type="button" (click)="orderProduct()" class="btn btn-primary btn-lg btn-block mt-5">{{'OFFER_DETAILS.ORDER' | translate}}</button>
     <button #notificationButton type="button" (click)="notification()"  class="btn btn-danger btn-lg btn-block mt-1">{{'OFFER_DETAILS.NOTIFICATION' | translate}}</button>
+    
+    <div #statistic id="statisctic">
+      <h4>Statystyki:</h4>
+      <a routerLink="/statistic/{{id}}/showViewsOnHour/{{offer.title}}">Liczba wyswietlen na godzine</a>
+    </div>
   </div>
 </div>
 

@@ -27,6 +27,9 @@ import { SetPasswordComponent } from './set-password/set-password.component';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LinearChartComponent } from './linear-chart/linear-chart.component';
+import { CommentAndMarkComponent } from './comment-and-mark/comment-and-mark.component';
+import { CommentAndMarkListComponent } from './comment-and-mark-list/comment-and-mark-list.component';
 
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http);
@@ -52,6 +55,9 @@ export function HttpLoaderFactory(http: HttpClient){
     FooterComponent,
     ForgotPasswordComponent,
     SetPasswordComponent,
+    LinearChartComponent,
+    CommentAndMarkComponent,
+    CommentAndMarkListComponent,
   ],
   imports: [
     BrowserModule,

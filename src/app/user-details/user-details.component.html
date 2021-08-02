@@ -1,7 +1,7 @@
 <app-home></app-home>
 
 <div class="panel panel-info col-lg-6 offset-lg-3 mt-3 mb-5">
-  <div class="panel-heading bg-inf text-center p-2 border border-primary rounded-top rounded-bottom"><h2>{{'EDIT_ROLE_ADMIN.TITLE' | translate}}</h2></div>
+  <div class="panel-heading bg-inf text-center p-2 border border-primary rounded-top rounded-bottom"><h2>{{'EDIT_ROLE_ADMIN.TITLE' | translate}} {{user?.username}}</h2></div>
   <div class="panel-body p-2 border border-primary rounded-top rounded-bottom">
 
     <h5>
@@ -24,8 +24,42 @@
       <small class="text-muted">{{user?.role}}</small>
     </h5>
 
-    <h3 class="mt-5">{{'EDIT_ROLE_ADMIN.EDITING_ROLE_TITLE' | translate}}</h3>
-    <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
+    <h5>
+      <a routerLink="/showAllOffer/0/7/all/*/{{user?.username}}/id,asc">{{'EDIT_ROLE_ADMIN.ACTUALL_OFFER' | translate}}</a>
+    </h5>
+
+    <h5>
+      {{'EDIT_ROLE_ADMIN.NUMBER_OF_SOLD_OFFERS' | translate}}
+      <small class="text-muted">{{soldOffer}}</small>
+    </h5>
+
+    <h5>
+      {{'EDIT_ROLE_ADMIN.AVERAGE_MARK' | translate}}
+      <small class="text-muted">{{averageMark}}</small>
+    </h5>
+
+    <h5>
+      <a routerLink="/statistic/{{user.id}}/showMarksUser/{{titleToMarksStatistic}}">{{'EDIT_ROLE_ADMIN.STATISTIC_MARK' | translate}}</a>
+    </h5>
+
+    <h5>
+      {{'EDIT_ROLE_ADMIN.COMMENTS' | translate}}
+    </h5>
+
+    <ul style="height: 100px; overflow:auto;" class="mr-5">
+      <li style="list-style-type: none;" *ngFor="let comment of comments">
+        <div style="background-color: silver;">
+          <b>{{'EDIT_ROLE_ADMIN.AUTHOR' | translate}}</b> {{comment?.usernameClient}}, <b>{{'EDIT_ROLE_ADMIN.OFFER' | translate}}</b> {{comment?.titleOffer}} <b>{{'EDIT_ROLE_ADMIN.DATE_BUY' | translate}}</b> {{comment?.dateTime | date:"short"}} <b>{{'EDIT_ROLE_ADMIN.MARK' | translate}}</b> {{comment?.mark}}
+        </div>
+        <div style="background-color: whitesmoke;">
+          <b>{{'EDIT_ROLE_ADMIN.COMMENT' | translate}}</b> <br/>
+          {{comment?.comment}}
+        </div>
+      </li>
+    </ul>
+
+    <h3 *ngIf="role=='admin'" class="mt-5">{{'EDIT_ROLE_ADMIN.EDITING_ROLE_TITLE' | translate}}</h3>
+    <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)" *ngIf="role=='admin'">
       <h5>{{'EDIT_ROLE_ADMIN.NEW_ROLE' | translate}}</h5>
       <select ngModel name="role" style="width: 100%;">
         <option selected>ROLE_USER</option>
@@ -35,5 +69,8 @@
       
       <button type="sumbit" class="btn btn-primary btn-lg btn-block mt-2">{{'EDIT_ROLE_ADMIN.CHANGE_ROLE_USER' | translate}}</button>
     </form>
+    
   </div>
+  <br/>
+  <br/>
 </div>

@@ -200,14 +200,26 @@
   },
 
   "EDIT_ROLE_ADMIN":{
-    "TITLE":"Modyfikacja użytkownika - admin",
+    "TITLE":"Użytkownik: ",
     "USER_ID":"ID:",
     "USERNAME":"Nazwa użytkownika:",
     "USER_EMAIL":"Email użytkownika:",
     "USER_ROLE":"Rola użytkownika:",
     "EDITING_ROLE_TITLE":"Edycja roli:",
     "NEW_ROLE":"Nowa rola:",
-    "CHANGE_ROLE_USER":"Zmień rolę użytkownika"
+    "CHANGE_ROLE_USER":"Zmień rolę użytkownika",
+
+    "ACTUALL_OFFER":"Aktualne oferty",
+    "NUMBER_OF_SOLD_OFFERS":"Sprzedanych:",
+    "AVERAGE_MARK":"Średnia ocen:",
+    "STATISTIC_MARK":"Wykres ocen",
+    "COMMENTS":"Komentarze:",
+    "COMMENT":"Komentarz:",
+    "AUTHOR":"Autor:",
+    "OFFER":"Oferta:",
+    "DATE_BUY":"Data zakupu:",
+    "MARK":"Wystawiona ocena:",
+    "MARK_TITLE":"Ocena użytkownika"
   },
 
   "RESET_PASSWORD":{
@@ -241,5 +253,35 @@
   "SET_PASSWORD_WARNING":{
     "SUCCESS":"Udało się zmienić hasło! Wróć do logowania.",
     "FAILURE":"Nie udało się zmienić hasła!"
+  },
+
+  "COMMENT_LIST":{
+    "FILTRS":"FILTRY",
+    "NUMBER_OFFERS_ON_SITE":"Liczba ofert na stronie:",
+    "SORT":"Sortuj po",
+    "SORT_NAME_ASC":"Nazwie oferty rosnąco",
+    "SORT_NAME_DESC":"Nazwie oferty malejąco",
+    "SORT_TIME_ASC":"Od najstarszych",
+    "SORT_TIME_DESC":"Od najmłoszych",
+    "OFFER_TITLE":"Tytuł oferty",
+    "APPLY":"Zastosuj",
+    "DELETE_FILTERS":"Usuń filtry",
+    "NAME_OFFER":"Nazwa oferty",
+    "NAME_SALLERY":"Nazwa sprzedającego",
+    "DATE_BUY":"Data zakupu"
+  },
+
+  "COMMENT":{
+    "TITLE":"Ocena oferty",
+    "TITLE_OFFER":"Tytuł oferty:",
+    "SALLERY":"Sprzedawca:",
+    "DATE_BUY":"Data zakupu:",
+    "COMMENT_TITLE":"Komentarz",
+    "COMMENT_EXAMPLE":"Napisz komenatrz...",
+    "COMMENT_ERROR":"Komenatrz może mieć maksymalnie 1024 znaki!",
+    "MARK_TITLE":"Ocena",
+    "MARK_ERROR":"Oceń w skali 1-5!",
+    "SUBMIT":"Oceń ofertę",
+    "SUCCESSFULL_COMMENT":"Udało się ocenić ofertę. Wróć do menu"
   }
 }

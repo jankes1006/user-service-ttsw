@@ -60,7 +60,6 @@ export class AllUserComponent implements OnInit {
     let sendEmail;
     let sendUsername;
     let sendRole;
-    let sendSort;
 
     console.warn(data);
     if(data.sizePage==""){
@@ -87,13 +86,7 @@ export class AllUserComponent implements OnInit {
       sendRole=data.role;
     }
 
-    if(data.sort==""){
-      sendSort=this.role;
-    }else{
-      sendSort=data.sort;
-    }
-
-    location.href="/showAllUsers/0/"+sendPageSize+"/"+sendUsername+"/"+sendEmail+"/"+sendRole+"/"+sendSort;
+    location.href="/showAllUsers/0/"+sendPageSize+"/"+sendUsername+"/"+sendEmail+"/"+sendRole+"/"+this.sort;
   }
 
   preapreSite(){

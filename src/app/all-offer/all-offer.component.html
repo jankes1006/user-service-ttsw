@@ -74,10 +74,7 @@
             <td>{{offer.description}}</td>
             <td>{{offer.price}}</td>
             <td>{{offer.category | uppercase}}</td>
-            <td *ngIf="isAdmin!='admin'; else usernameAdmin"><a href='/showAllOffer/0/{{sizePage}}/{{category}}/{{searchTitle}}/{{offer.ownerName}}'>{{offer.ownerName}}</a></td>
-            <ng-template #usernameAdmin>
-                <td><a href='/showAllOffer/0/{{sizePage}}/{{category}}/{{searchTitle}}/{{offer.ownerName}}/admin'>{{offer.ownerName}}</a></td>
-            </ng-template>
+            <td><a href='/detailUser/{{offer.ownerId}}/user'>{{offer.ownerName}}</a></td>
 
             <td *ngIf="isAdmin=='admin'">{{offer.stateOffer}}</td>
             <td *ngIf="isAdmin=='admin' && numberOfNotification && numberOfNotification[offer.id]; else noNotification">{{numberOfNotification[offer.id]}}</td>

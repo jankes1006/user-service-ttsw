@@ -13,7 +13,7 @@ export class OfferService {
   onlyTry(OfferAndImage: OfferAndImage){
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
     //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
-    return this.http.post("http://localhost:8080/offer/try",OfferAndImage,{headers});
+    return this.http.post("http://localhost:8080/offer/try",OfferAndImage,{headers,responseType: 'text' as 'json'});
   }
 
 
@@ -134,5 +134,10 @@ export class OfferService {
   numberOfVisitedOfferId(id: number){
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
     return this.http.get("http://localhost:8080/log/numberOfVisitedOffer?id="+id,{headers});
+  }
+
+  statisticViewOffer(id: number){
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
+    return this.http.get("http://localhost:8080/statistic/viewsOfferOnHour?id="+id,{headers});
   }
 }
