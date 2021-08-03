@@ -40,7 +40,7 @@ export class OfferService {
   getImg(data: any){
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + localStorage.getItem('token') });
     //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(localStorage.getItem('username') + ':' + localStorage.getItem('password')) });
-    return this.http.get("http://localhost:8080/image?id="+data,{headers});
+    return this.http.get("http://localhost:8080/offer/getImages?id="+data,{headers});
   }
 
   getAllOffer(){

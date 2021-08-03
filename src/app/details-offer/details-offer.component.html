@@ -17,7 +17,10 @@
 
     <div *ngIf=retrievedImage>
       <h4>{{'OFFER_DETAILS.IMAGE' | translate}}</h4>
-      <img [src]="retrievedImage">
+      <img [src]="retrievedImage[0]">
+      <img [src]="retrievedImage[1]">
+      <img [src]="retrievedImage[2]">
+      <img [src]="retrievedImage[3]">
     </div>
 
     <p #reservedStatus class="text-danger mt-3">{{status | translate}}</p>

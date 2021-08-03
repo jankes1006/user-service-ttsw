@@ -18,8 +18,8 @@ export class DetailsOfferComponent implements OnInit {
   @ViewChild('notificationButton') notificationButton?: ElementRef;
   @ViewChild('statistic') statistic?: ElementRef;
   //image
-  retrievedImage: any;
-  base64Data: any;
+  retrievedImage = new Array(4);
+  base64Data = new Array(4);
   retrieveResonse: any;
 
   visited?: number;
@@ -37,9 +37,9 @@ export class DetailsOfferComponent implements OnInit {
     this.offerService.getOfferById(id).subscribe(result =>{ 
       this.offer = result;
       
-      if(this.offer.image){
-        this.getImage(this.offer.image);
-      }
+      
+      this.getImages(this.id!);
+    
 
       if(localStorage.getItem('username')==this.offer.ownerName){
         this.orderButton!.nativeElement.style.display="none";
@@ -87,13 +87,17 @@ export class DetailsOfferComponent implements OnInit {
     })
   }
 
-  getImage(id: number) {
+  getImages(id: number) {
     this.offerService.getImg(id)
       .subscribe(
         res => {
+          console.warn(res);
           this.retrieveResonse = res;
-          this.base64Data = this.retrieveResonse.picByte;
-          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+          for( let i=0; i<4; i++){
+            console.warn(this.retrieveResonse[i])
+            this.base64Data[i] = this.retrieveResonse[i].picByte;
+            this.retrievedImage[i] = 'data:image/jpeg;base64,' + this.base64Data[i];
+          }
         }
       );
   }
