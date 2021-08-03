@@ -2,6 +2,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CommentService } from '../CommentService/comment.service';
 import { UserService } from '../UserService/user.service';
 
@@ -20,7 +21,7 @@ export class UserDetailsComponent implements OnInit {
   averageMark?: number;
   comments: any;
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private commentService: CommentService) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private commentService: CommentService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.id=Number(this.route.snapshot.paramMap.get('id'));
@@ -40,9 +41,12 @@ export class UserDetailsComponent implements OnInit {
 
   onSubmit(data: any){
     data.id = this.id;
-    
+    this.toastr.info("Proszę czekać, trwa edycja roli użytkownika","Edycja roli użytkownika")
     this.userService.updateUserAdmin(data).subscribe(result=>{
       this.user=result;
+      this.toastr.success("Edycja roli zakończyła się sukcesem","Edycja roli użytkownika")
+    },error=>{
+      this.toastr.success("Edycja roli zakończyła się niepowodzeniem","Edycja roli użytkownika")
     })
   }
 

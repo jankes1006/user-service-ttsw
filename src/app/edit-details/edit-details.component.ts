@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
 import { OfferService } from '../OfferService/offer.service';
 
@@ -21,7 +22,7 @@ export class EditDetailsComponent implements OnInit {
   
   editOffer: FormGroup
 
-  constructor(private offerService: OfferService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { 
+  constructor(private offerService: OfferService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private toastr: ToastrService) { 
     
     this.editOffer = this.formBuilder.group({
       title: new FormControl('',[Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
@@ -80,7 +81,9 @@ export class EditDetailsComponent implements OnInit {
 
   onSubmit(data: any){
     this.editButton!.nativeElement.disabled=true;
-    this.editOfferStatus!.nativeElement.innerHTML="Czekaj...";
+    
+    this.toastr.info("Czekaj, twra edycja oferty","Edycja oferty")
+   // this.editOfferStatus!.nativeElement.innerHTML="Czekaj...";
 
     data.stateOffer = this.offer.stateOffer;
     data.category = this.offer.category;
@@ -91,11 +94,13 @@ export class EditDetailsComponent implements OnInit {
 
     this.offerService.updateOffer(data).subscribe(result=>{
       this.editButton!.nativeElement.disabled=false;
-      this.editOfferStatus!.nativeElement.innerHTML="Edycja zakończona sukcesem!";
+    //  this.editOfferStatus!.nativeElement.innerHTML="Edycja zakończona sukcesem!";
+      this.toastr.success("Edycja oferty zakończona sukcesem","Edycja oferty")
       this.router.navigate(['/detailOffer/'+data.id]);
     },()=>{
       this.editButton!.nativeElement.disabled=false;
-      this.editOfferStatus!.nativeElement.innerHTML="Edycja zakończona niepowodzeniem!";
+      this.toastr.error("Wystąpił błąd podczas edycji oferty. Spróbuj później.","Edycja oferty")
+     // this.editOfferStatus!.nativeElement.innerHTML="Edycja zakończona niepowodzeniem!";
     })
     
   }

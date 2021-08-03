@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   logout(){
-    //this.toastr.success("Hello i am the thoastr message")
+    this.toastr.info("Zapraszamy ponownie")
     localStorage.removeItem("username");
     localStorage.removeItem("token");
     localStorage.removeItem("role");

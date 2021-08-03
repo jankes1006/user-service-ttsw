@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { OfferService } from '../OfferService/offer.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class BannedOfferEditComponent implements OnInit {
 
   @ViewChild('reason') reason?: ElementRef;
   @ViewChild('workStatus') workStatus?: ElementRef;
-  constructor(private offerService: OfferService,private route: ActivatedRoute) { }
+  constructor(private offerService: OfferService,private route: ActivatedRoute, private toastr: ToastrService) { }
   
 
   ngOnInit(): void {
@@ -39,7 +40,8 @@ export class BannedOfferEditComponent implements OnInit {
   }
 
   block(data: any){
-    this.workStatus!.nativeElement.innerHTML="Czekaj...";
+    this.toastr.info("Proszę czekać trwa edycja","Blokada ofert admin")
+    //this.workStatus!.nativeElement.innerHTML="Czekaj...";
     data.id = this.id;
 
     if(this.blockUnBlockOffer.buttonText=="Aktywuj blokade"){
@@ -47,9 +49,10 @@ export class BannedOfferEditComponent implements OnInit {
       this.offerService.setBanOnOffer(data).subscribe(result =>{
         this.offer=result;
         this.setElementOnSite(this.offer.stateOffer);
-        this.workStatus!.nativeElement.innerHTML="";
+        //this.workStatus!.nativeElement.innerHTML="";
+        this.toastr.success("Nałożenie blokady zakończyło się sukcesem","Blokada ofert admin")
       },()=>{
-        this.workStatus!.nativeElement.innerHTML="Nieudana próba nałożenia blokady!";
+        this.toastr.error("Nałożenie blokady zakończyło się niepowodzeniem. Spróbuj później","Blokada ofert admin")
       })
 
     }else{
@@ -57,9 +60,10 @@ export class BannedOfferEditComponent implements OnInit {
       this.offerService.takeOfBanOffer(data).subscribe(result =>{
         this.offer=result;
         this.setElementOnSite(this.offer.stateOffer);
-        this.workStatus!.nativeElement.innerHTML="";
+        //this.workStatus!.nativeElement.innerHTML="";
+        this.toastr.success("Ściągnięcie blokady zakończyło się sukcesem","Blokada ofert admin")
       },()=>{
-        this.workStatus!.nativeElement.innerHTML="Nieudana próba ściągnięcia blokady!";
+        this.toastr.error("Ściągnięcie blokady zakończyło się niepowodzeniem. Spróbuj później","Blokada ofert admin")
       })
 
     }
