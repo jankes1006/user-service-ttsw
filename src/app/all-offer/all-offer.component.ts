@@ -124,10 +124,10 @@ export class AllOfferComponent implements OnInit {
       sendSort=data.sort;
     }
     
-    if(this.isAdmin!="admin"){
+    if(this.isAdmin!="admin" && this.isAdmin!="unregisteredUser"){
       location.href="/showAllOffer/0/"+sendPageSize+"/"+sendCategory+"/"+sendSearchTile+"/"+sendUser+"/"+sendSort;
     }else{
-      location.href="/showAllOffer/0/"+sendPageSize+"/"+sendCategory+"/"+sendSearchTile+"/"+sendUser+"/"+sendSort+"/admin";
+      location.href="/showAllOffer/0/"+sendPageSize+"/"+sendCategory+"/"+sendSearchTile+"/"+sendUser+"/"+sendSort+"/"+this.isAdmin;
     }
     
   }
@@ -147,6 +147,10 @@ export class AllOfferComponent implements OnInit {
   }
 
   resetFilter(){
-    location.href="/showAllOffer/0/8/all/*/*";
+    if(this.isAdmin!="admin" && this.isAdmin!="unregisteredUser"){
+      location.href="/showAllOffer/0/8/all/*/*/id,asc";
+    }else{
+      location.href="/showAllOffer/0/8/all/*/*/id,asc/"+this.isAdmin;
+    }
   }
 }

@@ -1,4 +1,5 @@
-<app-home></app-home>
+<app-home *ngIf="isAdmin!='unregisteredUser'"></app-home>
+<app-navbar-unregistered *ngIf="isAdmin=='unregisteredUser'"></app-navbar-unregistered>
 
 <div class="panel panel-default mr-1 ml-1 mt-1 mb-1 text-center">
     <div class="panel-head bg-inf border text-center border-primary rounded-top rounded-bottom "><h5>{{'ALL_OFFER.FILTRS' | translate}}</h5></div>
@@ -67,14 +68,20 @@
     <tbody>
         <tr *ngFor="let offer of allOffers">
             <td >{{offer.id}}</td>
-            <td *ngIf="isAdmin!='admin'; else offerTitleAdmin"><a routerLink="/detailOffer/{{offer.id}}">{{offer.title}}</a></td>
+            <td *ngIf="(isAdmin!='admin' && isAdmin!='unregisteredUser'); else offerTitleAdmin"><a routerLink="/detailOffer/{{offer.id}}">{{offer.title}}</a></td>
             <ng-template #offerTitleAdmin>
-                <td><a routerLink="/bannedOfferEditAdmin/{{offer.id}}">{{offer.title}}</a></td>
+                <td *ngIf="isAdmin=='admin'; else unregisteredUser"><a routerLink="/bannedOfferEditAdmin/{{offer.id}}">{{offer.title}}</a></td>
+                <ng-template #unregisteredUser>
+                    <td><a routerLink="/detailOffer/{{offer.id}}/unregisteredUser">{{offer.title}}</a></td>
+                </ng-template>
             </ng-template>
             <td>{{offer.description}}</td>
             <td>{{offer.price}}</td>
             <td>{{offer.category | uppercase}}</td>
-            <td><a href='/detailUser/{{offer.ownerId}}/user'>{{offer.ownerName}}</a></td>
+
+            <td *ngIf="isAdmin!='unregisteredUser'; else unregisteredUserOwner" > <a href='/detailUser/{{offer.ownerId}}/user'>{{offer.ownerName}}</a> </td>
+            <ng-template #unregisteredUserOwner><td>{{offer.ownerName}}</td></ng-template>
+            
 
             <td *ngIf="isAdmin=='admin'">{{offer.stateOffer}}</td>
             <td *ngIf="isAdmin=='admin' && numberOfNotification && numberOfNotification[offer.id]; else noNotification">{{numberOfNotification[offer.id]}}</td>
@@ -88,9 +95,9 @@
 <nav>
     <ul class="pagination" >
         <div  *ngFor="let item of createRange(numberOfPagination!)" >
-            <li class="page-item" *ngIf="isAdmin!='admin'; else paginationAdmin"><a class="page-link" href='/showAllOffer/{{item - 1}}/{{sizePage}}/{{category}}/{{searchTitle}}/{{searchUser}}/{{sort}}'>{{item}}</a></li>
+            <li class="page-item" *ngIf="(isAdmin!='admin' && isAdmin!='unregisteredUser'); else paginationAdmin"><a class="page-link" href='/showAllOffer/{{item - 1}}/{{sizePage}}/{{category}}/{{searchTitle}}/{{searchUser}}/{{sort}}'>{{item}}</a></li>
             <ng-template #paginationAdmin>
-                <li class="page-item"><a class="page-link" href='/showAllOffer/{{item - 1}}/{{sizePage}}/{{category}}/{{searchTitle}}/{{searchUser}}/{{sort}}/admin'>{{item}}</a></li>
+                <li class="page-item"><a class="page-link" href='/showAllOffer/{{item - 1}}/{{sizePage}}/{{category}}/{{searchTitle}}/{{searchUser}}/{{sort}}/{{isAdmin}}'>{{item}}</a></li>
             </ng-template>
         </div>
     </ul>

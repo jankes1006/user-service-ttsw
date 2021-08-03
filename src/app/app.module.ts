@@ -31,6 +31,10 @@ import { LinearChartComponent } from './linear-chart/linear-chart.component';
 import { CommentAndMarkComponent } from './comment-and-mark/comment-and-mark.component';
 import { CommentAndMarkListComponent } from './comment-and-mark-list/comment-and-mark-list.component';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { ToastrModule } from 'ngx-toastr';
+import { NavbarUnregisteredComponent } from './navbar-unregistered/navbar-unregistered.component';
+
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http);
 }
@@ -58,9 +62,16 @@ export function HttpLoaderFactory(http: HttpClient){
     LinearChartComponent,
     CommentAndMarkComponent,
     CommentAndMarkListComponent,
+    NavbarUnregisteredComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut:10000,
+      progressBar:true,
+      progressAnimation:'increasing'
+    }),
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

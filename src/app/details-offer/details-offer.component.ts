@@ -12,6 +12,7 @@ export class DetailsOfferComponent implements OnInit {
   offer: any;
   id?: number;
   status:any;
+  unregisteredUser?: string;
 
   @ViewChild('reservedStatus') reservedStatus?: ElementRef;
   @ViewChild('orderButton') orderButton?: ElementRef;
@@ -24,11 +25,12 @@ export class DetailsOfferComponent implements OnInit {
 
   visited?: number;
 
-  constructor(private offerService: OfferService,private route: ActivatedRoute) { }
+  constructor(private offerService: OfferService,private route: ActivatedRoute, private router: Router) { }
   
 
   ngOnInit(): void {
     this.id=Number(this.route.snapshot.paramMap.get('id'));
+    this.unregisteredUser=String(this.route.snapshot.paramMap.get('unregisteredUser'));
     this.getOffer(this.id);
     this.getVisited(this.id);
   }
@@ -106,5 +108,9 @@ export class DetailsOfferComponent implements OnInit {
     this.offerService.numberOfVisitedOfferId(id).subscribe(result =>{
       this.visited = Number(result);
     })
+  }
+
+  loginUser(){
+    this.router.navigate(['/login']);
   }
 }

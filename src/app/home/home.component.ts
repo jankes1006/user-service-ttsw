@@ -1,6 +1,7 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
 
 export function TRANSLATE(str: string) {
@@ -18,8 +19,7 @@ export class HomeComponent implements OnInit {
   linkToAllOffersAdmin?: any;
 
   loginUser = localStorage.getItem("username");
-  constructor(private router: Router) {
-
+  constructor(private router: Router, private toastr: ToastrService) {
    }
 
   dropMenuOne = "nav-link dropdown-toggle";
@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   logout(){
+    //this.toastr.success("Hello i am the thoastr message")
     localStorage.removeItem("username");
     localStorage.removeItem("token");
     localStorage.removeItem("role");

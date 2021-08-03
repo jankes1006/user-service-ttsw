@@ -1,4 +1,5 @@
-<app-home></app-home>
+<app-home *ngIf="unregisteredUser!='unregisteredUser'"></app-home>
+<app-navbar-unregistered *ngIf="unregisteredUser=='unregisteredUser'"></app-navbar-unregistered>
 
 <div class="panel panel-info col-lg-6 offset-lg-3 mt-2 mb-5">
   <div class="panel-heading bg-inf text-center p-2 border border-primary rounded-top rounded-bottom"><h2>{{offer?.title}}</h2></div>
@@ -25,10 +26,11 @@
 
     <p #reservedStatus class="text-danger mt-3">{{status | translate}}</p>
 
-    <button #orderButton type="button" (click)="orderProduct()" class="btn btn-primary btn-lg btn-block mt-5">{{'OFFER_DETAILS.ORDER' | translate}}</button>
-    <button #notificationButton type="button" (click)="notification()"  class="btn btn-danger btn-lg btn-block mt-1">{{'OFFER_DETAILS.NOTIFICATION' | translate}}</button>
+    <button *ngIf="unregisteredUser!='unregisteredUser'" #orderButton type="button" (click)="orderProduct()" class="btn btn-primary btn-lg btn-block mt-5">{{'OFFER_DETAILS.ORDER' | translate}}</button>
+    <button *ngIf="unregisteredUser!='unregisteredUser'" #notificationButton type="button" (click)="notification()"  class="btn btn-danger btn-lg btn-block mt-1">{{'OFFER_DETAILS.NOTIFICATION' | translate}}</button>
+    <button *ngIf="unregisteredUser=='unregisteredUser'" type="button" (click)="loginUser()"  class="btn btn-warning btn-lg btn-block mt-1">Aby zarezerwować ofertę musisz się zalogować</button>
     
-    <div #statistic id="statisctic">
+    <div *ngIf="unregisteredUser!='unregisteredUser'" #statistic id="statisctic">
       <h4>Statystyki:</h4>
       <a routerLink="/statistic/{{id}}/showViewsOnHour/{{offer.title}}">Liczba wyswietlen na godzine</a>
     </div>

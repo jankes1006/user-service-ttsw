@@ -33,6 +33,7 @@ const routes: Routes = [
   {path: 'createOffer', component: CreateOfferComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'detailOffer/:id', component: DetailsOfferComponent, canActivate: [AuthGuard]},
+  {path: 'detailOffer/:id/:unregisteredUser', component: DetailsOfferComponent, canActivate: []},
   {path: 'detailOfferEdit/:id', component: EditDetailsComponent, canActivate: [AuthGuard]},
   {path: 'allOffersToComment/:page/:size/:title/:sort', component: CommentAndMarkListComponent, canActivate: [AuthGuard]},
   {path: 'commentOffer/:id', component: CommentAndMarkComponent, canActivate: [AuthGuard]},
